@@ -129,7 +129,7 @@ As a tool integrator, I want metric results to be serializable (e.g., to JSON), 
 - **FR-002**: The library MUST compute cyclomatic complexity for each function, counting decision points (if, for, while, match arms, boolean operators).
 - **FR-003**: The library MUST compute SLOC (Source Lines of Code) for each function, excluding blank lines and comment-only lines.
 - **FR-004**: The library MUST accept a file path as input and automatically detect the programming language from the file extension.
-- **FR-005**: The library MUST accept source code as a string with an explicit language identifier and produce the same metrics as file-based analysis.
+- **FR-005**: The library MUST accept source code as a string with an explicit language identifier and produce the same metrics as file-based analysis. Both plain and config-accepting variants (`analyze_source`, `analyze_source_with_config`) MUST be provided for parity with file-based analysis.
 - **FR-006**: The library MUST support 10 programming languages at initial release: Rust, Python, JavaScript, TypeScript/TSX, Java, C#, C++, C, Go, and PHP.
 - **FR-007**: The library MUST allow each language to be enabled or disabled independently via compile-time feature flags.
 - **FR-008**: The library MUST provide a sensible set of default features (a subset of supported languages) to minimize compilation time for common use cases.
@@ -142,6 +142,7 @@ As a tool integrator, I want metric results to be serializable (e.g., to JSON), 
 - **FR-015**: The library MUST correctly implement cognitive complexity boolean operator rules: same-operator sequences count as +1, operator changes add additional increments.
 - **FR-016**: The library MUST be usable as an independent crate published on crates.io, with no dependency on DevTrail or any specific framework.
 - **FR-017**: The library MUST use a modular architecture where adding support for a new language requires implementing only a language-specific profile, without modifying core metric computation logic.
+- **FR-018**: The library MUST allow configuring whether class/struct methods are included in the analysis via an `include_methods` option (default: true). When disabled, only top-level functions produce FunctionMetrics entries.
 
 ### Key Entities
 

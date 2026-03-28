@@ -1,0 +1,44 @@
+[package]
+name = "arborist"
+version = "0.1.0"
+edition = "2024"
+description = "Multi-language code complexity metrics (cognitive, cyclomatic, SLOC) powered by tree-sitter"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/StrangeDaysTech/arborist"
+keywords = ["complexity", "cognitive", "cyclomatic", "tree-sitter", "metrics"]
+categories = ["development-tools", "command-line-utilities"]
+
+[dependencies]
+serde = { version = "1", features = ["derive"] }
+tree-sitter = "0.25"
+
+# Tier 1 grammar crates (all optional, gated by feature flags)
+tree-sitter-rust = { version = "0.23", optional = true }
+tree-sitter-python = { version = "0.23", optional = true }
+tree-sitter-javascript = { version = "0.23", optional = true }
+tree-sitter-typescript = { version = "0.23", optional = true }
+tree-sitter-java = { version = "0.23", optional = true }
+tree-sitter-c-sharp = { version = "0.23", optional = true }
+tree-sitter-cpp = { version = "0.23", optional = true }
+tree-sitter-c = { version = "0.23", optional = true }
+tree-sitter-go = { version = "0.23", optional = true }
+tree-sitter-php = { version = "0.23", optional = true }
+
+[dev-dependencies]
+serde_json = "1"
+
+[features]
+default = ["rust", "python", "javascript", "typescript", "java", "go"]
+all = ["default", "csharp", "cpp", "c", "php"]
+
+# Individual language features
+rust = ["dep:tree-sitter-rust"]
+python = ["dep:tree-sitter-python"]
+javascript = ["dep:tree-sitter-javascript"]
+typescript = ["dep:tree-sitter-typescript"]
+java = ["dep:tree-sitter-java"]
+csharp = ["dep:tree-sitter-c-sharp"]
+cpp = ["dep:tree-sitter-cpp"]
+c = ["dep:tree-sitter-c"]
+go = ["dep:tree-sitter-go"]
+php = ["dep:tree-sitter-php"]
