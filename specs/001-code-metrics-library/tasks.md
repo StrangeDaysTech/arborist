@@ -102,7 +102,7 @@
 
 ### TDD: Fixtures for Remaining 9 Languages
 
-> **Create 5 fixtures per language** covering: simple function, nested control flow, mixed boolean operators, else-if chains, closures/lambdas.
+> **Create 6 fixtures per language** covering: simple function, nested control flow, mixed boolean operators, else-if chains, closures/lambdas, recursion.
 
 - [ ] T026 [P] [US3] Create 6 Python test fixtures with pre-calculated complexity values in tests/fixtures/python/: simple_function.py, nested_control_flow.py, boolean_operators.py, elif_chain.py, lambda_nested.py, recursion.py
 - [ ] T027 [P] [US3] Create 6 JavaScript test fixtures with pre-calculated complexity values in tests/fixtures/javascript/: simple_function.js, nested_control_flow.js, boolean_operators.js, else_if_chain.js, arrow_functions.js, recursion.js
@@ -129,12 +129,12 @@
 ### Implementation: Feature Flags & Detection
 
 - [ ] T044 [US5] Add cfg-gate attributes to all language profile modules and language detection match arms, ensuring LanguageNotEnabled error when feature is off in src/languages/mod.rs
-- [ ] T045 [US5] Write tests: compile with subset of features, verify enabled languages work and disabled languages return LanguageNotEnabled in tests/integration/feature_flags.rs
+- [ ] T045 [US5] Write tests: compile with subset of features, verify enabled languages work and disabled languages return LanguageNotEnabled in tests/feature_flags.rs
 
 ### Integration Tests for All Languages
 
-- [ ] T046 [US3] Write integration tests for all 9 new languages: analyze each fixture file and assert metrics match expected values in tests/integration/ (one test file per language: python_analysis.rs, javascript_analysis.rs, etc.)
-- [ ] T047 [US3] Write language detection tests: verify all extensions map to correct Language variant, unknown extensions return UnrecognizedExtension, .h defaults to C in tests/integration/language_detection.rs
+- [ ] T046 [US3] Write integration tests for all 9 new languages: analyze each fixture file and assert metrics match expected values in tests/ (one test file per language: python_analysis.rs, javascript_analysis.rs, etc.)
+- [ ] T047 [US3] Write language detection tests: verify all extensions map to correct Language variant, unknown extensions return UnrecognizedExtension, .h defaults to C in tests/language_detection.rs
 
 **Checkpoint**: All 10 Tier 1 languages analyzed correctly. Feature flags gate compilation. Extension detection complete.
 
@@ -148,8 +148,8 @@
 
 ### TDD: Tests for US4
 
-- [ ] T048 [US4] Write tests: analyze Rust fixtures with cognitive_threshold=8, verify exceeds_threshold is Some(true) for complex functions and Some(false) for simple ones. Verify exceeds_threshold is None when no threshold configured in tests/integration/threshold_tests.rs
-- [ ] T048b [US4] Write tests: analyze a Java fixture containing a class with methods using include_methods=false, verify only top-level functions appear in report. Verify include_methods=true (default) includes methods in tests/integration/config_tests.rs
+- [ ] T048 [US4] Write tests: analyze Rust fixtures with cognitive_threshold=8, verify exceeds_threshold is Some(true) for complex functions and Some(false) for simple ones. Verify exceeds_threshold is None when no threshold configured in tests/threshold_tests.rs
+- [ ] T048b [US4] Write tests: analyze a Java fixture containing a class with methods using include_methods=false, verify only top-level functions appear in report. Verify include_methods=true (default) includes methods in tests/config_tests.rs
 
 ### Implementation for US4
 
@@ -168,7 +168,7 @@
 
 ### TDD: Tests for US6
 
-- [ ] T050 [US6] Write serialization round-trip tests: analyze a fixture, serialize FileReport to JSON, deserialize back, assert equality. Verify all fields (name, lines, metrics, exceeds_threshold, language) are preserved in tests/integration/serialization_tests.rs
+- [ ] T050 [US6] Write serialization round-trip tests: analyze a fixture, serialize FileReport to JSON, deserialize back, assert equality. Verify all fields (name, lines, metrics, exceeds_threshold, language) are preserved in tests/serialization_tests.rs
 
 ### Implementation for US6
 
@@ -189,8 +189,9 @@
 - [ ] T056 Run cargo test --all-features and verify all tests pass
 - [ ] T057 Validate quickstart.md examples compile and run correctly against the implemented library
 - [ ] T058 Create README.md with: project description, installation instructions, usage examples, feature flags table, supported languages, contributing guidelines, license info
-- [ ] T059 Add performance benchmark: create a large fixture file (500+ lines, 20+ functions) and a benchmark test that asserts analysis completes in under 100ms per SC-002 in tests/integration/performance_bench.rs
+- [ ] T059 Add performance benchmark: create a large fixture file (500+ lines, 20+ functions) and a benchmark test that asserts analysis completes in under 100ms per SC-002 in tests/performance_bench.rs
 - [x] T060 Add #![forbid(unsafe_code)] to src/lib.rs to enforce constitution "no unsafe" rule at compile time
+- [ ] T061 [P] Validate SC-005: build with --no-default-features --features rust and verify compile time is under 30 seconds on CI-equivalent hardware
 
 ---
 

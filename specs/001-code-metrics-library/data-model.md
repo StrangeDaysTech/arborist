@@ -94,8 +94,9 @@ Extension point for adding new language support. Not a data entity — it's a be
 | `lambda_nodes()` | `&[&str]` | Closure/lambda nodes (increment nesting) |
 | `comment_nodes()` | `&[&str]` | Comment nodes (for SLOC exclusion) |
 | `extract_function_name(node, source)` | `Option<String>` | Extract function name from AST node |
-| `language()` | `tree_sitter::Language` | Get the tree-sitter parser language |
+| `parser_language()` | `tree_sitter::Language` | Get the tree-sitter parser language |
 | `extensions()` | `&[&str]` | File extensions for this language |
+| `is_method(node)` | `bool` | Whether a function node represents a method (inside a class/impl block). Used by `include_methods` filtering (FR-018). |
 
 ---
 
