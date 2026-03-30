@@ -3,6 +3,15 @@ use std::fmt;
 use std::str::FromStr;
 
 /// Supported programming languages.
+///
+/// Each variant corresponds to a compile-time feature flag. Languages whose
+/// feature flag is not enabled can still be named, but attempting to analyze
+/// code in that language will return [`ArboristError::LanguageNotEnabled`].
+///
+/// The enum is `#[non_exhaustive]` — new languages may be added in minor
+/// releases without breaking existing match arms.
+///
+/// [`ArboristError::LanguageNotEnabled`]: crate::ArboristError::LanguageNotEnabled
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 #[non_exhaustive]
 pub enum Language {
@@ -57,8 +66,13 @@ impl FromStr for Language {
 
 /// Metrics for a single function or method.
 ///
-/// Closures and lambdas do not produce their own entries; they contribute
-/// to the metrics of their containing function.
+/// Each function or method discovered by the AST walker produces one
+/// `FunctionMetrics` value. Closures and lambdas do not produce their own
+/// entries; they contribute to the metrics of their containing function.
+///
+/// All three complexity dimensions are always populated. The optional
+/// `exceeds_threshold` field is only set when an [`AnalysisConfig`] with a
+/// `cognitive_threshold` is used.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct FunctionMetrics {
     /// Function or method name (e.g., `"process"` or `"MyStruct::method"`).
@@ -79,6 +93,11 @@ pub struct FunctionMetrics {
 }
 
 /// Analysis report for a complete source file.
+///
+/// Returned by [`analyze_file`](crate::analyze_file) and
+/// [`analyze_source`](crate::analyze_source). Contains per-function metrics
+/// and file-level aggregates. Implements `Serialize` and `Deserialize` for
+/// easy JSON output.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct FileReport {
     /// File path (empty string for in-memory analysis).
@@ -96,6 +115,11 @@ pub struct FileReport {
 }
 
 /// User-configurable analysis parameters.
+///
+/// Pass to [`analyze_file_with_config`](crate::analyze_file_with_config) or
+/// [`analyze_source_with_config`](crate::analyze_source_with_config) to
+/// control threshold flagging and method inclusion. The [`Default`] impl
+/// sets no threshold and includes methods.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct AnalysisConfig {
     /// When set, populates `exceeds_threshold` on each `FunctionMetrics`.

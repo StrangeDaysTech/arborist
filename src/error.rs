@@ -1,6 +1,27 @@
 use std::fmt;
 
 /// Errors returned by arborist analysis functions.
+///
+/// Each variant carries enough context for the caller to produce a
+/// meaningful diagnostic. The enum is `#[non_exhaustive]` — new variants
+/// may be added in minor releases.
+///
+/// # Error handling
+///
+/// Use pattern matching to distinguish recoverable errors (e.g., skip an
+/// unsupported file) from fatal ones:
+///
+/// ```
+/// use arborist::{analyze_source, ArboristError, Language};
+///
+/// match analyze_source("fn main() {}", Language::Rust) {
+///     Ok(report) => println!("cognitive: {}", report.file_cognitive),
+///     Err(ArboristError::LanguageNotEnabled { language }) => {
+///         eprintln!("enable the '{language}' feature flag");
+///     }
+///     Err(e) => eprintln!("analysis failed: {e}"),
+/// }
+/// ```
 #[derive(Debug)]
 #[non_exhaustive]
 pub enum ArboristError {

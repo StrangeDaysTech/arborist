@@ -11,10 +11,10 @@ fn find_function_declarator_name(node: &tree_sitter::Node, source: &[u8]) -> Opt
                 .and_then(|n| n.utf8_text(source).ok())
                 .map(|s| s.to_string());
         }
-        if child.kind() == "pointer_declarator" || child.kind() == "reference_declarator" {
-            if let Some(name) = find_function_declarator_name(&child, source) {
-                return Some(name);
-            }
+        if (child.kind() == "pointer_declarator" || child.kind() == "reference_declarator")
+            && let Some(name) = find_function_declarator_name(&child, source)
+        {
+            return Some(name);
         }
     }
     None

@@ -40,8 +40,12 @@ fn compute_sloc_for_range(
     collect_comment_lines(root, source, profile, &mut comment_lines);
 
     let mut sloc = 0u64;
-    for line_idx in start_line..=end_line.min(lines.len().saturating_sub(1)) {
-        let line = lines[line_idx];
+    for (line_idx, line) in lines
+        .iter()
+        .enumerate()
+        .take(end_line.min(lines.len().saturating_sub(1)) + 1)
+        .skip(start_line)
+    {
         // Skip blank lines
         if line.iter().all(|&b| b.is_ascii_whitespace()) {
             continue;

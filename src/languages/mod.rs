@@ -28,6 +28,24 @@ pub mod php;
 /// calculators are generic — they operate on the slices returned here.
 /// Adding a new language means implementing this trait only; no changes
 /// to core metric logic are needed.
+///
+/// # Implementing a new language profile
+///
+/// 1. Create `src/languages/<lang>.rs` with a unit struct (e.g., `pub struct LuaProfile;`).
+/// 2. Implement every method of `LanguageProfile`:
+///    - Return AST node-type strings that match the tree-sitter grammar for
+///      your language. Inspect the grammar with `tree-sitter parse` on sample
+///      files to discover the correct node types.
+///    - `parser_language()` should return the `tree_sitter::Language` from the
+///      grammar crate (e.g., `tree_sitter_lua::LANGUAGE.into()`).
+///    - `extensions()` should list all file extensions for auto-detection.
+///    - `is_method()` should return `true` for function nodes that represent
+///      methods inside a class, struct, or impl block.
+/// 3. Add the grammar crate as an optional dependency in `Cargo.toml`.
+/// 4. Add a feature flag mapping in `[features]` (e.g., `lua = ["dep:tree-sitter-lua"]`).
+/// 5. Gate the module with `#[cfg(feature = "lua")]` in this file and add a
+///    match arm in `profile_for_extension` and `profile_for_language`.
+/// 6. Create 6 test fixtures in `tests/fixtures/<lang>/` and integration tests.
 pub trait LanguageProfile {
     /// AST node types that define function/method boundaries.
     fn function_nodes(&self) -> &[&str];
