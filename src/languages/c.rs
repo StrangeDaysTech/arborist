@@ -85,4 +85,12 @@ impl LanguageProfile for CProfile {
     fn is_method(&self, _node: &tree_sitter::Node) -> bool {
         false
     }
+
+    fn match_construct_nodes(&self) -> &[&str] {
+        &["switch_statement"]
+    }
+
+    fn match_arm_nodes(&self) -> &[&str] {
+        &["case_statement"]
+    }
 }

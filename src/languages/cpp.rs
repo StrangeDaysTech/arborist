@@ -94,4 +94,12 @@ impl LanguageProfile for CppProfile {
         }
         false
     }
+
+    fn match_construct_nodes(&self) -> &[&str] {
+        &["switch_statement"]
+    }
+
+    fn match_arm_nodes(&self) -> &[&str] {
+        &["case_statement"]
+    }
 }

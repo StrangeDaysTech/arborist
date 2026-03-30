@@ -1,7 +1,8 @@
 ---
 id: AIDEC-2026-03-29-001
 title: Defer cyclomatic per-arm counting for switch/match to v0.2.0
-status: accepted
+status: superseded
+superseded_by: AIDEC-2026-03-30-001
 created: 2026-03-29
 agent: claude-code-v1.0
 confidence: high

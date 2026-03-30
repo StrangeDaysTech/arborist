@@ -72,4 +72,12 @@ impl LanguageProfile for RustProfile {
         }
         false
     }
+
+    fn match_construct_nodes(&self) -> &[&str] {
+        &["match_expression"]
+    }
+
+    fn match_arm_nodes(&self) -> &[&str] {
+        &["match_arm"]
+    }
 }

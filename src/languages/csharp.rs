@@ -84,4 +84,12 @@ impl LanguageProfile for CSharpProfile {
     fn call_nodes(&self) -> &[&str] {
         &["invocation_expression"]
     }
+
+    fn match_construct_nodes(&self) -> &[&str] {
+        &["switch_statement"]
+    }
+
+    fn match_arm_nodes(&self) -> &[&str] {
+        &["switch_section"]
+    }
 }

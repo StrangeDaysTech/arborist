@@ -15,6 +15,7 @@ impl LanguageProfile for PhpProfile {
             "while_statement",
             "do_statement",
             "switch_statement",
+            "match_expression",
             "catch_clause",
             "else_if_clause",
             "else_clause",
@@ -30,6 +31,7 @@ impl LanguageProfile for PhpProfile {
             "while_statement",
             "do_statement",
             "switch_statement",
+            "match_expression",
         ]
     }
 
@@ -80,5 +82,13 @@ impl LanguageProfile for PhpProfile {
 
     fn call_nodes(&self) -> &[&str] {
         &["function_call_expression"]
+    }
+
+    fn match_construct_nodes(&self) -> &[&str] {
+        &["switch_statement", "match_expression"]
+    }
+
+    fn match_arm_nodes(&self) -> &[&str] {
+        &["case_statement", "default_statement", "match_conditional_expression", "match_default_expression"]
     }
 }

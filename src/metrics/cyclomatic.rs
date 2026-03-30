@@ -27,12 +27,17 @@ fn walk_cyclomatic(
     let kind = node.kind();
     let control_flow = profile.control_flow_nodes();
     let boolean_ops = profile.boolean_operators();
+    let match_constructs = profile.match_construct_nodes();
+    let match_arms = profile.match_arm_nodes();
 
-    // Count control flow nodes as decision points, but NOT any else clauses.
-    // `else` is not a decision point in McCabe cyclomatic complexity.
-    // `else if` is handled by counting the inner `if` — the else_clause wrapper
-    // itself is never a decision point.
-    if control_flow.contains(&kind) && !is_any_else(kind) {
+    // Count control flow nodes as decision points, but NOT any else clauses
+    // and NOT match/switch constructs (those are counted per-arm instead).
+    if control_flow.contains(&kind) && !is_any_else(kind) && !match_constructs.contains(&kind) {
+        *complexity += 1;
+    }
+
+    // Each match/switch arm is a separate decision point (SonarSource/McCabe).
+    if match_arms.contains(&kind) {
         *complexity += 1;
     }
 

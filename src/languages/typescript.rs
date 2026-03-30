@@ -76,4 +76,12 @@ impl LanguageProfile for TypeScriptProfile {
         }
         false
     }
+
+    fn match_construct_nodes(&self) -> &[&str] {
+        &["switch_statement"]
+    }
+
+    fn match_arm_nodes(&self) -> &[&str] {
+        &["switch_case", "switch_default"]
+    }
 }

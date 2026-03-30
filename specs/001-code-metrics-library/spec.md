@@ -117,7 +117,7 @@ As a tool integrator, I want metric results to be serializable (e.g., to JSON), 
 - What happens when a file contains only comments and no executable code? The report should have zero functions and SLOC of zero.
 - What happens when a function contains deeply nested closures/lambdas? Cognitive complexity should correctly compound nesting penalties. Closures/lambdas do not produce their own FunctionMetrics entries; they only affect the containing function's metrics.
 - What happens when a file has mixed-encoding content? The library should handle UTF-8 source; other encodings should produce a clear error.
-- What happens when a match/switch has many arms? The switch/match construct counts as a single decision point for cyclomatic complexity. **Note**: The SonarSource spec counts per-arm, but the current implementation counts the construct once because `control_flow_nodes` is shared between cognitive and cyclomatic calculators. Per-arm counting is planned for v0.2.0.
+- What happens when a match/switch has many arms? Each arm/case (including `default`/wildcard) counts as +1 for cyclomatic complexity, following the SonarSource/McCabe specification. The match/switch construct itself does not add +1 — only its arms do. Cognitive complexity is unaffected: the construct counts as +1 with nesting penalty, and arms are not counted individually.
 - What happens when boolean expressions chain the same operator (e.g., `a && b && c && d`)? Cognitive complexity counts this as +1 for the whole sequence, not per operator.
 - What happens when boolean expressions mix operators (e.g., `a && b || c`)? Cognitive complexity counts +1 for the first sequence and +1 for each operator change.
 - What happens when `else if` chains are used? In languages with dedicated else-if syntax (Python `elif`, PHP `elseif`), they do not increment the nesting level (treated as flat continuations). In languages where `else if` is syntactically `else { if {} }` (JavaScript, TypeScript, Java, C#, C++, C, Go, Rust), each nested `if` applies standard nesting rules per the AST structure.
@@ -127,7 +127,7 @@ As a tool integrator, I want metric results to be serializable (e.g., to JSON), 
 ### Functional Requirements
 
 - **FR-001**: The library MUST compute cognitive complexity for each function in a source file, following the SonarSource cognitive complexity specification (G. Ann Campbell, 2017).
-- **FR-002**: The library MUST compute cyclomatic complexity for each function, counting decision points (if, for, while, match/switch as single construct, boolean operators). See Edge Cases for switch/match per-arm counting status.
+- **FR-002**: The library MUST compute cyclomatic complexity for each function, counting decision points (if, for, while, each match/switch arm, boolean operators) per the SonarSource/McCabe specification.
 - **FR-003**: The library MUST compute SLOC (Source Lines of Code) for each function, excluding blank lines and comment-only lines.
 - **FR-004**: The library MUST accept a file path as input and automatically detect the programming language from the file extension.
 - **FR-005**: The library MUST accept source code as a string with an explicit language identifier and produce the same metrics as file-based analysis. Both plain and config-accepting variants (`analyze_source`, `analyze_source_with_config`) MUST be provided for parity with file-based analysis.

@@ -100,6 +100,20 @@ pub trait LanguageProfile {
     fn call_function_field(&self) -> &str {
         "function"
     }
+
+    /// AST node types for match/switch constructs. These are excluded from
+    /// cyclomatic counting (replaced by per-arm counting via `match_arm_nodes`),
+    /// but remain in `control_flow_nodes` for cognitive complexity.
+    fn match_construct_nodes(&self) -> &[&str] {
+        &[]
+    }
+
+    /// AST node types for individual match/switch arms or case clauses.
+    /// Each arm counts as +1 for cyclomatic complexity (per SonarSource/McCabe spec).
+    /// Not used by cognitive complexity.
+    fn match_arm_nodes(&self) -> &[&str] {
+        &[]
+    }
 }
 
 /// Detect language from a file extension and return the corresponding profile.

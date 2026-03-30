@@ -77,4 +77,12 @@ impl LanguageProfile for JavaProfile {
     fn call_function_field(&self) -> &str {
         "name"
     }
+
+    fn match_construct_nodes(&self) -> &[&str] {
+        &["switch_expression"]
+    }
+
+    fn match_arm_nodes(&self) -> &[&str] {
+        &["switch_block_statement_group"]
+    }
 }

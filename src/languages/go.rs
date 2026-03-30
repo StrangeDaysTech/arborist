@@ -65,4 +65,12 @@ impl LanguageProfile for GoProfile {
     fn is_method(&self, node: &tree_sitter::Node) -> bool {
         node.kind() == "method_declaration"
     }
+
+    fn match_construct_nodes(&self) -> &[&str] {
+        &["expression_switch_statement", "type_switch_statement", "select_statement"]
+    }
+
+    fn match_arm_nodes(&self) -> &[&str] {
+        &["expression_case", "default_case", "type_case", "communication_case"]
+    }
 }

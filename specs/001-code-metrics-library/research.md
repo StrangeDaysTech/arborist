@@ -55,9 +55,9 @@
 
 **Rationale**: Well-established metric (1976). Every function starts at 1, each decision point adds +1.
 
-**Decision points counted**: `if`, `else if`, `for`, `while`, `do-while`, `match`/`switch` (as single construct), `catch`/`except`, `&&`, `||`, ternary operator.
+**Decision points counted**: `if`, `else if`, `for`, `while`, `do-while`, each `match`/`switch` arm (including `default`/wildcard), `catch`/`except`, `&&`, `||`, ternary operator.
 
-**Implementation note**: Switch/match is currently counted as one cyclomatic decision point, not per-arm. Per-arm counting requires separating the cognitive and cyclomatic control flow node lists (they currently share `control_flow_nodes()` from `LanguageProfile`). Deferred to v0.2.0.
+**Implementation note**: Switch/match uses per-arm counting via `match_arm_nodes()` in `LanguageProfile`. The construct itself is excluded from cyclomatic via `match_construct_nodes()`, while cognitive complexity still uses `control_flow_nodes()` to count the construct as +1 with nesting.
 
 **Alternatives considered**:
 - Modified cyclomatic (exclude boolean operators): Less useful for test coverage estimation

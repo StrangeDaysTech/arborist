@@ -15,11 +15,12 @@ impl LanguageProfile for PythonProfile {
             "elif_clause",
             "else_clause",
             "except_clause",
+            "match_statement",
         ]
     }
 
     fn nesting_nodes(&self) -> &[&str] {
-        &["if_statement", "for_statement", "while_statement"]
+        &["if_statement", "for_statement", "while_statement", "match_statement"]
     }
 
     fn boolean_operators(&self) -> &[&str] {
@@ -73,5 +74,13 @@ impl LanguageProfile for PythonProfile {
 
     fn call_nodes(&self) -> &[&str] {
         &["call"]
+    }
+
+    fn match_construct_nodes(&self) -> &[&str] {
+        &["match_statement"]
+    }
+
+    fn match_arm_nodes(&self) -> &[&str] {
+        &["case_clause"]
     }
 }

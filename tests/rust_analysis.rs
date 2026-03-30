@@ -136,3 +136,15 @@ fn path_populated_in_report() {
         report.path
     );
 }
+
+#[test]
+fn match_switch_metrics() {
+    let report = analyze_file(fixture_path("match_switch.rs")).unwrap();
+    assert_eq!(report.functions.len(), 1);
+
+    let f = &report.functions[0];
+    assert_eq!(f.name, "categorize");
+    assert_eq!(f.cognitive, 4, "cognitive complexity for categorize");
+    assert_eq!(f.cyclomatic, 6, "cyclomatic complexity for categorize");
+    assert_eq!(f.sloc, 14, "sloc for categorize");
+}
