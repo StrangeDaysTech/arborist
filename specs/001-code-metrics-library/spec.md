@@ -2,7 +2,7 @@
 
 **Feature Branch**: `001-code-metrics-library`
 **Created**: 2026-03-27
-**Status**: Draft
+**Status**: Implemented
 **Input**: User description: "Librería independiente de análisis de métricas de código (complejidad cognitiva, ciclomática, SLOC) usando tree-sitter para múltiples lenguajes"
 
 ## Clarifications
@@ -77,6 +77,7 @@ As a developer integrating arborist into a CI pipeline, I want to configure a co
 
 1. **Given** a configuration with cognitive threshold set to 8, **When** analyzing a file with functions of complexity 5, 10, and 15, **Then** the report identifies the two functions exceeding the threshold.
 2. **Given** no custom configuration (defaults), **When** analyzing a file, **Then** all metrics are computed without any threshold filtering.
+3. **Given** a configuration with `include_methods` set to false, **When** analyzing a file containing a class or struct with methods, **Then** the report includes only top-level functions, not methods inside class or impl blocks.
 
 ---
 
@@ -84,7 +85,7 @@ As a developer integrating arborist into a CI pipeline, I want to configure a co
 
 As a library consumer, I want to include only the language support I need via compile-time feature flags, so I can minimize binary size and compilation time.
 
-**Why this priority**: Each language grammar adds compilation time and binary size. For a crate published on crates.io, granular feature flags are essential for adoption, as users should not be forced to compile 16 grammars when they only need 2.
+**Why this priority**: Each language grammar adds compilation time and binary size. For a crate published on crates.io, granular feature flags are essential for adoption, as users should not be forced to compile 10 grammars when they only need 2.
 
 **Independent Test**: Can be tested by compiling the library with a subset of features enabled and verifying that only those languages are available, while others return an "unsupported language" error.
 

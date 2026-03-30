@@ -36,10 +36,10 @@ fn walk_cognitive(
     let lambda = profile.lambda_nodes();
 
     // Check for direct recursion
-    if let Some(fn_name) = function_name {
-        if is_recursive_call(node, source, fn_name, profile) {
-            *complexity += 1;
-        }
+    if let Some(fn_name) = function_name
+        && is_recursive_call(node, source, fn_name, profile)
+    {
+        *complexity += 1;
     }
 
     // Boolean expression sequences (SonarSource: same-operator chain = +1, each switch = +1)
@@ -79,13 +79,12 @@ fn walk_cognitive(
     }
 
     // Determine if this node increases nesting for children
-    let child_nesting = if nesting_nodes.contains(&kind) && !else_if.contains(&kind) {
-        nesting + 1
-    } else if lambda.contains(&kind) {
-        nesting + 1
-    } else {
-        nesting
-    };
+    let child_nesting =
+        if (nesting_nodes.contains(&kind) && !else_if.contains(&kind)) || lambda.contains(&kind) {
+            nesting + 1
+        } else {
+            nesting
+        };
 
     // Skip nested functions — they get their own metrics
     if profile.function_nodes().contains(&kind) && nesting > 0 {
@@ -143,11 +142,11 @@ fn is_recursive_call(
     function_name: &str,
     profile: &dyn LanguageProfile,
 ) -> bool {
-    if profile.call_nodes().contains(&node.kind()) {
-        if let Some(func_node) = node.child_by_field_name(profile.call_function_field()) {
-            let text = func_node.utf8_text(source).unwrap_or("");
-            return text == function_name;
-        }
+    if profile.call_nodes().contains(&node.kind())
+        && let Some(func_node) = node.child_by_field_name(profile.call_function_field())
+    {
+        let text = func_node.utf8_text(source).unwrap_or("");
+        return text == function_name;
     }
     false
 }

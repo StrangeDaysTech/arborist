@@ -182,16 +182,16 @@
 
 **Purpose**: Documentation, quality enforcement, and final validation across all stories.
 
-- [ ] T052 [P] Add doc comments with executable examples (cargo test --doc) on all public functions: analyze_file, analyze_file_with_config, analyze_source, analyze_source_with_config in src/lib.rs
-- [ ] T053 [P] Add doc comments on all public types: FunctionMetrics, FileReport, Language, AnalysisConfig, ArboristError in src/types.rs and src/error.rs
-- [ ] T054 [P] Add doc comment on LanguageProfile trait explaining how to implement a new language profile in src/languages/mod.rs
-- [ ] T055 Run cargo clippy -- -D warnings and fix all warnings across all source files
-- [ ] T056 Run cargo test --all-features and verify all tests pass
-- [ ] T057 Validate quickstart.md examples compile and run correctly against the implemented library
-- [ ] T058 Create README.md with: project description, installation instructions, usage examples, feature flags table, supported languages, contributing guidelines, license info
-- [ ] T059 Add performance benchmark: create a large fixture file (500+ lines, 20+ functions) and a benchmark test that asserts analysis completes in under 100ms per SC-002 in tests/performance_bench.rs
+- [x] T052 [P] Add doc comments with executable examples (cargo test --doc) on all public functions: analyze_file, analyze_file_with_config, analyze_source, analyze_source_with_config in src/lib.rs
+- [x] T053 [P] Add doc comments on all public types: FunctionMetrics, FileReport, Language, AnalysisConfig, ArboristError in src/types.rs and src/error.rs
+- [x] T054 [P] Add doc comment on LanguageProfile trait explaining how to implement a new language profile in src/languages/mod.rs
+- [x] T055 Run cargo clippy -- -D warnings and fix all warnings across all source files
+- [x] T056 Run cargo test --all-features and verify all tests pass
+- [x] T057 Validate quickstart.md examples compile and run correctly against the implemented library
+- [x] T058 Create README.md with: project description, installation instructions, usage examples, feature flags table, supported languages, contributing guidelines, license info
+- [x] T059 Add performance benchmark: create a large fixture file (500+ lines, 20+ functions) and a benchmark test that asserts analysis completes in under 100ms per SC-002 in tests/performance_bench.rs
 - [x] T060 Add #![forbid(unsafe_code)] to src/lib.rs to enforce constitution "no unsafe" rule at compile time
-- [ ] T061 [P] Validate SC-005: build with --no-default-features --features rust and verify compile time is under 30 seconds on CI-equivalent hardware
+- [x] T061 [P] Validate SC-005: build with --no-default-features --features rust and verify compile time is under 30 seconds on CI-equivalent hardware
 
 ---
 
