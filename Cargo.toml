@@ -1,5 +1,5 @@
 [package]
-name = "arborist"
+name = "arborist-metrics"
 version = "0.1.0"
 edition = "2024"
 description = "Multi-language code complexity metrics (cognitive, cyclomatic, SLOC) powered by tree-sitter"
@@ -7,6 +7,9 @@ license = "MIT OR Apache-2.0"
 repository = "https://github.com/StrangeDaysTech/arborist"
 keywords = ["complexity", "cognitive", "cyclomatic", "tree-sitter", "metrics"]
 categories = ["development-tools"]
+
+[lib]
+name = "arborist"
 exclude = [
     ".agent/",
     ".claude/",

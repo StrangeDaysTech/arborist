@@ -30,21 +30,21 @@ Add to your `Cargo.toml`:
 ```toml
 # Default features: Rust, Python, JavaScript, TypeScript, Java, Go
 [dependencies]
-arborist = "0.1"
+arborist-metrics = "0.1"
 ```
 
 Select specific languages to reduce compile time:
 
 ```toml
 [dependencies]
-arborist = { version = "0.1", default-features = false, features = ["rust", "python"] }
+arborist-metrics = { version = "0.1", default-features = false, features = ["rust", "python"] }
 ```
 
 Enable all 12 languages:
 
 ```toml
 [dependencies]
-arborist = { version = "0.1", features = ["all"] }
+arborist-metrics = { version = "0.1", features = ["all"] }
 ```
 
 ## Feature Flags

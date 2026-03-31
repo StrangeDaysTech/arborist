@@ -12,15 +12,15 @@
 ```toml
 # Cargo.toml — default features (Rust, Python, JS, TS, Java, Go)
 [dependencies]
-arborist = "0.1"
+arborist-metrics = "0.1"
 
 # Or select specific languages
 [dependencies]
-arborist = { version = "0.1", default-features = false, features = ["rust", "python"] }
+arborist-metrics = { version = "0.1", default-features = false, features = ["rust", "python"] }
 
 # Or all 12 languages (Tier 1 + Tier 2)
 [dependencies]
-arborist = { version = "0.1", features = ["all"] }
+arborist-metrics = { version = "0.1", features = ["all"] }
 ```
 
 ## Analyze a file
