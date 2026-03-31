@@ -4,7 +4,7 @@ Multi-language code complexity metrics powered by [tree-sitter](https://tree-sit
 
 Arborist computes **cognitive complexity** (SonarSource), **cyclomatic complexity**
 (McCabe), and **source lines of code** (SLOC) for functions and methods across
-10 programming languages -- all from a single, embeddable Rust library.
+12 programming languages -- all from a single, embeddable Rust library.
 
 ## Supported Languages
 
@@ -20,6 +20,8 @@ Arborist computes **cognitive complexity** (SonarSource), **cyclomatic complexit
 | C++ | `cpp` | `.cpp`, `.cc`, `.cxx`, `.hpp`, `.hxx`, `.hh` |
 | C | `c` | `.c`, `.h` |
 | PHP | `php` | `.php` |
+| Kotlin | `kotlin` | `.kt`, `.kts` |
+| Swift | `swift` | `.swift` |
 
 ## Installation
 
@@ -38,7 +40,7 @@ Select specific languages to reduce compile time:
 arborist = { version = "0.1", default-features = false, features = ["rust", "python"] }
 ```
 
-Enable all 10 languages:
+Enable all 12 languages:
 
 ```toml
 [dependencies]
@@ -50,7 +52,7 @@ arborist = { version = "0.1", features = ["all"] }
 | Flag | Includes |
 |------|----------|
 | `default` | `rust`, `python`, `javascript`, `typescript`, `java`, `go` |
-| `all` | All 10 Tier 1 languages |
+| `all` | All 12 languages (Tier 1 + Tier 2) |
 | Individual | One language each (e.g., `rust`, `python`, `csharp`) |
 
 ## Quick Start

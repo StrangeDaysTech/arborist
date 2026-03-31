@@ -18,7 +18,7 @@ arborist = "0.1"
 [dependencies]
 arborist = { version = "0.1", default-features = false, features = ["rust", "python"] }
 
-# Or all 10 Tier 1 languages
+# Or all 12 languages (Tier 1 + Tier 2)
 [dependencies]
 arborist = { version = "0.1", features = ["all"] }
 ```
@@ -104,7 +104,7 @@ Per the project constitution, development follows test-first, fixture-driven wor
 | Flag | Languages |
 |------|-----------|
 | `default` | Rust, Python, JavaScript, TypeScript, Java, Go |
-| `all` | All 10 Tier 1 languages |
+| `all` | All 12 languages (Tier 1 + Tier 2) |
 | `rust` | Rust only |
 | `python` | Python only |
 | `javascript` | JavaScript + JSX |
@@ -115,3 +115,5 @@ Per the project constitution, development follows test-first, fixture-driven wor
 | `c` | C |
 | `go` | Go |
 | `php` | PHP |
+| `kotlin` | Kotlin + Kotlin Script |
+| `swift` | Swift |
