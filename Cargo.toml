@@ -7,6 +7,22 @@ license = "MIT OR Apache-2.0"
 repository = "https://github.com/StrangeDaysTech/arborist"
 keywords = ["complexity", "cognitive", "cyclomatic", "tree-sitter", "metrics"]
 categories = ["development-tools"]
+exclude = [
+    ".agent/",
+    ".claude/",
+    ".cursor/",
+    ".cursorrules",
+    ".devtrail/",
+    ".gemini/",
+    ".github/",
+    ".specify/",
+    "scripts/",
+    "specs/",
+    "temp/",
+    "CLAUDE.md",
+    "DEVTRAIL.md",
+    "GEMINI.md",
+]
 
 [dependencies]
 serde = { version = "1", features = ["derive"] }
