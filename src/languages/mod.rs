@@ -21,6 +21,10 @@ pub mod c;
 pub mod go;
 #[cfg(feature = "php")]
 pub mod php;
+#[cfg(feature = "kotlin")]
+pub mod kotlin;
+#[cfg(feature = "swift")]
+pub mod swift;
 
 /// Trait that defines how a language's AST maps to control-flow concepts.
 ///
@@ -136,6 +140,8 @@ pub fn profile_for_extension(ext: &str) -> Result<(Language, Box<dyn LanguagePro
         "c" | "h" => Some(Language::C),
         "go" => Some(Language::Go),
         "php" => Some(Language::Php),
+        "kt" | "kts" => Some(Language::Kotlin),
+        "swift" => Some(Language::Swift),
         _ => None,
     };
 
@@ -171,6 +177,10 @@ pub fn profile_for_language(language: Language) -> Result<(Language, Box<dyn Lan
         Language::Go => Box::new(go::GoProfile),
         #[cfg(feature = "php")]
         Language::Php => Box::new(php::PhpProfile),
+        #[cfg(feature = "kotlin")]
+        Language::Kotlin => Box::new(kotlin::KotlinProfile),
+        #[cfg(feature = "swift")]
+        Language::Swift => Box::new(swift::SwiftProfile),
 
         // When the feature is not enabled, fall through to LanguageNotEnabled
         #[allow(unreachable_patterns)]

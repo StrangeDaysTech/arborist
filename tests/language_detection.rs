@@ -69,6 +69,18 @@ fn detects_php_from_php_extension() {
 }
 
 #[test]
+fn detects_kotlin_from_kt_extension() {
+    let report = analyze_file(fixture_path("kotlin", "simple_function.kt")).unwrap();
+    assert_eq!(report.language, Language::Kotlin);
+}
+
+#[test]
+fn detects_swift_from_swift_extension() {
+    let report = analyze_file(fixture_path("swift", "simple_function.swift")).unwrap();
+    assert_eq!(report.language, Language::Swift);
+}
+
+#[test]
 fn h_extension_defaults_to_c() {
     // .h files should be detected as C
     let manifest_dir = env!("CARGO_MANIFEST_DIR");

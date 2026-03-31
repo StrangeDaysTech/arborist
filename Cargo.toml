@@ -24,12 +24,16 @@ tree-sitter-c = { version = "0.23", optional = true }
 tree-sitter-go = { version = "0.23", optional = true }
 tree-sitter-php = { version = "0.23", optional = true }
 
+# Tier 2 grammar crates
+tree-sitter-kotlin-ng = { version = "1.1", optional = true }
+tree-sitter-swift = { version = "0.7", optional = true }
+
 [dev-dependencies]
 serde_json = "1"
 
 [features]
 default = ["rust", "python", "javascript", "typescript", "java", "go"]
-all = ["default", "csharp", "cpp", "c", "php"]
+all = ["default", "csharp", "cpp", "c", "php", "kotlin", "swift"]
 
 # Individual language features
 rust = ["dep:tree-sitter-rust"]
@@ -42,3 +46,5 @@ cpp = ["dep:tree-sitter-cpp"]
 c = ["dep:tree-sitter-c"]
 go = ["dep:tree-sitter-go"]
 php = ["dep:tree-sitter-php"]
+kotlin = ["dep:tree-sitter-kotlin-ng"]
+swift = ["dep:tree-sitter-swift"]

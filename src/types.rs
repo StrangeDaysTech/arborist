@@ -25,6 +25,8 @@ pub enum Language {
     C,
     Go,
     Php,
+    Kotlin,
+    Swift,
 }
 
 impl fmt::Display for Language {
@@ -40,6 +42,8 @@ impl fmt::Display for Language {
             Language::C => write!(f, "C"),
             Language::Go => write!(f, "Go"),
             Language::Php => write!(f, "PHP"),
+            Language::Kotlin => write!(f, "Kotlin"),
+            Language::Swift => write!(f, "Swift"),
         }
     }
 }
@@ -59,6 +63,8 @@ impl FromStr for Language {
             "c" => Ok(Language::C),
             "go" => Ok(Language::Go),
             "php" => Ok(Language::Php),
+            "kotlin" | "kt" => Ok(Language::Kotlin),
+            "swift" => Ok(Language::Swift),
             _ => Err(format!("Unknown language: {s}")),
         }
     }

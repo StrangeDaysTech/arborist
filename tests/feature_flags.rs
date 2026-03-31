@@ -39,3 +39,31 @@ fn disabled_php_returns_error() {
     let result = arborist::analyze_source("<?php function foo() {}", arborist::Language::Php);
     assert!(matches!(result, Err(arborist::ArboristError::LanguageNotEnabled { .. })));
 }
+
+#[cfg(feature = "kotlin")]
+#[test]
+fn enabled_kotlin_works() {
+    let result = arborist::analyze_source("fun foo() {}", arborist::Language::Kotlin);
+    assert!(result.is_ok(), "Kotlin analysis should work when feature is enabled");
+}
+
+#[cfg(not(feature = "kotlin"))]
+#[test]
+fn disabled_kotlin_returns_error() {
+    let result = arborist::analyze_source("fun foo() {}", arborist::Language::Kotlin);
+    assert!(matches!(result, Err(arborist::ArboristError::LanguageNotEnabled { .. })));
+}
+
+#[cfg(feature = "swift")]
+#[test]
+fn enabled_swift_works() {
+    let result = arborist::analyze_source("func foo() {}", arborist::Language::Swift);
+    assert!(result.is_ok(), "Swift analysis should work when feature is enabled");
+}
+
+#[cfg(not(feature = "swift"))]
+#[test]
+fn disabled_swift_returns_error() {
+    let result = arborist::analyze_source("func foo() {}", arborist::Language::Swift);
+    assert!(matches!(result, Err(arborist::ArboristError::LanguageNotEnabled { .. })));
+}
