@@ -53,8 +53,8 @@ Do not capture PII, tokens, or secrets in OTel attributes or logs. Record instru
 *DevTrail | [Strange Days Tech](https://strangedays.tech) — Because every change tells a story.*
 
 ## Active Technologies
-- Rust (edition 2024, MSRV to be determined by tree-sitter 0.25 requirements) + tree-sitter 0.25, serde (serialization), 10 tree-sitter grammar crates (see research.md) (001-code-metrics-library)
+- Rust (edition 2024, MSRV to be determined by tree-sitter 0.25 requirements) + tree-sitter 0.25, serde (serialization), 12 tree-sitter grammar crates (10 Tier 1 + Kotlin, Swift) (001-code-metrics-library)
 - N/A (pure computation library, reads files via `std::fs`) (001-code-metrics-library)
 
 ## Recent Changes
-- 001-code-metrics-library: Added Rust (edition 2024, MSRV to be determined by tree-sitter 0.25 requirements) + tree-sitter 0.25, serde (serialization), 10 tree-sitter grammar crates (see research.md)
+- 001-code-metrics-library: Added Kotlin and Swift (Tier 2) via tree-sitter-kotlin-ng 1.1 and tree-sitter-swift 0.7, expanding to 12 languages
