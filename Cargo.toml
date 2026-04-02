@@ -1,6 +1,6 @@
 [package]
 name = "arborist-metrics"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2024"
 description = "Multi-language code complexity metrics (cognitive, cyclomatic, SLOC) powered by tree-sitter"
 license = "MIT OR Apache-2.0"
