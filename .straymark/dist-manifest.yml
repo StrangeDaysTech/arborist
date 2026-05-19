@@ -1,0 +1,25 @@
+version: 4.1.1
+description: StrayMark distribution manifest
+files:
+- .straymark/
+- STRAYMARK.md
+- .claude/skills/
+- .gemini/skills/
+- .agent/workflows/
+- .github/workflows/docs-validation.yml
+injections:
+- target: CLAUDE.md
+  template: dist-templates/directives/CLAUDE.md
+  embed: null
+- target: GEMINI.md
+  template: dist-templates/directives/GEMINI.md
+  embed: null
+- target: .github/copilot-instructions.md
+  template: dist-templates/directives/copilot-instructions.md
+  embed: null
+- target: .cursorrules
+  template: dist-templates/directives/cursorrules
+  embed: STRAYMARK.md
+- target: .cursor/rules/straymark.md
+  template: dist-templates/directives/cursor-rules-straymark.md
+  embed: STRAYMARK.md

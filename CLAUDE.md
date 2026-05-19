@@ -1,13 +1,13 @@
-# DevTrail - Claude Code Configuration
+# StrayMark - Claude Code Configuration
 
-<!-- devtrail:begin -->
-> **Read and follow the rules in [DEVTRAIL.md](DEVTRAIL.md).**
-> That file contains all DevTrail documentation governance rules for this project.
-<!-- devtrail:end -->
+<!-- straymark:begin -->
+> **Read and follow the rules in [STRAYMARK.md](STRAYMARK.md).**
+> That file contains all StrayMark documentation governance rules for this project.
+<!-- straymark:end -->
 
 ---
 
-## Autonomous Rules (minimum viable — works without DEVTRAIL.md)
+## Autonomous Rules (minimum viable — works without STRAYMARK.md)
 
 ### Identity
 - Always identify yourself as `claude-code-v{version}` in the `agent:` field
@@ -50,7 +50,7 @@ Do not capture PII, tokens, or secrets in OTel attributes or logs. Record instru
 
 ---
 
-*DevTrail | [Strange Days Tech](https://strangedays.tech) — Because every change tells a story.*
+*StrayMark | [Strange Days Tech](https://strangedays.tech) — Because every change tells a story.*
 
 ## Active Technologies
 - Rust (edition 2024, MSRV to be determined by tree-sitter 0.25 requirements) + tree-sitter 0.25, serde (serialization), 12 tree-sitter grammar crates (10 Tier 1 + Kotlin, Swift) (001-code-metrics-library)

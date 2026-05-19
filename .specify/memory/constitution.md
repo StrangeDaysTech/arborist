@@ -3,7 +3,7 @@
 ## Core Principles
 
 ### I. Library-First, Always Embeddable
-Arborist existe como crate independiente publicado en crates.io. Toda funcionalidad se expone como API de librería (`analyze_file()`, `analyze_source()`). Ningún consumidor (DevTrail, CI tools, linters) debe requerir más que una línea en `Cargo.toml` para integrarlo. No se acopla a frameworks, CLIs específicos, ni runtimes externos.
+Arborist existe como crate independiente publicado en crates.io. Toda funcionalidad se expone como API de librería (`analyze_file()`, `analyze_source()`). Ningún consumidor (StrayMark, CI tools, linters) debe requerir más que una línea en `Cargo.toml` para integrarlo. No se acopla a frameworks, CLIs específicos, ni runtimes externos.
 
 ### II. Correctness Over Coverage
 La complejidad cognitiva es la métrica principal y debe implementarse fielmente según el paper de SonarSource (G. Ann Campbell, 2017). Cada lenguaje soportado debe tener fixtures con valores de complejidad verificados contra referencias públicas. Un lenguaje sin tests de validación no se publica — es preferible soportar 5 lenguajes correctos que 20 aproximados.
@@ -27,7 +27,7 @@ TDD obligatorio. Para cada lenguaje:
 Los fixtures sirven como documentación viva del comportamiento esperado.
 
 ### VII. Semver Estricto, Evolución Independiente
-Arborist sigue semver sin excepciones. La API pública (`pub` items en `lib.rs` y `types.rs`) es el contrato. Breaking changes solo en MAJOR. El versionado es independiente de DevTrail o cualquier consumidor. Los lenguajes Tier 2/3 se agregan en releases MINOR.
+Arborist sigue semver sin excepciones. La API pública (`pub` items en `lib.rs` y `types.rs`) es el contrato. Breaking changes solo en MAJOR. El versionado es independiente de StrayMark o cualquier consumidor. Los lenguajes Tier 2/3 se agregan en releases MINOR.
 
 ## Boundaries
 

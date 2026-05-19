@@ -19,7 +19,7 @@
 
 As a developer or automated tool, I want to analyze a source code file and get its complexity metrics (cognitive complexity, cyclomatic complexity, and SLOC) broken down by function, so I can identify which functions are hardest to understand and maintain.
 
-**Why this priority**: This is the core value proposition of the library. Without per-function metric extraction from a file, nothing else works. It enables both human developers and tooling (like DevTrail) to make informed decisions about code quality.
+**Why this priority**: This is the core value proposition of the library. Without per-function metric extraction from a file, nothing else works. It enables both human developers and tooling (like StrayMark) to make informed decisions about code quality.
 
 **Independent Test**: Can be fully tested by passing a source file path and verifying that the returned report contains the expected function names with their metrics. Delivers immediate value: a developer can point arborist at any supported file and get actionable complexity data.
 
@@ -141,7 +141,7 @@ As a tool integrator, I want metric results to be serializable (e.g., to JSON), 
 - **FR-013**: The library MUST return clear, descriptive errors for: file not found, unsupported language, unrecognized file extension, and language feature not enabled.
 - **FR-014**: The library MUST correctly implement cognitive complexity nesting rules: control flow structures increment nesting, `else if` is flat in languages with dedicated syntax (see Edge Cases), and lambdas/closures increment nesting.
 - **FR-015**: The library MUST correctly implement cognitive complexity boolean operator rules: same-operator sequences count as +1, operator changes add additional increments.
-- **FR-016**: The library MUST be usable as an independent crate published on crates.io, with no dependency on DevTrail or any specific framework.
+- **FR-016**: The library MUST be usable as an independent crate published on crates.io, with no dependency on StrayMark or any specific framework.
 - **FR-017**: The library MUST use a modular architecture where adding support for a new language requires implementing only a language-specific profile, without modifying core metric computation logic.
 - **FR-018**: The library MUST allow configuring whether class/struct methods are included in the analysis via an `include_methods` option (default: true). When disabled, only top-level functions produce FunctionMetrics entries.
 

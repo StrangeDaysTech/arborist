@@ -12,7 +12,7 @@ exclude = [
     ".claude/",
     ".cursor/",
     ".cursorrules",
-    ".devtrail/",
+    ".straymark/",
     ".gemini/",
     ".github/",
     ".specify/",
@@ -20,8 +20,8 @@ exclude = [
     "specs/",
     "temp/",
     "CLAUDE.md",
-    "DEVTRAIL.md",
     "GEMINI.md",
+    "STRAYMARK.md",
 ]
 
 [lib]

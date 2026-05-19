@@ -1,0 +1,168 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://straymark.dev/schemas/audit-output.schema.v0.json",
+  "title": "StrayMark Charter Audit Output (experimental v0)",
+  "description": "Frontmatter schema for the markdown files that auditors and the calibrator-reconciler produce during a `straymark charter audit` cycle. The shape distinguishes auditor outputs (with fresh findings) from calibrator outputs (reconciliation across N auditor outputs) via the `audit_role` field. v1 unifies auditors under a single role (`auditor`) and supports N≥2 auditors per cycle; legacy values `auditor-primary` and `auditor-secondary` from v0 are still accepted during the transition.",
+  "$comment": "EXPERIMENTAL v0.x. Phase 3 of the CLI roadmap. Crystallized from the dual-audit pattern validated empirically in Sentinel (Copilot + Gemini + claude-analisis across 6 cycles). v0.x evolves to support v1 audit-skills (see Propuesta/straymark-audit-cli-flow.md): unified `audit_role: auditor` for any number of auditors per cycle, optional `evidence_citations` count for review weighting. Will not stabilize to v1.0 until validated in a second domain. The schema is for the YAML inside the file's frontmatter; the body is free-form markdown by convention. The findings_by_category enum (hallucination | implementation_gap | real_debt | false_positive) is the same one used by `external_audit` in charter-telemetry.schema.v0.json — the audit cycle output integrates directly into the Charter telemetry at close time.",
+  "type": "object",
+  "oneOf": [
+    { "$ref": "#/$defs/auditorOutput" },
+    { "$ref": "#/$defs/calibratorOutput" }
+  ],
+  "$defs": {
+    "auditorOutput": {
+      "type": "object",
+      "required": [
+        "audit_role",
+        "auditor",
+        "charter_id",
+        "git_range",
+        "prompt_used",
+        "audited_at",
+        "findings_total",
+        "findings_by_category"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "audit_role": {
+          "type": "string",
+          "enum": ["auditor", "auditor-primary", "auditor-secondary"],
+          "description": "Role this output occupies. v1 (preferred): the unified value `auditor` — any number of auditors per cycle, distinguished by their `auditor` model identifier and the canonical filename `report-<sluggified-model-id>.md`. v0 legacy (still accepted during the v0→v1 transition): `auditor-primary` or `auditor-secondary` from the dual-audit pattern. New audits should use `auditor`."
+        },
+        "auditor": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Model identifier and version of the auditor that produced this output (e.g., `copilot-v1.0.37`, `gemini-cli-v1.5`, `claude-opus-4`). Free-form so adopters can use any model identifier."
+        },
+        "charter_id": {
+          "type": "string",
+          "pattern": "^CHARTER-[0-9]{2,}(-[a-z0-9-]+)?$"
+        },
+        "git_range": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Git revision range the auditor reviewed (e.g., `origin/main..HEAD`)."
+        },
+        "prompt_used": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Path (relative to the audit directory) of the resolved prompt file the auditor was given. Required so the operator can verify the prompt wasn't tampered with mid-cycle. Closes RFC #82."
+        },
+        "audited_at": {
+          "type": "string",
+          "format": "date"
+        },
+        "findings_total": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "findings_by_category": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "hallucination": { "type": "integer", "minimum": 0 },
+            "implementation_gap": { "type": "integer", "minimum": 0 },
+            "real_debt": { "type": "integer", "minimum": 0 },
+            "false_positive": { "type": "integer", "minimum": 0 }
+          }
+        },
+        "audit_quality": {
+          "type": "string",
+          "enum": ["high", "medium", "low"],
+          "description": "Operator's calibration of this auditor's output quality. Optional — set when consolidating into telemetry."
+        },
+        "evidence_citations": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "How many `path:line` citations the auditor included in the body. Optional, recommended. The review skill uses this for finding-weighting: high-citation reports indicate the auditor exercised the tool-use discipline (Paso 2 of the prompt), low-citation reports may have extended training assumptions and are weighted accordingly. Empty audits with `findings_total: 0` legitimately have `evidence_citations: 0`."
+        }
+      }
+    },
+    "calibratorOutput": {
+      "type": "object",
+      "required": [
+        "audit_role",
+        "calibrator",
+        "charter_id",
+        "git_range",
+        "prompt_used",
+        "calibrated_at",
+        "auditors_reconciled",
+        "findings_consolidated"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "audit_role": {
+          "type": "string",
+          "const": "calibrator-reconciler"
+        },
+        "calibrator": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Model identifier of the calibrator. May be of any family — even the same as the implementer — because the calibrator's job is to apply the schema definitionally over already-produced auditor verdicts, not to discover gaps. Heterogeneity matters for the auditor pair, not the calibrator (see roadmap §5.2)."
+        },
+        "charter_id": {
+          "type": "string",
+          "pattern": "^CHARTER-[0-9]{2,}(-[a-z0-9-]+)?$"
+        },
+        "git_range": {
+          "type": "string",
+          "minLength": 1
+        },
+        "prompt_used": {
+          "type": "string",
+          "minLength": 1
+        },
+        "calibrated_at": {
+          "type": "string",
+          "format": "date"
+        },
+        "auditors_reconciled": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Path (relative to audit dir) of an auditor output file this calibration considered."
+          },
+          "description": "Auditor outputs reconciled in this calibration. Minimum 2 (heterogeneity inter-family is the discovery mechanism). v1 supports N≥2; high-risk Charters or specialized scopes may reconcile 3 or 4 auditors when the operator opts in."
+        },
+        "findings_consolidated": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Total distinct findings after reconciliation (after deduplication and rejection of false positives identified across both auditors)."
+        },
+        "findings_by_status": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "agreed": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Both auditors flagged the same finding (highest signal — convergence)."
+            },
+            "disputed": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Auditors flagged but disagreed on category; calibrator picked one."
+            },
+            "unique_primary": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Only the primary auditor flagged this; calibrator validated as legitimate."
+            },
+            "unique_secondary": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "rejected": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Both auditors flagged but calibrator determined false positive."
+            }
+          }
+        }
+      }
+    }
+  }
+}
