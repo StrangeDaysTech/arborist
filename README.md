@@ -211,7 +211,7 @@ at your option.
 
 ---
 
-## Copyright & Intellectual Property
+## Copyright
 
 **Arborist** is © 2026 **[Strange Days Tech S.A.S. de C.V.](https://strangedays.tech/)** — original author and intellectual-property holder of the source code.
 
