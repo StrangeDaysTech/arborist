@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT OR Apache-2.0
+// Copyright (c) 2026 Strange Days Tech S.A.S. de C.V. <https://strangedays.tech>
+
 #![cfg(feature = "cpp")]
 
 use arborist::analyze_file;

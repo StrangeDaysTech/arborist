@@ -208,3 +208,13 @@ Licensed under either of:
 - [Apache License, Version 2.0](LICENSE-APACHE)
 
 at your option.
+
+---
+
+## Copyright & Intellectual Property
+
+**Arborist** is © 2026 **[Strange Days Tech S.A.S. de C.V.](https://strangedays.tech/)** — original author and intellectual-property holder of the source code.
+
+The library is released under the dual MIT / Apache-2.0 license above; this notice records authorship and does **not** modify those license terms. Each source file carries an SPDX header reflecting the same.
+
+> Built by **[Strange Days Tech](https://strangedays.tech/)** — México.

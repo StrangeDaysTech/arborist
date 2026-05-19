@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT OR Apache-2.0
+// Copyright (c) 2026 Strange Days Tech S.A.S. de C.V. <https://strangedays.tech>
+
 use std::time::Instant;
 
 /// SC-002: Analysis of files under 1000 lines must complete in under 100ms.
