@@ -47,11 +47,7 @@ impl LanguageProfile for GoProfile {
         &["comment"]
     }
 
-    fn extract_function_name(
-        &self,
-        node: &tree_sitter::Node,
-        source: &[u8],
-    ) -> Option<String> {
+    fn extract_function_name(&self, node: &tree_sitter::Node, source: &[u8]) -> Option<String> {
         node.child_by_field_name("name")
             .and_then(|n| n.utf8_text(source).ok())
             .map(|s| s.to_string())
@@ -70,10 +66,19 @@ impl LanguageProfile for GoProfile {
     }
 
     fn match_construct_nodes(&self) -> &[&str] {
-        &["expression_switch_statement", "type_switch_statement", "select_statement"]
+        &[
+            "expression_switch_statement",
+            "type_switch_statement",
+            "select_statement",
+        ]
     }
 
     fn match_arm_nodes(&self) -> &[&str] {
-        &["expression_case", "default_case", "type_case", "communication_case"]
+        &[
+            "expression_case",
+            "default_case",
+            "type_case",
+            "communication_case",
+        ]
     }
 }

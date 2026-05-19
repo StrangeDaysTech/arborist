@@ -3,7 +3,7 @@
 
 #![cfg(feature = "rust")]
 
-use arborist::{analyze_source_with_config, AnalysisConfig, Language};
+use arborist::{AnalysisConfig, Language, analyze_source_with_config};
 
 #[test]
 fn include_methods_true_includes_impl_methods() {
@@ -31,8 +31,14 @@ impl Counter {
     let report = analyze_source_with_config(source, Language::Rust, &config).unwrap();
 
     let names: Vec<&str> = report.functions.iter().map(|f| f.name.as_str()).collect();
-    assert!(names.contains(&"top_level"), "should include top_level function");
-    assert!(names.contains(&"increment"), "should include method increment");
+    assert!(
+        names.contains(&"top_level"),
+        "should include top_level function"
+    );
+    assert!(
+        names.contains(&"increment"),
+        "should include method increment"
+    );
     assert!(names.contains(&"get"), "should include method get");
     assert_eq!(report.functions.len(), 3, "should have 3 functions total");
 }
@@ -63,16 +69,29 @@ impl Counter {
     let report = analyze_source_with_config(source, Language::Rust, &config).unwrap();
 
     let names: Vec<&str> = report.functions.iter().map(|f| f.name.as_str()).collect();
-    assert!(names.contains(&"top_level"), "should include top_level function");
-    assert!(!names.contains(&"increment"), "should NOT include method increment");
+    assert!(
+        names.contains(&"top_level"),
+        "should include top_level function"
+    );
+    assert!(
+        !names.contains(&"increment"),
+        "should NOT include method increment"
+    );
     assert!(!names.contains(&"get"), "should NOT include method get");
-    assert_eq!(report.functions.len(), 1, "should have only 1 top-level function");
+    assert_eq!(
+        report.functions.len(),
+        1,
+        "should have only 1 top-level function"
+    );
 }
 
 #[test]
 fn include_methods_default_is_true() {
     let config = AnalysisConfig::default();
-    assert!(config.include_methods, "default include_methods should be true");
+    assert!(
+        config.include_methods,
+        "default include_methods should be true"
+    );
 }
 
 #[test]
@@ -88,7 +107,11 @@ fn gamma() -> i32 { 3 }
         ..Default::default()
     };
     let report = analyze_source_with_config(source, Language::Rust, &config).unwrap();
-    assert_eq!(report.functions.len(), 3, "all top-level functions should appear");
+    assert_eq!(
+        report.functions.len(),
+        3,
+        "all top-level functions should appear"
+    );
 }
 
 #[test]
@@ -125,7 +148,11 @@ impl Processor {
     assert_eq!(report.functions.len(), 1, "only top-level functions");
     let f = &report.functions[0];
     assert_eq!(f.name, "simple");
-    assert_eq!(f.exceeds_threshold, Some(false), "simple should not exceed threshold");
+    assert_eq!(
+        f.exceeds_threshold,
+        Some(false),
+        "simple should not exceed threshold"
+    );
 }
 
 #[test]
@@ -155,7 +182,8 @@ impl Foo {
     };
 
     let report_with = analyze_source_with_config(source, Language::Rust, &config_with).unwrap();
-    let report_without = analyze_source_with_config(source, Language::Rust, &config_without).unwrap();
+    let report_without =
+        analyze_source_with_config(source, Language::Rust, &config_without).unwrap();
 
     // file_sloc should be the same regardless of include_methods
     assert_eq!(

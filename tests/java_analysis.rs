@@ -53,13 +53,22 @@ fn boolean_operators_metrics() {
     let check_all = &report.functions[0];
     assert_eq!(check_all.name, "checkAll");
     assert_eq!(check_all.cognitive, 2, "cognitive complexity for checkAll");
-    assert_eq!(check_all.cyclomatic, 4, "cyclomatic complexity for checkAll");
+    assert_eq!(
+        check_all.cyclomatic, 4,
+        "cyclomatic complexity for checkAll"
+    );
     assert_eq!(check_all.sloc, 6, "sloc for checkAll");
 
     let check_mixed = &report.functions[1];
     assert_eq!(check_mixed.name, "checkMixed");
-    assert_eq!(check_mixed.cognitive, 3, "cognitive complexity for checkMixed");
-    assert_eq!(check_mixed.cyclomatic, 4, "cyclomatic complexity for checkMixed");
+    assert_eq!(
+        check_mixed.cognitive, 3,
+        "cognitive complexity for checkMixed"
+    );
+    assert_eq!(
+        check_mixed.cyclomatic, 4,
+        "cyclomatic complexity for checkMixed"
+    );
     assert_eq!(check_mixed.sloc, 6, "sloc for checkMixed");
 
     // File-level aggregates (sum of both functions)

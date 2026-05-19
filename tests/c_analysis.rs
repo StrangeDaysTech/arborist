@@ -53,13 +53,22 @@ fn boolean_operators_metrics() {
     let check_all = &report.functions[0];
     assert_eq!(check_all.name, "check_all");
     assert_eq!(check_all.cognitive, 2, "cognitive complexity for check_all");
-    assert_eq!(check_all.cyclomatic, 4, "cyclomatic complexity for check_all");
+    assert_eq!(
+        check_all.cyclomatic, 4,
+        "cyclomatic complexity for check_all"
+    );
     assert_eq!(check_all.sloc, 6, "sloc for check_all");
 
     let check_mixed = &report.functions[1];
     assert_eq!(check_mixed.name, "check_mixed");
-    assert_eq!(check_mixed.cognitive, 3, "cognitive complexity for check_mixed");
-    assert_eq!(check_mixed.cyclomatic, 4, "cyclomatic complexity for check_mixed");
+    assert_eq!(
+        check_mixed.cognitive, 3,
+        "cognitive complexity for check_mixed"
+    );
+    assert_eq!(
+        check_mixed.cyclomatic, 4,
+        "cyclomatic complexity for check_mixed"
+    );
     assert_eq!(check_mixed.sloc, 6, "sloc for check_mixed");
 
     // File-level aggregates (sum of both functions)
@@ -88,7 +97,10 @@ fn goto_example_metrics() {
     let f = &report.functions[0];
     assert_eq!(f.name, "process_with_goto");
     assert_eq!(f.cognitive, 2, "cognitive complexity for process_with_goto");
-    assert_eq!(f.cyclomatic, 3, "cyclomatic complexity for process_with_goto");
+    assert_eq!(
+        f.cyclomatic, 3,
+        "cyclomatic complexity for process_with_goto"
+    );
     assert_eq!(f.sloc, 8, "sloc for process_with_goto");
 }
 

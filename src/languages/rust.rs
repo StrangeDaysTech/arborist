@@ -47,11 +47,7 @@ impl LanguageProfile for RustProfile {
         &["line_comment", "block_comment"]
     }
 
-    fn extract_function_name(
-        &self,
-        node: &tree_sitter::Node,
-        source: &[u8],
-    ) -> Option<String> {
+    fn extract_function_name(&self, node: &tree_sitter::Node, source: &[u8]) -> Option<String> {
         node.child_by_field_name("name")
             .and_then(|n| n.utf8_text(source).ok())
             .map(|s| s.to_string())

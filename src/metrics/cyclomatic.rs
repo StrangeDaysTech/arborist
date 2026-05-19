@@ -11,11 +11,7 @@ use tree_sitter::Node;
 /// catch/except, &&, ||, ternary operator.
 ///
 /// Note: `else` is NOT a decision point and does not increment cyclomatic complexity.
-pub fn compute_cyclomatic(
-    node: &Node,
-    source: &[u8],
-    profile: &dyn LanguageProfile,
-) -> u64 {
+pub fn compute_cyclomatic(node: &Node, source: &[u8], profile: &dyn LanguageProfile) -> u64 {
     let mut complexity: u64 = 1; // base path
     walk_cyclomatic(node, source, profile, &mut complexity);
     complexity

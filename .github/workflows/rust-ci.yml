@@ -1,0 +1,124 @@
+# =============================================================================
+# Arborist - Rust CI Workflow
+# =============================================================================
+#
+# Runs cargo build/test across ubuntu/macOS/Windows plus clippy, fmt and doc
+# gates on every push to main and every pull request. Path-filtered so changes
+# to .straymark/ docs or governance files do not trigger Rust compilation.
+#
+# https://strangedays.tech
+# =============================================================================
+
+name: Rust CI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '**/*.rs'
+      - 'Cargo.toml'
+      - 'Cargo.lock'
+      - 'README.md'  # embedded in src/lib.rs via #![doc = include_str!(...)]
+      - '.github/workflows/rust-ci.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - '**/*.rs'
+      - 'Cargo.toml'
+      - 'Cargo.lock'
+      - 'README.md'
+      - '.github/workflows/rust-ci.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  CARGO_TERM_COLOR: always
+  RUST_BACKTRACE: 1
+
+jobs:
+  # ===========================================================================
+  # Build and test on the three major desktop OSes
+  # ===========================================================================
+  test:
+    name: Test (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Install stable Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Cache cargo registry, index and target
+        uses: Swatinem/rust-cache@v2
+
+      - name: cargo build --all-features
+        run: cargo build --all-features --verbose
+
+      - name: cargo test --all-features
+        run: cargo test --all-features --verbose
+
+  # ===========================================================================
+  # Minimal-feature build: catches code that implicitly depends on a feature
+  # ===========================================================================
+  build-minimal:
+    name: Build (--no-default-features)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+        with:
+          key: minimal
+      - run: cargo build --no-default-features --verbose
+
+  # ===========================================================================
+  # Clippy lint gate
+  # ===========================================================================
+  clippy:
+    name: Clippy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy
+      - uses: Swatinem/rust-cache@v2
+        with:
+          key: clippy
+      - run: cargo clippy --all-features --all-targets -- -D warnings
+
+  # ===========================================================================
+  # Format gate
+  # ===========================================================================
+  fmt:
+    name: Rustfmt
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt
+      - run: cargo fmt --all -- --check
+
+  # ===========================================================================
+  # Documentation build (catches broken intra-doc links)
+  # ===========================================================================
+  doc:
+    name: Docs
+    runs-on: ubuntu-latest
+    env:
+      RUSTDOCFLAGS: -D warnings
+    steps:
+      - uses: actions/checkout@v5
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+        with:
+          key: doc
+      - run: cargo doc --all-features --no-deps

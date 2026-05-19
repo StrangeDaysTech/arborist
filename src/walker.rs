@@ -20,22 +20,18 @@ pub fn walk_source(
             details: format!("failed to set parser language: {e}"),
         })?;
 
-    let tree = parser.parse(source, None).ok_or_else(|| ArboristError::ParseError {
-        details: "tree-sitter returned no parse tree".to_string(),
-    })?;
+    let tree = parser
+        .parse(source, None)
+        .ok_or_else(|| ArboristError::ParseError {
+            details: "tree-sitter returned no parse tree".to_string(),
+        })?;
 
     let root = tree.root_node();
     let source_bytes = source.as_bytes();
 
     // Collect function nodes
     let mut functions = Vec::new();
-    collect_functions(
-        &root,
-        source_bytes,
-        profile,
-        config,
-        &mut functions,
-    );
+    collect_functions(&root, source_bytes, profile, config, &mut functions);
 
     // Sort by start line
     functions.sort_by_key(|f| f.start_line);

@@ -4,8 +4,8 @@
 #![cfg(feature = "rust")]
 
 use arborist::{
-    analyze_file, analyze_file_with_config, analyze_source, AnalysisConfig, FileReport,
-    FunctionMetrics, Language,
+    AnalysisConfig, FileReport, FunctionMetrics, Language, analyze_file, analyze_file_with_config,
+    analyze_source,
 };
 
 fn fixture_path(name: &str) -> String {
@@ -32,7 +32,12 @@ fn file_report_with_threshold_round_trip() {
     let report = analyze_file_with_config(fixture_path("nested_control_flow.rs"), &config).unwrap();
 
     // Verify threshold is populated before round-trip
-    assert!(report.functions.iter().all(|f| f.exceeds_threshold.is_some()));
+    assert!(
+        report
+            .functions
+            .iter()
+            .all(|f| f.exceeds_threshold.is_some())
+    );
 
     let json = serde_json::to_string(&report).unwrap();
     let deserialized: FileReport = serde_json::from_str(&json).unwrap();
@@ -45,7 +50,12 @@ fn file_report_without_threshold_round_trip() {
     let report = analyze_file(fixture_path("simple_function.rs")).unwrap();
 
     // exceeds_threshold should be None
-    assert!(report.functions.iter().all(|f| f.exceeds_threshold.is_none()));
+    assert!(
+        report
+            .functions
+            .iter()
+            .all(|f| f.exceeds_threshold.is_none())
+    );
 
     let json = serde_json::to_string(&report).unwrap();
     let deserialized: FileReport = serde_json::from_str(&json).unwrap();
@@ -100,8 +110,14 @@ fn json_fields_present() {
     assert!(json.contains("\"path\""), "missing path field");
     assert!(json.contains("\"language\""), "missing language field");
     assert!(json.contains("\"functions\""), "missing functions field");
-    assert!(json.contains("\"file_cognitive\""), "missing file_cognitive field");
-    assert!(json.contains("\"file_cyclomatic\""), "missing file_cyclomatic field");
+    assert!(
+        json.contains("\"file_cognitive\""),
+        "missing file_cognitive field"
+    );
+    assert!(
+        json.contains("\"file_cyclomatic\""),
+        "missing file_cyclomatic field"
+    );
     assert!(json.contains("\"file_sloc\""), "missing file_sloc field");
     assert!(json.contains("\"name\""), "missing name field");
     assert!(json.contains("\"start_line\""), "missing start_line field");
@@ -109,7 +125,10 @@ fn json_fields_present() {
     assert!(json.contains("\"cognitive\""), "missing cognitive field");
     assert!(json.contains("\"cyclomatic\""), "missing cyclomatic field");
     assert!(json.contains("\"sloc\""), "missing sloc field");
-    assert!(json.contains("\"exceeds_threshold\""), "missing exceeds_threshold field");
+    assert!(
+        json.contains("\"exceeds_threshold\""),
+        "missing exceeds_threshold field"
+    );
 }
 
 #[test]

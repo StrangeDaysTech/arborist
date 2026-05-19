@@ -3,7 +3,7 @@
 
 #![cfg(feature = "all")]
 
-use arborist::{analyze_file, Language};
+use arborist::{Language, analyze_file};
 
 /// Helper to get a fixture path for a given language and filename.
 fn fixture_path(lang: &str, name: &str) -> String {
@@ -96,7 +96,11 @@ fn h_extension_defaults_to_c() {
     let _ = std::fs::remove_file(&tmp_path);
 
     let report = result.unwrap();
-    assert_eq!(report.language, Language::C, ".h files should be detected as C");
+    assert_eq!(
+        report.language,
+        Language::C,
+        ".h files should be detected as C"
+    );
 }
 
 #[test]
@@ -111,7 +115,10 @@ fn unknown_extension_returns_error() {
     let _ = std::fs::remove_file(&tmp_path);
 
     assert!(
-        matches!(result, Err(arborist::ArboristError::UnrecognizedExtension { .. })),
+        matches!(
+            result,
+            Err(arborist::ArboristError::UnrecognizedExtension { .. })
+        ),
         "Unknown extension should return UnrecognizedExtension error"
     );
 }

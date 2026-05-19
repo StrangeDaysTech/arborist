@@ -15,30 +15,30 @@
 use crate::error::ArboristError;
 use crate::types::Language;
 
-#[cfg(feature = "rust")]
-pub mod rust;
-#[cfg(feature = "python")]
-pub mod python;
-#[cfg(feature = "javascript")]
-pub mod javascript;
-#[cfg(feature = "typescript")]
-pub mod typescript;
-#[cfg(feature = "java")]
-pub mod java;
-#[cfg(feature = "csharp")]
-pub mod csharp;
-#[cfg(feature = "cpp")]
-pub mod cpp;
 #[cfg(feature = "c")]
 pub mod c;
+#[cfg(feature = "cpp")]
+pub mod cpp;
+#[cfg(feature = "csharp")]
+pub mod csharp;
 #[cfg(feature = "go")]
 pub mod go;
-#[cfg(feature = "php")]
-pub mod php;
+#[cfg(feature = "java")]
+pub mod java;
+#[cfg(feature = "javascript")]
+pub mod javascript;
 #[cfg(feature = "kotlin")]
 pub mod kotlin;
+#[cfg(feature = "php")]
+pub mod php;
+#[cfg(feature = "python")]
+pub mod python;
+#[cfg(feature = "rust")]
+pub mod rust;
 #[cfg(feature = "swift")]
 pub mod swift;
+#[cfg(feature = "typescript")]
+pub mod typescript;
 
 /// Trait that defines how a language's AST maps to control-flow concepts.
 ///
@@ -87,11 +87,7 @@ pub trait LanguageProfile {
     fn comment_nodes(&self) -> &[&str];
 
     /// Extract the function name from an AST node.
-    fn extract_function_name(
-        &self,
-        node: &tree_sitter::Node,
-        source: &[u8],
-    ) -> Option<String>;
+    fn extract_function_name(&self, node: &tree_sitter::Node, source: &[u8]) -> Option<String>;
 
     /// Get the tree-sitter `Language` for parsing.
     fn parser_language(&self) -> tree_sitter::Language;
@@ -138,7 +134,9 @@ pub trait LanguageProfile {
 ///
 /// Returns `Err(UnrecognizedExtension)` if the extension is unknown, or
 /// `Err(LanguageNotEnabled)` if the language is known but its feature is off.
-pub fn profile_for_extension(ext: &str) -> Result<(Language, Box<dyn LanguageProfile>), ArboristError> {
+pub fn profile_for_extension(
+    ext: &str,
+) -> Result<(Language, Box<dyn LanguageProfile>), ArboristError> {
     let ext_lower = ext.to_lowercase();
     let ext_ref = ext_lower.as_str();
 
@@ -169,7 +167,9 @@ pub fn profile_for_extension(ext: &str) -> Result<(Language, Box<dyn LanguagePro
 /// Get the profile for a known language.
 ///
 /// Returns `Err(LanguageNotEnabled)` if the feature flag is not compiled in.
-pub fn profile_for_language(language: Language) -> Result<(Language, Box<dyn LanguageProfile>), ArboristError> {
+pub fn profile_for_language(
+    language: Language,
+) -> Result<(Language, Box<dyn LanguageProfile>), ArboristError> {
     let profile: Box<dyn LanguageProfile> = match language {
         #[cfg(feature = "rust")]
         Language::Rust => Box::new(rust::RustProfile),

@@ -54,11 +54,7 @@ impl LanguageProfile for PhpProfile {
         &["comment"]
     }
 
-    fn extract_function_name(
-        &self,
-        node: &tree_sitter::Node,
-        source: &[u8],
-    ) -> Option<String> {
+    fn extract_function_name(&self, node: &tree_sitter::Node, source: &[u8]) -> Option<String> {
         node.child_by_field_name("name")
             .and_then(|n| n.utf8_text(source).ok())
             .map(|s| s.to_string())
@@ -92,6 +88,11 @@ impl LanguageProfile for PhpProfile {
     }
 
     fn match_arm_nodes(&self) -> &[&str] {
-        &["case_statement", "default_statement", "match_conditional_expression", "match_default_expression"]
+        &[
+            "case_statement",
+            "default_statement",
+            "match_conditional_expression",
+            "match_default_expression",
+        ]
     }
 }

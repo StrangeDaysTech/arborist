@@ -4,7 +4,9 @@
 // Most tests require "rust"; Python-specific tests are individually gated.
 #![cfg(feature = "rust")]
 
-use arborist::{analyze_file, analyze_source, analyze_source_with_config, AnalysisConfig, Language};
+use arborist::{
+    AnalysisConfig, Language, analyze_file, analyze_source, analyze_source_with_config,
+};
 
 /// Helper to get the project root directory for fixture paths.
 fn fixture_path(name: &str) -> String {
@@ -21,7 +23,10 @@ fn source_simple_function_matches_file() {
     let source_report = analyze_source(source, Language::Rust).unwrap();
 
     assert_eq!(source_report.language, Language::Rust);
-    assert_eq!(source_report.path, "", "analyze_source should produce empty path");
+    assert_eq!(
+        source_report.path, "",
+        "analyze_source should produce empty path"
+    );
     assert_eq!(source_report.functions.len(), file_report.functions.len());
 
     let sf = &source_report.functions[0];
@@ -57,7 +62,11 @@ fn source_boolean_operators_matches_file() {
     let source_report = analyze_source(source, Language::Rust).unwrap();
 
     assert_eq!(source_report.functions.len(), file_report.functions.len());
-    for (sf, ff) in source_report.functions.iter().zip(file_report.functions.iter()) {
+    for (sf, ff) in source_report
+        .functions
+        .iter()
+        .zip(file_report.functions.iter())
+    {
         assert_eq!(sf.name, ff.name);
         assert_eq!(sf.cognitive, ff.cognitive);
         assert_eq!(sf.cyclomatic, ff.cyclomatic);
@@ -123,7 +132,10 @@ fn source_with_config_default_matches_no_config() {
     let report_with_config =
         analyze_source_with_config(source, Language::Rust, &AnalysisConfig::default()).unwrap();
 
-    assert_eq!(report_no_config.functions.len(), report_with_config.functions.len());
+    assert_eq!(
+        report_no_config.functions.len(),
+        report_with_config.functions.len()
+    );
     assert_eq!(
         report_no_config.functions[0].cognitive,
         report_with_config.functions[0].cognitive
@@ -151,7 +163,11 @@ fn source_python_two_functions() {
 
     assert_eq!(report.language, Language::Python);
     assert_eq!(report.path, "", "analyze_source should produce empty path");
-    assert_eq!(report.functions.len(), 2, "expected 2 functions (add + process)");
+    assert_eq!(
+        report.functions.len(),
+        2,
+        "expected 2 functions (add + process)"
+    );
 
     let add = &report.functions[0];
     assert_eq!(add.name, "add");
@@ -173,7 +189,11 @@ fn source_syntax_error_best_effort() {
     let source = "fn broken( { if true { } }";
     let result = analyze_source(source, Language::Rust);
     // tree-sitter is error-tolerant; it should not fail but produce best-effort results
-    assert!(result.is_ok(), "syntax errors should produce best-effort results, got: {:?}", result.err());
+    assert!(
+        result.is_ok(),
+        "syntax errors should produce best-effort results, got: {:?}",
+        result.err()
+    );
 }
 
 #[test]

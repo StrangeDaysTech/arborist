@@ -2,26 +2,18 @@
 // Copyright (c) 2026 Strange Days Tech S.A.S. de C.V. <https://strangedays.tech>
 
 use crate::languages::LanguageProfile;
-use tree_sitter::Node;
 use std::collections::HashSet;
+use tree_sitter::Node;
 
 /// Count source lines of code within a range, excluding blank and comment-only lines.
-pub fn compute_sloc(
-    node: &Node,
-    source: &[u8],
-    profile: &dyn LanguageProfile,
-) -> u64 {
+pub fn compute_sloc(node: &Node, source: &[u8], profile: &dyn LanguageProfile) -> u64 {
     let start_line = node.start_position().row;
     let end_line = node.end_position().row;
     compute_sloc_for_range(node, source, profile, start_line, end_line)
 }
 
 /// Count SLOC for the entire file.
-pub fn compute_file_sloc(
-    root: &Node,
-    source: &[u8],
-    profile: &dyn LanguageProfile,
-) -> u64 {
+pub fn compute_file_sloc(root: &Node, source: &[u8], profile: &dyn LanguageProfile) -> u64 {
     let total_lines = source.split(|&b| b == b'\n').count();
     if total_lines == 0 {
         return 0;

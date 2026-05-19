@@ -17,7 +17,9 @@ fn print_tree(node: &tree_sitter::Node, source: &[u8], indent: usize) {
             }
         })
     });
-    let field_str = field.map(|f| format!(" [field: {}]", f)).unwrap_or_default();
+    let field_str = field
+        .map(|f| format!(" [field: {}]", f))
+        .unwrap_or_default();
     println!(
         "{}{} ({}){}  | {}",
         prefix,

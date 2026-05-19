@@ -7,7 +7,16 @@ use std::time::Instant;
 ///
 /// The large_file.rs fixture has 1000+ lines and 40+ functions with varying
 /// complexity. We allow a generous margin and assert < 100ms per the spec.
+///
+/// The 100ms target is set for the release profile. Debug builds on shared
+/// CI runners can be 5-10x slower; the assertion would produce false
+/// positives there. To run this test, use `cargo test --release` or
+/// `cargo test -- --ignored` after first building in release mode.
 #[test]
+#[cfg_attr(
+    debug_assertions,
+    ignore = "perf test; SC-002 100ms target only meaningful in release builds"
+)]
 fn large_file_analysis_under_100ms() {
     let path = "tests/fixtures/rust/large_file.rs";
 
