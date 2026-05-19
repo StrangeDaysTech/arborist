@@ -1,8 +1,8 @@
-# Reglas para Agentes IA - DevTrail
+# Reglas para Agentes IA - StrayMark
 
-> Este documento define las reglas que todos los agentes de IA deben seguir cuando trabajan en proyectos bajo DevTrail.
+> Este documento define las reglas que todos los agentes de IA deben seguir cuando trabajan en proyectos bajo StrayMark.
 
-**Idiomas**: [English](../../AGENT-RULES.md) | Español
+**Idiomas**: [English](../../AGENT-RULES.md) | Español | [简体中文](../zh-CN/AGENT-RULES.md)
 
 ---
 
@@ -30,7 +30,7 @@ confidence: high | medium | low
 
 | Situación | Tipo | Notas |
 |-----------|------|-------|
-| Complejidad de código sobre el umbral | AILOG | Ejecutar `devtrail analyze <archivos-modificados> --output json`. Si `summary.above_threshold > 0`, crear AILOG (umbral por defecto: 8). **Alternativa**: si el CLI no está disponible, usar heurística de >20 líneas de lógica de negocio |
+| Complejidad de código sobre el umbral | AILOG | Ejecutar `straymark analyze <archivos-modificados> --output json`. Si `summary.above_threshold > 0`, crear AILOG (umbral por defecto: 8). **Alternativa**: si el CLI no está disponible, usar heurística de >20 líneas de lógica de negocio |
 | Decisión entre 2+ alternativas técnicas | AIDEC | Documentar alternativas |
 | Cambios en auth/autorización/PII | AILOG + ETH | `risk_level: high`, ETH requiere aprobación |
 | Cambios en API pública o esquema de BD | AILOG | `risk_level: medium+`, considerar ADR |
@@ -39,6 +39,7 @@ confidence: high | medium | low
 | Adición/eliminación/actualización de dependencias críticas de seguridad | AILOG | Revisión humana requerida |
 | Cambios que afectan el ciclo de vida del sistema de IA (despliegue, retirada) | AILOG + ADR | Revisión humana requerida |
 | Cambios en instrumentación OTel (spans, atributos, pipeline) | AILOG | Tag `observabilidad`, ver §9 |
+| Deuda técnica transversal detectada durante la implementación | TDE | Ver §3 "TDE vs `R<N>` (new, not in Charter)" para el criterio de desambiguación |
 
 ### PROHIBIDO - No documentar
 
@@ -99,6 +100,27 @@ confidence: high | medium | low
 | TDE | Deuda técnica |
 | INC | Conclusiones de incidentes |
 
+### TDE vs `R<N> (new, not in Charter)`
+
+Existen dos superficies para la deuda emergente. No son intercambiables — elige la que coincida con el ciclo de vida del trabajo, no la que tengas más a mano.
+
+**Registra un `R<N> (new, not in Charter)` en la sección `§Risk` del AILOG** cuando la deuda:
+
+- Está *acotada al Charter en ejecución* o al siguiente Charter en la secuencia.
+- Se resuelve como un diferimiento documentado, un fix atómico pequeño, o un puntero a un Charter que ya existe.
+- Tiene impacto bajo-a-medio y el agente puede describir la remediación en una sola viñeta.
+
+**Crea un documento TDE** cuando la deuda:
+
+- Es *herencia de un Charter previo*. Dos formas distintas califican (ambas son TDE-worthy):
+  - **Herencia estricta** — un Charter previo introdujo la deuda; los Charters subsecuentes solo la propagan sin re-introducir la decisión subyacente (p. ej., una elección legacy de schema de BD; un atajo temprano de auth; una decisión de config diferida). El Charter actual hereda la deuda por contacto transitivo.
+  - **Propagación de patrón** — un Charter previo estableció un patrón que los Charters subsecuentes *re-introducen* siguiéndolo. El Charter actual no solo propaga; recrea la misma deuda replicando el patrón (p. ej., forma de handler que omite `RequireScope`; scaffolding de tests que bypasea middleware HTTP). El fix está al nivel del patrón, no de ningún Charter individual.
+- *Aplica a múltiples módulos **o a fronteras de ejecución de Charter*** — fragmentarla en entradas `R<N>` por Charter pierde la forma arquitectónica. "Fronteras de ejecución de Charter" captura deuda de rastro de gobernanza que atraviesa sesiones sin atravesar módulos de código: p. ej., una clasificación diferida en CHARTER-04 que pasa en silencio por CHARTER-08 → CHARTER-13 y solo aflora bajo una gate de CI nueva.
+- *Requiere un Charter dedicado fuera del envelope de scope actual* para remediarse (no el Charter actual, no el siguiente).
+- *Requiere priorización o asignación humana* que el agente no puede decidir solo (matriz impact × effort, ownership, sprint placement).
+
+Los cuatro triggers anteriores son los criterios de activación para TDE bajo §2. Cuando el AILOG que vas a escribir cargaría un `R<N>` que coincida con cualquiera de ellos, escribe el TDE en su lugar y referencialo desde la fila `§Risk` del AILOG.
+
 ---
 
 ## 4. Cuándo Solicitar Revisión Humana
@@ -125,7 +147,7 @@ Marcar `review_required: true` cuando:
 Antes de crear un documento, cargar la plantilla correspondiente:
 
 ```
-.devtrail/templates/TEMPLATE-[TIPO].md
+.straymark/templates/TEMPLATE-[TIPO].md
 ```
 
 ### Convención de Nomenclatura
@@ -138,18 +160,18 @@ Antes de crear un documento, cargar la plantilla correspondiente:
 
 | Tipo | Carpeta |
 |------|---------|
-| AILOG | `.devtrail/07-ai-audit/agent-logs/` |
-| AIDEC | `.devtrail/07-ai-audit/decisions/` |
-| ETH | `.devtrail/07-ai-audit/ethical-reviews/` |
-| ADR | `.devtrail/02-design/decisions/` |
-| REQ | `.devtrail/01-requirements/` |
-| TES | `.devtrail/04-testing/` |
-| INC | `.devtrail/05-operations/incidents/` |
-| TDE | `.devtrail/06-evolution/technical-debt/` |
-| SEC | `.devtrail/08-security/` |
-| MCARD | `.devtrail/09-ai-models/` |
-| SBOM | `.devtrail/07-ai-audit/` |
-| DPIA | `.devtrail/07-ai-audit/ethical-reviews/` |
+| AILOG | `.straymark/07-ai-audit/agent-logs/` |
+| AIDEC | `.straymark/07-ai-audit/decisions/` |
+| ETH | `.straymark/07-ai-audit/ethical-reviews/` |
+| ADR | `.straymark/02-design/decisions/` |
+| REQ | `.straymark/01-requirements/` |
+| TES | `.straymark/04-testing/` |
+| INC | `.straymark/05-operations/incidents/` |
+| TDE | `.straymark/06-evolution/technical-debt/` |
+| SEC | `.straymark/08-security/` |
+| MCARD | `.straymark/09-ai-models/` |
+| SBOM | `.straymark/07-ai-audit/` |
+| DPIA | `.straymark/07-ai-audit/ethical-reviews/` |
 
 ### Tags y Related
 
@@ -158,11 +180,11 @@ Al poblar los campos `tags` y `related` en el frontmatter:
 **Tags:**
 - Usar palabras clave en kebab-case: `sqlite`, `api-design`, `gnome-integration`
 - 3 a 8 tags por documento describiendo tema, tecnología o componente
-- Los tags habilitan búsqueda y categorización en `devtrail explore`
+- Los tags habilitan búsqueda y categorización en `straymark explore`
 
 **Related:**
-- Referenciar únicamente otros **documentos DevTrail** — usar el nombre de archivo con extensión `.md`
-- Si el documento está en un subdirectorio dentro de `.devtrail/`, incluir la ruta relativa: `07-ai-audit/agent-logs/daemon/AILOG-2026-02-03-001-archivo.md`
+- Referenciar únicamente otros **documentos StrayMark** — usar el nombre de archivo con extensión `.md`
+- Si el documento está en un subdirectorio dentro de `.straymark/`, incluir la ruta relativa: `07-ai-audit/agent-logs/daemon/AILOG-2026-02-03-001-archivo.md`
 - Si el documento está en el mismo directorio, el nombre de archivo es suficiente
 - **No** colocar IDs de tareas (T001, US3), números de issues ni URLs externas en `related` — esos van en el cuerpo del documento
 
@@ -187,6 +209,14 @@ Al poblar los campos `tags` y `related` en el frontmatter:
 - Identificar riesgos potenciales
 - Sugerir mejoras cuando sean evidentes
 - Alertar sobre deuda técnica
+- **Surfacear disonancia entre fuentes canónicas** (Principio #8 — ver [`PRINCIPLES.md`](PRINCIPLES.md)). Cuando el agente detecte divergencia material entre dos fuentes canónicas de la documentación StrayMark, debe surfacearla antes de proceder con la tarea pedida. Ejemplos a observar durante trabajo rutinario:
+  - Spec stale relativo al código shipped en cadenas multi-Charter de larga duración (ver [`CHARTER-CHAIN-EVOLUTION.md`](CHARTER-CHAIN-EVOLUTION.md) Pattern 1)
+  - Entradas `R<N> (new, not in Charter)` acumuladas que cumplen criterios de TDE pero no fueron escaladas (ver §3 arriba)
+  - ADR vigente contradicho por la implementación actual
+  - Conteo de `§Follow-ups` cruzando el umbral del backlog-pattern (ver [`FOLLOW-UPS-BACKLOG-PATTERN.md`](FOLLOW-UPS-BACKLOG-PATTERN.md))
+  - Hallazgos de audit emergiendo post-close que ameriten enmienda (ver [`CHARTER-CHAIN-EVOLUTION.md`](CHARTER-CHAIN-EVOLUTION.md) Pattern 2)
+
+  Ver [`EMERGENT-OBSERVATION-DESIGN.md`](EMERGENT-OBSERVATION-DESIGN.md) para el meta-patrón que conecta estas superficies.
 
 ---
 
@@ -270,4 +300,91 @@ Cuando un cambio modifica endpoints de API:
 
 ---
 
-*DevTrail v4.1.1 | [Strange Days Tech](https://strangedays.tech)*
+## 12. Checkpoint de Auditoría (workflow de Charter)
+
+Cuando estés co-implementando un Charter, el agente **proactivamente ofrece** una auditoría externa multi-modelo en un momento específico del workflow. El checkpoint es **soft** — nunca bloquea `charter close` y nunca escala a enforcement. La auditoría externa es opt-in por diseño (costo, confianza en la disciplina primaria del operador).
+
+### Cuándo emitir el checkpoint
+
+Emite el checkpoint **una sola vez por Charter** cuando los **cuatro** triggers se cumplen simultáneamente:
+
+1. El Charter está en status `in-progress` o `declared` (no `closed`).
+2. Todas las tasks de la sección `## Tasks` del Charter están marcadas `[x]` completadas (o el agente acaba de completar la última).
+3. `straymark charter drift <CHARTER-ID>` retorna exit 0 (sin drift no contabilizado).
+4. El developer **no** ha invocado `straymark charter close <CHARTER-ID>` aún, ni ha mencionado intención de cerrar.
+
+Si el developer rechazó la auditoría en un turno previo para el mismo Charter, **no re-emitir** en turnos subsiguientes de la misma conversación.
+
+### Forma del mensaje del checkpoint
+
+Renderiza el mensaje así (sustituye `<CHARTER-ID>` y la justificación de la recomendación):
+
+```
+Llegamos al checkpoint del Charter <CHARTER-ID>. Está implementado,
+drift check OK, pendiente solo `straymark charter close`.
+
+En este punto puedes correr una auditoría externa (típicamente 2 LLMs
+de familias distintas + un calibrador) que arroje findings cross-modelo
+sobre la implementación.
+
+Mi recomendación: [SÍ / NO], porque:
+  - <razón concreta basada en el Charter, AILOGs o diff>
+
+Si decides auditar:
+  Ejecuta /straymark-audit-prompt <CHARTER-ID> y yo escribo el prompt
+  unificado de auditoría en .straymark/audits/<CHARTER-ID>/audit-prompt.md.
+  Después abre una o más CLIs auditoras (gemini-cli, claude-cli,
+  copilot-cli, codex-cli) en este repo e invoca
+  /straymark-audit-execute <CHARTER-ID> en cada una — recomendación: al
+  menos 2 auditores de familias de modelo distintas. Cuando y solo
+  cuando TODAS las auditorías que encargaste hayan terminado, regresa
+  aquí y ejecuta /straymark-audit-review <CHARTER-ID>. Yo consolido los
+  N reports en un documento review.md con veredictos, plan de
+  remediación y calificación de auditores, y mergeo el bloque YAML en
+  la telemetría del Charter.
+
+Si decides no auditar:
+  Continúa con `straymark charter close <CHARTER-ID>` cuando estés listo.
+  La auditoría externa es completamente opcional — la disciplina del
+  Charter declarativo + drift check + AILOG da suficiente rigor para
+  un cierre confiable sin auditoría.
+```
+
+### Heurísticas para la recomendación SÍ/NO
+
+Son heurísticas, no reglas rígidas — estás cerca del contexto, afínalas con el adoptante.
+
+**Recomienda SÍ cuando** (cualquiera basta):
+
+- El Charter tocó superficie crítica de seguridad (auth, RLS, manejo de secrets, IAM).
+- El Charter introdujo un componente nuevo (no refactor) que el developer no había co-implementado antes.
+- Algún AILOG asociado documenta un `R<N>` con `confidence: low | medium` y `risk_level: medium` o mayor.
+- El developer marcó el Charter como `effort_estimate: L` y este es el primer Charter del adoptante.
+- El developer **explícitamente** pidió validación cross-modelo en el trigger del Charter.
+- **Señal estructural de complejidad** *(disponible solo cuando el CLI fue compilado con el feature `analyze` activo, true en los binarios oficiales)*: el diff del `range` introduce o modifica al menos una función cuya complejidad cognitiva supera **2× el threshold configurado** en `.straymark/config.yml` (`complexity.threshold`, default `8` → ≥ `17`). Una función densa nueva es exactamente el caso donde dos auditores cross-familia capturan implementation gaps que un solo modelo deja pasar. **Graceful-degradation:** si el binario no tiene el feature `analyze`, omite silenciosamente esta señal — no avises, no menciones la ausencia.
+
+**Recomienda NO cuando** (todas juntas):
+
+- El Charter es refactor o cambio de documentación (sin comportamiento nuevo).
+- `effort_estimate` es `XS` o `S`.
+- Los AILOGs asociados tienen todos `confidence: high` y sin riesgos `R<N+1>` emergentes.
+- `risk_level` del Charter es `low` (o no está marcado).
+
+**Caso default (ninguna señal clara):** recomienda **NO** con framing neutro ("no veo señal específica que justifique el costo de dos modelos adicionales; cierra cuando estés listo"). El costo de la auditoría externa es real — no infles adopción recomendando SÍ por inercia.
+
+### Reglas de engagement
+
+- El checkpoint **nunca** se repite dentro del mismo Charter una vez que el developer responde.
+- El checkpoint **no** bloquea ninguna acción posterior. Si el developer lo ignora y corre `charter close`, close procede normalmente — no hay enforcement y no lo habrá (decisión de diseño v0+v1 permanente; ver `Propuesta/straymark-audit-skills.md` §2.2).
+- El checkpoint **no** se cuenta en ninguna métrica de calidad. No hay KPI "% Charters auditados" en `straymark metrics` — por diseño, para evitar incentivos a inflar el conteo.
+- Si el developer acepta la auditoría, el workflow procede vía tres skills en secuencia: `/straymark-audit-prompt` (escribe el prompt unificado en el path canónico) → `/straymark-audit-execute` × N (una por CLI auditora que abra el operador — estas corren en esas CLIs, no en el agente principal) → `/straymark-audit-review` (consolida N reports inline en `.straymark/audits/<id>/review.md` y mergea el YAML en la telemetría). Los operadores nunca copian/pegan prompts ni reports — el intercambio de archivos sucede vía paths canónicos bajo `.straymark/audits/`.
+
+---
+
+## Patrones
+
+Cuando un proyecto acumula un volumen alto de AILOGs a lo largo de múltiples Charters y los follow-ups se vuelven difíciles de rastrear, ver [FOLLOW-UPS-BACKLOG-PATTERN.md](FOLLOW-UPS-BACKLOG-PATTERN.md) para una convención reproducible (registro central + script de detección de drift + integración con agentes). Los adopters con ~20+ AILOGs se benefician; por debajo de ese umbral la convención per-AILOG `§Follow-ups` por sí sola es suficiente.
+
+---
+
+*StrayMark fw-4.17.0 | [Strange Days Tech](https://strangedays.tech)*

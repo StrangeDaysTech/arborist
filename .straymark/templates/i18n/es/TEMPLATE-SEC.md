@@ -6,6 +6,11 @@ created: YYYY-MM-DD
 agent: [agent-name]
 confidence: medium
 review_required: true
+
+# --- Workflow de aprobación (opcional, llenar al momento de la revisión) ---
+# reviewed_by: <id-revisor>            # email | usuario-github | DID
+# reviewed_at: YYYY-MM-DD
+# review_outcome: approved             # approved | revisions_requested | rejected
 risk_level: high
 eu_ai_act_risk: not_applicable  # unacceptable | high | limited | minimal | not_applicable
 iso_42001_clause: [6, 8]
@@ -168,4 +173,4 @@ related: []
 | Decisión | [APROBADO / RECHAZADO / CONDICIONAL] |
 | Condiciones | [Si aplica] |
 
-<!-- Template: DevTrail | https://strangedays.tech -->
+<!-- Template: StrayMark | https://strangedays.tech -->

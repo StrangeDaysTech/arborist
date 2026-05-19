@@ -33,6 +33,25 @@ related: []
 2. [Acción 2]
 3. [Acción 3]
 
+## Bitácora por Lote (Batch Ledger)
+
+> Usa esta sección para Charters que abarquen 3+ lotes o >1 día de ejecución.
+> Actualiza cada entrada **inmediatamente después** de que aterriza su commit,
+> usando `straymark charter batch-complete <CHARTER-ID> <N>`. Las entradas
+> que queden como `(pending)` al cierre del Charter hacen fallar
+> `straymark charter drift`.
+>
+> Omite esta sección por completo para AILOGs de un solo lote o sesión —
+> `## Acciones Realizadas` arriba es suficiente en ese caso.
+
+### Batch 1 — [nombre desde §Tasks del Charter]
+
+(pending)
+
+### Batch 2 — [nombre desde §Tasks del Charter]
+
+(pending)
+
 ## Archivos Modificados
 
 | Archivo | Líneas Cambiadas (+/-) | Descripción del Cambio |
@@ -96,4 +115,4 @@ related: []
 
 ---
 
-<!-- Template: DevTrail | https://strangedays.tech -->
+<!-- Template: StrayMark | https://strangedays.tech -->

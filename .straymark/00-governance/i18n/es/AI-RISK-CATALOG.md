@@ -2,7 +2,7 @@
 
 > **Alineado con**: NIST AI 600-1 e ISO/IEC 42001:2023 Anexo C
 >
-> Este documento proporciona un registro centralizado de riesgos para los sistemas de IA gestionados bajo DevTrail. Mapea las entradas de riesgo a las 12 categorías de riesgo de NIST AI 600-1 y se alinea con ISO 42001 Anexo A.5 (Evaluación de Impactos de Sistemas de IA) e ISO/IEC 23894 (Gestión de Riesgos de IA).
+> Este documento proporciona un registro centralizado de riesgos para los sistemas de IA gestionados bajo StrayMark. Mapea las entradas de riesgo a las 12 categorías de riesgo de NIST AI 600-1 y se alinea con ISO 42001 Anexo A.5 (Evaluación de Impactos de Sistemas de IA) e ISO/IEC 23894 (Gestión de Riesgos de IA).
 >
 > **Esta es una plantilla** — complete con los riesgos específicos de los sistemas de IA de su organización.
 
@@ -17,7 +17,7 @@ Este catálogo de riesgos sirve como la fuente única de verdad para los riesgos
 - **Mapeo regulatorio** a las categorías de NIST AI 600-1 y controles de ISO 42001
 - **Monitoreo continuo** mediante ciclos de revisión periódicos
 
-> **Mapeo DevTrail**: Los documentos ETH evalúan riesgos individuales a nivel de cambio. Este catálogo consolida los riesgos organizacionales según ISO 42001 Anexo A.5.
+> **Mapeo StrayMark**: Los documentos ETH evalúan riesgos individuales a nivel de cambio. Este catálogo consolida los riesgos organizacionales según ISO 42001 Anexo A.5.
 
 ---
 
@@ -46,12 +46,12 @@ Este catálogo de riesgos sirve como la fuente única de verdad para los riesgos
 
 ### 2.3 Fases de Gestión de Riesgos (ISO/IEC 23894)
 
-| Fase | Descripción | Referencia ISO 23894 | Evidencia DevTrail |
+| Fase | Descripción | Referencia ISO 23894 | Evidencia StrayMark |
 |-------|-------------|--------------------|--------------------|
 | Identificación | Descubrir y describir los riesgos de IA | Cláusula 6.1 | Documentos ETH, este catálogo |
 | Evaluación | Evaluar probabilidad, impacto y puntuación de riesgo | Cláusula 6.2 | Puntuación de Riesgo en este catálogo |
 | Tratamiento | Seleccionar e implementar controles para mitigar riesgos | Cláusula 6.3 | Columna Controles Actuales, ADR para decisiones |
-| Monitoreo | Seguir el riesgo residual y la efectividad de los controles | Cláusula 6.4 | Fecha de Revisión, `devtrail metrics` |
+| Monitoreo | Seguir el riesgo residual y la efectividad de los controles | Cláusula 6.4 | Fecha de Revisión, `straymark metrics` |
 
 ---
 
@@ -196,7 +196,7 @@ Este catálogo de riesgos sirve como la fuente única de verdad para los riesgos
 
 ---
 
-*Plantilla del Catálogo de Riesgos de IA — DevTrail Framework*
+*Plantilla del Catálogo de Riesgos de IA — StrayMark Framework*
 *Alineado con NIST AI 600-1 e ISO/IEC 42001:2023 Anexo C*
 
-<!-- Template: DevTrail | https://strangedays.tech -->
+<!-- Template: StrayMark | https://strangedays.tech -->

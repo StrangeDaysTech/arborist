@@ -1,0 +1,154 @@
+# StrayMark Charter telemetry — fill at Charter close.
+#
+# Schema:        .straymark/schemas/charter-telemetry.schema.v0.json
+# Conceptual:    Propuesta/straymark-charter-telemetry.md (in the upstream repo)
+# Storage path:  .straymark/charters/CHARTER-NN.telemetry.yaml
+#
+# Fill time target: 5-10 minutes per Charter. The point is signal, not exhaustiveness —
+# leave a field blank or omit it if you don't have honest data for it. Honest gaps
+# are more useful than invented numbers.
+
+charter_telemetry:
+  # ---------- Identification ----------
+  charter_id: "CHARTER-NN"               # match the charter_id of the Charter file
+  charter_title: "<short title>"
+  closed_at: "YYYY-MM-DD"                # date of the closing commit / merge
+
+  # ---------- Origin & activation ----------
+  # Which AILOGs (if any) motivated this Charter, and were they still useful when
+  # execution actually happened? still_relevant_at_execution captures whether the
+  # AILOG content lined up with reality, not whether it merely existed.
+  originating_ailogs:
+    - ailog_id: "AILOG-YYYY-MM-DD-NNN"
+      still_relevant_at_execution: true  # bool
+      relevance_notes: ""                # optional — explain partial / shifted relevance
+
+  # The trigger as declared in the Charter, plus what actually fired the Charter
+  # in practice. Sentinel found that declared triggers tend to be prescriptive
+  # (when SHOULD this run) while the effective trigger was usually meta — the
+  # delta between the two is the interesting datum.
+  trigger:
+    declared_kind: ""                    # event_trigger | date | metric_threshold | infrastructure_milestone
+    declared_description: ""
+    fired_at: "YYYY-MM-DD"
+    fire_clarity: ""                     # clear | ambiguous | manually_decided
+    fire_clarity_notes: ""
+
+  # ---------- Pre-work ----------
+  # Whether the Charter's §Pre-trabajo section did its job. If items_discovered_during_planning
+  # is high, the field is not protecting you — flag it.
+  pre_work:
+    items_declared: 0
+    items_completed_before_planning: 0
+    items_skipped: 0
+    items_discovered_during_planning: 0
+    pre_work_quality: ""                 # high | medium | low
+    pre_work_notes: ""
+
+  # ---------- Planning session (if any) ----------
+  # Many Charters execute without a formal planning session. If so, set occurred:false
+  # and skip the rest of this block.
+  planning_session:
+    occurred: false
+    duration_minutes: 0
+    participants: 0
+    decisions_made: 0
+    decisions_deferred: 0
+    notes: ""
+
+  # ---------- Effort ----------
+  # TIME only. Sentinel's data showed lines-changed is not predictive (1.0x to 8.1x drift);
+  # do NOT attempt to capture it. Estimation is one of the questions this telemetry exists
+  # to answer.
+  effort:
+    started_at: "YYYY-MM-DD"
+    finished_at: "YYYY-MM-DD"
+    estimated_effort: "M (~1.5h)"        # XS/S/M/L bucket + optional ~time
+    actual_effort: "M (~1.5h)"
+    estimation_drift_factor: 1.0         # actual / estimated TIME ratio
+    estimation_drift_reason: ""
+
+  # ---------- Agent quality during execution ----------
+  # r_n_plus_one_emergent_count is the field most worth your time: risks named
+  # during execution that weren't in §Risks. Sentinel validated this as the
+  # cross-agent signal of disciplined execution.
+  agent_quality:
+    sessions_count: 0
+    hallucinations_caught: 0
+    hallucination_categories: []
+    decisions_contradicting_prior_adrs: 0
+    contradiction_notes: ""
+    context_loaded_was_sufficient: true
+    additional_context_loaded_manually: 0
+    r_n_plus_one_emergent_count: 0
+    skill_prompts_used: []
+
+  # ---------- External audit ----------
+  # ARRAY, not a single object — dual-audit (e.g. Copilot + Gemini) gives you
+  # cross-model calibration. The categorization DELTA between auditors is signal:
+  # if Copilot calls something "implementation_gap" and Gemini calls the same
+  # finding "false_positive", that disagreement is itself useful data.
+  external_audit:
+    - auditor: "<auditor-id-and-version>"
+      findings_total: 0
+      findings_by_category:
+        hallucination: 0
+        implementation_gap: 0
+        real_debt: 0
+        false_positive: 0
+      audit_quality: ""                  # high | medium | low (your judgment as the calibrator)
+      audit_notes: ""
+
+  # ---------- Outcome & follow-ups ----------
+  # scope_change_notes uses F1...FN encoding consistent with claude-analisis output.
+  # Optional category suffix: IG (implementation gap), FP (false positive), HALL (hallucination).
+  # Example: "F1 (IG): handler.go declared but not modified — scope simplified mid-flight."
+  outcome:
+    completed_as_planned: true
+    scope_changes: "ninguno"             # ninguno | menor | mayor
+    scope_change_notes: ""
+    new_followups_generated: 0
+    new_charters_created: 0
+    charters_invalidated: 0
+    associated_stage_id: ""
+
+  # ---------- Pre-declare SpecKit refresh (optional) ----------
+  # Populate this block ONLY if this Charter was preceded by a SpecKit refresh PR
+  # per the Charter-chain-evolution pattern (see
+  # .straymark/00-governance/CHARTER-CHAIN-EVOLUTION.md Pattern 1). Omit the block
+  # entirely if the refresh did not apply — absence means "pattern not used".
+  # Use `straymark charter refresh-suggest <module>` to check the heuristic.
+  # pre_declare_refresh:
+  #   enabled: true
+  #   refresh_pr: "owner/repo#76"
+  #   refresh_aidec: "AIDEC-YYYY-MM-DD-NNN-slug"
+  #   reusable_patterns_integrated: 0
+  #   code_gaps_integrated: 0
+  #   discipline_patterns_integrated: 0
+  #   empirical_corrections_integrated: 0
+  #   operator_decisions_ratified: 0
+
+  # ---------- Post-close audit-driven amendment (optional) ----------
+  # Populate this block ONLY if this Charter received a Batch N.4 amendment AFTER
+  # `status: closed` (e.g. external audit findings remediated on the same execute
+  # branch). See .straymark/00-governance/CHARTER-CHAIN-EVOLUTION.md Pattern 2.
+  # `straymark charter amend <id>` scaffolds the amendment and emits this block.
+  # post_close_amendment:
+  #   applied: true
+  #   trigger: "external_audit"           # external_audit | production_incident | deferred_implementation
+  #   ailog_id: "AILOG-YYYY-MM-DD-NNN"    # the NEW AILOG that documents the amendment
+  #   findings_closed: 0
+  #   files_modified: 0
+  #   effort_hours: 0.0
+
+  # ---------- Qualitative (where insight usually lives) ----------
+  # Quantitative fields tell you what happened; qualitative tells you what to change.
+  # The format_iteration field is part of the self-evolving feedback loop: each
+  # Charter refines the format of the next.
+  qualitative:
+    format_iteration: "v4"
+    friction_points: []
+    wins: []
+    overall_satisfaction: 0              # 1-5
+    would_repeat_format: true
+    proposed_format_changes: ""

@@ -77,7 +77,7 @@
 | Tiempo de Respuesta a Incidentes | < 24h | [Valor] | [Valor] | [Alza/Baja/Estable] | [En objetivo / En riesgo / Por debajo del objetivo] |
 | Puntuación de Cumplimiento | > 75% | [Valor] | [Valor] | [Alza/Baja/Estable] | [En objetivo / En riesgo / Por debajo del objetivo] |
 
-> **Fuente**: Ejecute `devtrail metrics` para recopilar los valores actuales antes de la revisión.
+> **Fuente**: Ejecute `straymark metrics` para recopilar los valores actuales antes de la revisión.
 
 #### 3.2 Estado de los Sistemas de IA (de AI-LIFECYCLE-TRACKER.md)
 
@@ -105,7 +105,7 @@
 |-----------|-------------|----------|-------------------|--------|
 | [ID] | [Descripción del hallazgo] | [Severidad] | [Acción tomada o planificada] | [Abierto / Cerrado] |
 
-> **Fuente**: Ejecute `devtrail compliance --all` para generar el informe de cumplimiento antes de la revisión.
+> **Fuente**: Ejecute `straymark compliance --all` para generar el informe de cumplimiento antes de la revisión.
 
 **Notas de discusión**: [Registrar discusión sobre hallazgos de auditoría y progreso de remediación]
 
@@ -133,7 +133,7 @@
 |-------|-------------|-----------|-------------------|--------|
 | NC-[NNN] | [Descripción de la no conformidad] | [Análisis de causa raíz] | [Acción correctiva tomada o planificada] | [Abierto / En progreso / Cerrado / Verificado] |
 
-> **Fuente**: Documentos INC en DevTrail y fallos de `devtrail compliance`.
+> **Fuente**: Documentos INC en StrayMark y fallos de `straymark compliance`.
 
 **Notas de discusión**: [Registrar discusión sobre problemas recurrentes y problemas sistémicos]
 
@@ -177,7 +177,7 @@
 
 ---
 
-*Plantilla de Revisión por la Dirección — DevTrail Framework*
+*Plantilla de Revisión por la Dirección — StrayMark Framework*
 *Alineado con ISO/IEC 42001:2023 Cláusula 9.3*
 
-<!-- Template: DevTrail | https://strangedays.tech -->
+<!-- Template: StrayMark | https://strangedays.tech -->

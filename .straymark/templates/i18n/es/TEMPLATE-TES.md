@@ -20,7 +20,7 @@ related: []
 > **Alineación con estándares**: ISO/IEC/IEEE 29119-3:2021 (Pruebas de Software — Documentación de Pruebas)
 >
 > Este template corresponde al nivel de **Plan de Pruebas** en la jerarquía de ISO 29119-3:
-> - **Política de Pruebas Organizacional** — Principios de pruebas a nivel organización (fuera del alcance de DevTrail)
+> - **Política de Pruebas Organizacional** — Principios de pruebas a nivel organización (fuera del alcance de StrayMark)
 > - **Estrategia de Pruebas** — Estrategia de pruebas a nivel proyecto (puede referenciarse en gobernanza del proyecto)
 > - **Plan de Pruebas** — Este documento: planificación de pruebas específica para una funcionalidad, componente o cambio
 
@@ -198,4 +198,4 @@ related: []
 | Fecha | [YYYY-MM-DD] |
 | Comentarios | [Notas] |
 
-<!-- Template: DevTrail | https://strangedays.tech -->
+<!-- Template: StrayMark | https://strangedays.tech -->

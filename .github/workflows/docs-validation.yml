@@ -1,5 +1,5 @@
 # =============================================================================
-# DevTrail - Documentation Validation Workflow
+# StrayMark - Documentation Validation Workflow
 # =============================================================================
 #
 # This workflow validates documentation on each Pull Request and push to main.
@@ -20,12 +20,12 @@ on:
   push:
     branches: [main, develop]
     paths:
-      - '.devtrail/**'
+      - '.straymark/**'
       - '.github/workflows/docs-validation.yml'
   pull_request:
     branches: [main, develop]
     paths:
-      - '.devtrail/**'
+      - '.straymark/**'
 
 jobs:
   validate-docs:
@@ -60,7 +60,7 @@ jobs:
         uses: tj-actions/changed-files@v44
         with:
           files: |
-            .devtrail/**/*.md
+            .straymark/**/*.md
 
       # =========================================================================
       # Validate file naming convention
@@ -306,7 +306,7 @@ jobs:
         uses: tj-actions/changed-files@v44
         with:
           files: |
-            .devtrail/**/*.md
+            .straymark/**/*.md
 
       - name: Verify high-risk documents have ETH reference
         if: steps.changed-files.outputs.any_changed == 'true'
@@ -390,11 +390,11 @@ jobs:
         run: |
           echo "📊 Generating governance metrics..."
 
-          DEVTRAIL_DIR=".devtrail"
+          STRAYMARK_DIR=".straymark"
           TYPES=("AILOG" "AIDEC" "ADR" "ETH" "REQ" "TES" "INC" "TDE" "SEC" "MCARD" "SBOM" "DPIA")
 
           # Header
-          echo "## DevTrail Governance Metrics" >> "$GITHUB_STEP_SUMMARY"
+          echo "## StrayMark Governance Metrics" >> "$GITHUB_STEP_SUMMARY"
           echo "" >> "$GITHUB_STEP_SUMMARY"
           echo "Generated: $(date -u +"%Y-%m-%d %H:%M UTC")" >> "$GITHUB_STEP_SUMMARY"
           echo "" >> "$GITHUB_STEP_SUMMARY"
@@ -407,7 +407,7 @@ jobs:
 
           TOTAL=0
           for TYPE in "${TYPES[@]}"; do
-            COUNT=$(find "$DEVTRAIL_DIR" -name "${TYPE}-*.md" -not -path "*/templates/*" 2>/dev/null | wc -l)
+            COUNT=$(find "$STRAYMARK_DIR" -name "${TYPE}-*.md" -not -path "*/templates/*" 2>/dev/null | wc -l)
             TOTAL=$((TOTAL + COUNT))
             echo "| $TYPE | $COUNT |" >> "$GITHUB_STEP_SUMMARY"
           done
@@ -418,7 +418,7 @@ jobs:
           echo "### Recent Documents (last 7 days)" >> "$GITHUB_STEP_SUMMARY"
           echo "" >> "$GITHUB_STEP_SUMMARY"
           WEEK_AGO=$(date -u -d "7 days ago" +%Y-%m-%d 2>/dev/null || date -u -v-7d +%Y-%m-%d 2>/dev/null || echo "0000-00-00")
-          RECENT=$(find "$DEVTRAIL_DIR" -name "*.md" -not -path "*/templates/*" -newer <(date -d "$WEEK_AGO" +%s 2>/dev/null || echo /dev/null) 2>/dev/null | wc -l || echo 0)
+          RECENT=$(find "$STRAYMARK_DIR" -name "*.md" -not -path "*/templates/*" -newer <(date -d "$WEEK_AGO" +%s 2>/dev/null || echo /dev/null) 2>/dev/null | wc -l || echo 0)
           echo "Documents created/modified in the last 7 days: **$RECENT**" >> "$GITHUB_STEP_SUMMARY"
           echo "" >> "$GITHUB_STEP_SUMMARY"
 
@@ -429,7 +429,7 @@ jobs:
           echo "|------------|------:|" >> "$GITHUB_STEP_SUMMARY"
 
           for RISK in low medium high critical; do
-            RISK_COUNT=$(grep -rl "^risk_level: *$RISK" "$DEVTRAIL_DIR" --include="*.md" 2>/dev/null | grep -v templates | wc -l)
+            RISK_COUNT=$(grep -rl "^risk_level: *$RISK" "$STRAYMARK_DIR" --include="*.md" 2>/dev/null | grep -v templates | wc -l)
             echo "| $RISK | $RISK_COUNT |" >> "$GITHUB_STEP_SUMMARY"
           done
           echo "" >> "$GITHUB_STEP_SUMMARY"
@@ -437,7 +437,7 @@ jobs:
           # Review compliance rate
           echo "### Review Compliance" >> "$GITHUB_STEP_SUMMARY"
           echo "" >> "$GITHUB_STEP_SUMMARY"
-          HIGH_RISK_DOCS=$(grep -rl "^risk_level: *\(high\|critical\)" "$DEVTRAIL_DIR" --include="*.md" 2>/dev/null | grep -v templates || true)
+          HIGH_RISK_DOCS=$(grep -rl "^risk_level: *\(high\|critical\)" "$STRAYMARK_DIR" --include="*.md" 2>/dev/null | grep -v templates || true)
           HIGH_COUNT=$(echo "$HIGH_RISK_DOCS" | grep -c . 2>/dev/null || echo 0)
           if [ "$HIGH_COUNT" -gt 0 ]; then
             REVIEWED=0
@@ -472,7 +472,7 @@ jobs:
         run: |
           echo "📚 Generating documentation index..."
 
-          cat > .devtrail/INDEX.md << 'EOF'
+          cat > .straymark/INDEX.md << 'EOF'
           # Documentation Index
 
           *Automatically generated on $(date -u +"%Y-%m-%d %H:%M UTC")*
@@ -481,31 +481,31 @@ jobs:
           EOF
 
           # List documents by folder
-          for folder in .devtrail/*/; do
+          for folder in .straymark/*/; do
             folder_name=$(basename "$folder")
-            echo "" >> .devtrail/INDEX.md
-            echo "## ${folder_name}" >> .devtrail/INDEX.md
-            echo "" >> .devtrail/INDEX.md
+            echo "" >> .straymark/INDEX.md
+            echo "## ${folder_name}" >> .straymark/INDEX.md
+            echo "" >> .straymark/INDEX.md
 
             find "$folder" -name "*.md" -type f | sort | while read file; do
               filename=$(basename "$file")
               # Extract title from front-matter or use filename
               title=$(grep "^title:" "$file" 2>/dev/null | sed 's/title: *//' | head -1 || echo "$filename")
-              echo "- [$title]($file)" >> .devtrail/INDEX.md
+              echo "- [$title]($file)" >> .straymark/INDEX.md
             done
           done
 
-          echo "✅ Index generated: .devtrail/INDEX.md"
+          echo "✅ Index generated: .straymark/INDEX.md"
 
       - name: Commit index if changed
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
 
-          if git diff --quiet .devtrail/INDEX.md; then
+          if git diff --quiet .straymark/INDEX.md; then
             echo "No changes to index"
           else
-            git add .devtrail/INDEX.md
+            git add .straymark/INDEX.md
             git commit -m "docs: update documentation index [skip ci]"
             git push
           fi

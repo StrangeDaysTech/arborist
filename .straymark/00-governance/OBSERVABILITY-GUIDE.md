@@ -1,7 +1,7 @@
-# Observability Guide — OpenTelemetry Integration for DevTrail Projects
+# Observability Guide — OpenTelemetry Integration for StrayMark Projects
 
 > **This guide is optional.** Adopt it when your project instruments systems with OpenTelemetry.
-> It complements the existing DevTrail governance documents and does not replace any of them.
+> It complements the existing StrayMark governance documents and does not replace any of them.
 
 ---
 
@@ -14,7 +14,7 @@ The guide covers:
 - **Signals**: which telemetry signals to collect and how they relate to each other
 - **Configuration**: resource attributes, context propagation, and collector pipelines
 - **Data policies**: what can and cannot be captured, retention, and security
-- **DevTrail integration**: how observability work maps to existing document types
+- **StrayMark integration**: how observability work maps to existing document types
 
 > **When to activate this guide**: Include it in your project governance when at least one service will emit traces, metrics, or structured logs via OpenTelemetry. Document the decision in an AIDEC or ADR.
 
@@ -59,7 +59,7 @@ Resource attributes identify the source of telemetry data. Configure them once a
 
 ## 4. Context Propagation
 
-Context propagation ensures that a single request can be traced across service boundaries. DevTrail projects should use the **W3C Trace Context** standard.
+Context propagation ensures that a single request can be traced across service boundaries. StrayMark projects should use the **W3C Trace Context** standard.
 
 ### Headers
 
@@ -174,11 +174,11 @@ Rather than trying to block every sensitive field, define an explicit allowlist 
 
 ---
 
-## 8. DevTrail Integration
+## 8. StrayMark Integration
 
-Observability work generates artifacts that must be documented within the DevTrail framework. Use the following mapping to determine which document type to create or update.
+Observability work generates artifacts that must be documented within the StrayMark framework. Use the following mapping to determine which document type to create or update.
 
-| Change | DevTrail Document | Notes |
+| Change | StrayMark Document | Notes |
 |--------|-------------------|-------|
 | Instrumentation changes (new spans, attributes) | **AILOG** | Tag: `observabilidad` |
 | Backend selection decision | **AIDEC** or **ADR** | Depending on scope; AIDEC for AI-assisted decisions, ADR for architectural decisions |
@@ -195,7 +195,7 @@ Observability work generates artifacts that must be documented within the DevTra
 
 ## 9. Adoption Roadmap
 
-Adopt OpenTelemetry incrementally. Each phase builds on the previous one and produces specific DevTrail documents.
+Adopt OpenTelemetry incrementally. Each phase builds on the previous one and produces specific StrayMark documents.
 
 ### Phase 0 — Decision
 
@@ -232,7 +232,7 @@ Adopt OpenTelemetry incrementally. Each phase builds on the previous one and pro
 
 ## 10. Checklist
 
-Use this checklist to verify that your project's OpenTelemetry integration is complete and aligned with DevTrail governance.
+Use this checklist to verify that your project's OpenTelemetry integration is complete and aligned with StrayMark governance.
 
 - [ ] **AIDEC/ADR** documenting the OTel adoption decision and backend selection
 - [ ] **REQ** with observability requirements and SLOs
@@ -248,7 +248,7 @@ Use this checklist to verify that your project's OpenTelemetry integration is co
 
 ## Regulatory Alignment
 
-OpenTelemetry instrumentation supports compliance with several regulatory and standards frameworks relevant to DevTrail projects.
+OpenTelemetry instrumentation supports compliance with several regulatory and standards frameworks relevant to StrayMark projects.
 
 | Standard | Reference | Relevance |
 |----------|-----------|-----------|
@@ -259,8 +259,8 @@ OpenTelemetry instrumentation supports compliance with several regulatory and st
 | **ISO/IEC 42001** | A.6.2.6 (Operation and Monitoring) | Continuous operational evidence from OTel supports AI management system monitoring requirements |
 | **ISO/IEC 42001** | A.5.2 (Risk Assessment) | Operational data collected through OTel informs ongoing risk assessment and mitigation |
 
-> **Guidance**: When preparing for audits or compliance reviews, use OTel data exports alongside DevTrail documents (REQ, INC, ETH) to demonstrate continuous monitoring and data governance.
+> **Guidance**: When preparing for audits or compliance reviews, use OTel data exports alongside StrayMark documents (REQ, INC, ETH) to demonstrate continuous monitoring and data governance.
 
 ---
 
-<!-- Template: DevTrail | https://strangedays.tech -->
+<!-- Template: StrayMark | https://strangedays.tech -->

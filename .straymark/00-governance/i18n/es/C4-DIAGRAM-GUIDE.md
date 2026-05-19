@@ -1,8 +1,8 @@
 # Guia de Diagramas con Modelo C4
 
-> Esta guia explica como usar el Modelo C4 con sintaxis Mermaid en documentos DevTrail, particularmente en documentos ADR (Architecture Decision Record).
+> Esta guia explica como usar el Modelo C4 con sintaxis Mermaid en documentos StrayMark, particularmente en documentos ADR (Architecture Decision Record).
 
-**Idiomas**: [English](../../C4-DIAGRAM-GUIDE.md) | Español
+**Idiomas**: [English](../../C4-DIAGRAM-GUIDE.md) | Español | [简体中文](../zh-CN/C4-DIAGRAM-GUIDE.md)
 
 ---
 
@@ -12,12 +12,12 @@ El Modelo C4 (Context, Containers, Components, Code) es un conjunto de abstracci
 
 Cada nivel hace zoom en el anterior:
 
-| Nivel | Muestra | Cuando Usarlo en DevTrail |
+| Nivel | Muestra | Cuando Usarlo en StrayMark |
 |-------|---------|--------------------------|
 | **1. Contexto** | Sistema + usuarios + sistemas externos | ADR para decisiones a nivel de sistema, REQ para requisitos de alto nivel |
 | **2. Contenedor** | Aplicaciones, bases de datos, servicios | ADR para arquitectura de servicios, decisiones de despliegue |
 | **3. Componente** | Modulos internos dentro de un contenedor | ADR para decisiones a nivel de modulo, AILOG para refactorizaciones significativas |
-| **4. Codigo** | Clases, interfaces, funciones | Raramente necesario en DevTrail — usar solo para patrones de diseno criticos |
+| **4. Codigo** | Clases, interfaces, funciones | Raramente necesario en StrayMark — usar solo para patrones de diseno criticos |
 
 ---
 
@@ -131,7 +131,7 @@ C4Component
 
 ## Nivel 4: Codigo
 
-Muestra clases, interfaces y sus relaciones. **Raramente necesario** en DevTrail — usar solo para patrones de diseno criticos que requieran documentacion.
+Muestra clases, interfaces y sus relaciones. **Raramente necesario** en StrayMark — usar solo para patrones de diseno criticos que requieran documentacion.
 
 Para diagramas a nivel de codigo, usar diagramas de clases estandar de Mermaid en lugar de C4:
 
@@ -199,7 +199,7 @@ Rel(api, db, "Lee/Escribe", "SQL")
 
 ---
 
-## Integracion con Documentos DevTrail
+## Integracion con Documentos StrayMark
 
 ### En Documentos ADR
 
@@ -234,4 +234,4 @@ Usar un diagrama de Nivel 1 (Contexto) para ilustrar:
 
 ---
 
-*DevTrail v4.1.1 | [Strange Days Tech](https://strangedays.tech)*
+*StrayMark fw-4.17.0 | [Strange Days Tech](https://strangedays.tech)*

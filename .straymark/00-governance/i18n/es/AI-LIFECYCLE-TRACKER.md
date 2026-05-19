@@ -15,7 +15,7 @@
 | Acme Sentiment Classifier | Clasificador (NLP) | Monitoreo | 2.1.0 | [Líder del Equipo de ML] | [YYYY-MM-DD] | Medio |
 | [Nombre del sistema] | [LLM / Clasificador / Recomendador / Agente / Otro] | [Fase] | [Versión] | [Responsable] | [Fecha] | [Bajo / Medio / Alto / Crítico] |
 
-> **Mapeo DevTrail**: Cada sistema debe tener documentos ETH, MCARD y AILOG correspondientes. Utilice `devtrail status` para verificar la cobertura de documentación.
+> **Mapeo StrayMark**: Cada sistema debe tener documentos ETH, MCARD y AILOG correspondientes. Utilice `straymark status` para verificar la cobertura de documentación.
 
 ---
 
@@ -35,7 +35,7 @@
 - [ ] Partes interesadas y afectadas identificadas
 - [ ] Requisitos regulatorios mapeados (REQ)
 
-| Evidencia DevTrail | Tipo de Documento |
+| Evidencia StrayMark | Tipo de Documento |
 |-------------------|---------------|
 | Especificación de requisitos | REQ |
 | Decisión de arquitectura | ADR, AIDEC |
@@ -55,7 +55,7 @@
 - [ ] Benchmarks de rendimiento iniciales registrados
 - [ ] Evaluación de privacidad de datos completada (DPIA si aplica)
 
-| Evidencia DevTrail | Tipo de Documento |
+| Evidencia StrayMark | Tipo de Documento |
 |-------------------|---------------|
 | Evaluación de calidad de datos | MCARD |
 | Evaluación de sesgo | ETH |
@@ -76,7 +76,7 @@
 - [ ] Evaluación de explicabilidad aprobada
 - [ ] Aprobación del revisor designado
 
-| Evidencia DevTrail | Tipo de Documento |
+| Evidencia StrayMark | Tipo de Documento |
 |-------------------|---------------|
 | Resultados de pruebas | TES |
 | Evaluación de seguridad | ETH (Sección de Seguridad) |
@@ -96,7 +96,7 @@
 - [ ] Procedimientos de respuesta a incidentes definidos
 - [ ] Despliegue registrado (AILOG)
 
-| Evidencia DevTrail | Tipo de Documento |
+| Evidencia StrayMark | Tipo de Documento |
 |-------------------|---------------|
 | Registro de despliegue | AILOG |
 | Configuración de monitoreo | AILOG |
@@ -116,12 +116,12 @@
 - [ ] Mecanismo de recopilación de retroalimentación de usuarios implementado
 - [ ] Reevaluación periódica de riesgos programada
 
-| Evidencia DevTrail | Tipo de Documento |
+| Evidencia StrayMark | Tipo de Documento |
 |-------------------|---------------|
 | Registros de rendimiento | AILOG |
 | Incidentes | INC |
 | Reevaluación de riesgos | ETH |
-| Verificaciones de cumplimiento | `devtrail compliance` |
+| Verificaciones de cumplimiento | `straymark compliance` |
 
 ---
 
@@ -137,7 +137,7 @@
 - [ ] Sistema de reemplazo documentado (si aplica)
 - [ ] Estado final registrado en este rastreador
 
-| Evidencia DevTrail | Tipo de Documento |
+| Evidencia StrayMark | Tipo de Documento |
 |-------------------|---------------|
 | Decisión de retiro | ADR |
 | Actualización de estado final | AILOG |
@@ -201,7 +201,7 @@
 
 ## 5. Resumen de Controles ISO 42001 Anexo A.6
 
-| Control | Descripción | Fase(s) del Ciclo de Vida | Evidencia DevTrail |
+| Control | Descripción | Fase(s) del Ciclo de Vida | Evidencia StrayMark |
 |---------|-------------|--------------------|--------------------|
 | A.6.2.2 | Diseño y desarrollo de sistemas de IA | Diseño, Desarrollo | ADR, AIDEC, REQ |
 | A.6.2.3 | Entrenamiento y pruebas de modelos de IA | Entrenamiento/Pruebas | MCARD, TES |
@@ -216,7 +216,7 @@
 
 ---
 
-*Plantilla del Rastreador del Ciclo de Vida de Sistemas de IA — DevTrail Framework*
+*Plantilla del Rastreador del Ciclo de Vida de Sistemas de IA — StrayMark Framework*
 *Alineado con ISO/IEC 42001:2023 Anexo A.6*
 
-<!-- Template: DevTrail | https://strangedays.tech -->
+<!-- Template: StrayMark | https://strangedays.tech -->

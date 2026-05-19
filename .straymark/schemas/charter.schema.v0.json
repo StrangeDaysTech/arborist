@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://straymark.dev/schemas/charter.schema.v0.json",
+  "title": "StrayMark Charter (experimental v0)",
+  "description": "Frontmatter schema for a StrayMark Charter — a bounded, auditable unit of work declared ex-ante and verified ex-post. See straymark-cli-roadmap.md §3.1 and que-es-un-charter.md for the conceptual scope.",
+  "$comment": "EXPERIMENTAL v0. Crystallized from Sentinel /plan-audit (6 cycles, format v1 → v2 → v3). Will not stabilize to v1.0 until validated in a second domain (frontend, ML pipeline, or infra-as-code). See straymark-thesis-validation.md §6 for the N≈2-3 argument. Adopters: avoid persisting tooling that depends on this exact shape; expect breaking changes between v0.x revisions.",
+  "type": "object",
+  "required": ["charter_id", "status", "effort_estimate", "trigger"],
+  "additionalProperties": true,
+  "properties": {
+    "charter_id": {
+      "type": "string",
+      "pattern": "^CHARTER-[0-9]{2,}(-[a-z0-9-]+)?$",
+      "description": "Unique Charter identifier. Format: CHARTER-NN where NN is project-local sequential, zero-padded to at least 2 digits. Optionally followed by a slug (e.g., CHARTER-05-per-service-thresholds)."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["declared", "in-progress", "closed"],
+      "description": "Lifecycle status of the Charter. Source of truth — the prose status mirror in the body is decorative."
+    },
+    "effort_estimate": {
+      "type": "string",
+      "enum": ["XS", "S", "M", "L"],
+      "description": "Time-based effort estimate. Sentinel validated this as predictive (1.0x in 4/5 cycles); line-count is not predictive and is intentionally absent."
+    },
+    "trigger": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Free-text observable signal that justifies executing this Charter now (e.g., 'first false-positive ticket in svc_xxx', 'when admin UI lands'). Per Sentinel telemetry, declared triggers tend to be prescriptive, not predictive — track effective trigger separately at closure."
+    },
+    "originating_ailogs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^AILOG-[0-9]{4}-[0-9]{2}-[0-9]{2}-[0-9]{3}[a-z]?(-[a-z0-9-]+)?$"
+      },
+      "minItems": 1,
+      "description": "AILOG IDs that motivated this Charter. Used in maintenance / post-MVP mode (the Sentinel case). Mutually exclusive with originating_spec; both may be absent if the Charter was scaffolded without an explicit origin."
+    },
+    "originating_spec": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Path (relative to project root) to a SpecKit spec.md or equivalent (e.g., 'specs/001-feature/spec.md'). Used in greenfield mode where SpecKit drives planning. Free-form to avoid coupling the schema to a specific SpecKit version. Mutually exclusive with originating_ailogs."
+    }
+  },
+  "not": {
+    "required": ["originating_ailogs", "originating_spec"]
+  }
+}

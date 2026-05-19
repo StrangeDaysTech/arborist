@@ -6,6 +6,11 @@ created: YYYY-MM-DD
 agent: [agent-name-v1.0]
 confidence: medium | low
 review_required: true
+
+# --- Approval workflow (optional, fill at review time) ---
+# reviewed_by: <reviewer-id>           # email | github-handle | DID
+# reviewed_at: YYYY-MM-DD
+# review_outcome: approved             # approved | revisions_requested | rejected
 risk_level: high | critical
 eu_ai_act_risk: not_applicable  # unacceptable | high | limited | minimal | not_applicable
 nist_genai_risks: []            # privacy | bias | confabulation | cbrn | dangerous_content | environmental | human_ai_config | information_integrity | information_security | intellectual_property | obscene_content | value_chain
@@ -187,6 +192,22 @@ approved_date: null
 
 ---
 
+## TC260 Risk Mapping (China)
+
+> Complete this section only if `regional_scope` includes `china`. See [TC260-IMPLEMENTATION-GUIDE.md](../00-governance/TC260-IMPLEMENTATION-GUIDE.md).
+>
+> When a TC260RA exists for this system, summarize the resulting level here and link the document. Set `tc260_risk_level` in the frontmatter.
+
+| Aspect | Value |
+|--------|-------|
+| TC260 Risk Level | [low / medium / high / very_high / extremely_severe / not_applicable] |
+| Application Scenario | [public_service / healthcare / finance / content_generation / ...] |
+| Intelligence Level | [narrow / foundation / agentic / general] |
+| Application Scale | [individual / organization / societal / cross_border] |
+| Linked TC260RA | [TC260RA-YYYY-MM-DD-NNN or "Not applicable"] |
+
+---
+
 ## Approval
 
 | Field | Value |
@@ -196,4 +217,4 @@ approved_date: null
 | Decision | [APPROVED/REJECTED/CONDITIONAL] |
 | Conditions | [If applicable] |
 
-<!-- Template: DevTrail | https://strangedays.tech -->
+<!-- Template: StrayMark | https://strangedays.tech -->

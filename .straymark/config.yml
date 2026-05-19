@@ -1,12 +1,12 @@
-# DevTrail Configuration
-# https://github.com/StrangeDaysTech/devtrail
+# StrayMark Configuration
+# https://github.com/StrangeDaysTech/straymark
 
 # Language setting for templates and documentation
 # Supported values: en, es
 # Default: en (English)
 language: en
 
-# Complexity analysis settings (used by: devtrail analyze)
+# Complexity analysis settings (used by: straymark analyze)
 # Uncomment to override the default cognitive complexity threshold
 # complexity:
 #   threshold: 8

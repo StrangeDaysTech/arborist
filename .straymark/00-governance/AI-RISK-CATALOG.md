@@ -2,7 +2,7 @@
 
 > **Aligned with**: NIST AI 600-1 and ISO/IEC 42001:2023 Annex C
 >
-> This document provides a centralized risk registry for AI systems managed under DevTrail. It maps risk entries to the 12 NIST AI 600-1 risk categories and aligns with ISO 42001 Annex A.5 (Assessing Impacts of AI Systems) and ISO/IEC 23894 (AI Risk Management).
+> This document provides a centralized risk registry for AI systems managed under StrayMark. It maps risk entries to the 12 NIST AI 600-1 risk categories and aligns with ISO 42001 Annex A.5 (Assessing Impacts of AI Systems) and ISO/IEC 23894 (AI Risk Management).
 >
 > **This is a template** — populate with risks specific to your organization's AI systems.
 
@@ -17,7 +17,7 @@ This risk catalog serves as the single source of truth for AI-related risks acro
 - **Regulatory mapping** to NIST AI 600-1 categories and ISO 42001 controls
 - **Continuous monitoring** through regular review cycles
 
-> **DevTrail mapping**: ETH documents assess individual risks at the change level. This catalog consolidates organizational risks per ISO 42001 Annex A.5.
+> **StrayMark mapping**: ETH documents assess individual risks at the change level. This catalog consolidates organizational risks per ISO 42001 Annex A.5.
 
 ---
 
@@ -46,12 +46,12 @@ This risk catalog serves as the single source of truth for AI-related risks acro
 
 ### 2.3 Risk Management Phases (ISO/IEC 23894)
 
-| Phase | Description | ISO 23894 Reference | DevTrail Evidence |
+| Phase | Description | ISO 23894 Reference | StrayMark Evidence |
 |-------|-------------|--------------------|--------------------|
 | Identification | Discover and describe AI risks | Clause 6.1 | ETH documents, this catalog |
 | Assessment | Evaluate likelihood, impact, and risk score | Clause 6.2 | Risk Score in this catalog |
 | Treatment | Select and implement controls to mitigate risks | Clause 6.3 | Current Controls column, ADR for decisions |
-| Monitoring | Track residual risk and control effectiveness | Clause 6.4 | Review Date, `devtrail metrics` |
+| Monitoring | Track residual risk and control effectiveness | Clause 6.4 | Review Date, `straymark metrics` |
 
 ---
 
@@ -196,7 +196,7 @@ This risk catalog serves as the single source of truth for AI-related risks acro
 
 ---
 
-*AI Risk Catalog template — DevTrail Framework*
+*AI Risk Catalog template — StrayMark Framework*
 *Aligned with NIST AI 600-1 and ISO/IEC 42001:2023 Annex C*
 
-<!-- Template: DevTrail | https://strangedays.tech -->
+<!-- Template: StrayMark | https://strangedays.tech -->

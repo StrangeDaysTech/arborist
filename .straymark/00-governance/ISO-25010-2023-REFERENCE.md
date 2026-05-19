@@ -2,7 +2,7 @@
 
 > **Standard**: ISO/IEC 25010:2023 — Systems and software Quality Requirements and Evaluation (SQuaRE) — Product quality model
 > **Replaces**: ISO/IEC 25010:2011
-> **Purpose**: Reference document for DevTrail templates (ADR, REQ) that evaluate software quality characteristics.
+> **Purpose**: Reference document for StrayMark templates (ADR, REQ) that evaluate software quality characteristics.
 
 ---
 
@@ -131,7 +131,7 @@ Degree to which a product achieves acceptable levels of risk to people, business
 
 ---
 
-## Usage in DevTrail
+## Usage in StrayMark
 
 - **TEMPLATE-REQ.md**: Non-Functional Requirements section uses these 9 characteristics as categories
 - **TEMPLATE-ADR.md**: Consequences section evaluates decisions against relevant quality characteristics
@@ -139,7 +139,7 @@ Degree to which a product achieves acceptable levels of risk to people, business
 
 ## Key Changes to Remember
 
-When reviewing or creating DevTrail documents:
+When reviewing or creating StrayMark documents:
 
 1. Use **"Interaction Capability"** instead of "Usability"
 2. Use **"Flexibility"** instead of "Portability"
@@ -147,4 +147,4 @@ When reviewing or creating DevTrail documents:
 4. **"Resistance"** (under Security) is relevant for threat assessments
 5. **"Scalability"** (under Flexibility) is now a formal sub-characteristic
 
-<!-- Reference: DevTrail | https://strangedays.tech -->
+<!-- Reference: StrayMark | https://strangedays.tech -->

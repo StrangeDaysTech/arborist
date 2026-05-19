@@ -74,4 +74,4 @@ related: []
   - [Actividad de monitoreo 2: Frecuencia y responsable]
   - [Actividad de monitoreo 3: Frecuencia y responsable]
 
-<!-- Template: DevTrail | https://strangedays.tech -->
+<!-- Template: StrayMark | https://strangedays.tech -->

@@ -1,8 +1,8 @@
 version: 4.1.1
-description: DevTrail distribution manifest
+description: StrayMark distribution manifest
 files:
-- .devtrail/
-- DEVTRAIL.md
+- .straymark/
+- STRAYMARK.md
 - .claude/skills/
 - .gemini/skills/
 - .agent/workflows/
@@ -19,7 +19,7 @@ injections:
   embed: null
 - target: .cursorrules
   template: dist-templates/directives/cursorrules
-  embed: DEVTRAIL.md
-- target: .cursor/rules/devtrail.md
-  template: dist-templates/directives/cursor-rules-devtrail.md
-  embed: DEVTRAIL.md
+  embed: STRAYMARK.md
+- target: .cursor/rules/straymark.md
+  template: dist-templates/directives/cursor-rules-straymark.md
+  embed: STRAYMARK.md

@@ -2,7 +2,7 @@
 
 > **Alineado con**: ISO/IEC 42001:2023 — Sistema de Gestión de Inteligencia Artificial (AIMS)
 >
-> Este documento proporciona una plantilla de gobernanza para organizaciones que usan DevTrail. Mapea las cláusulas de ISO 42001 a los tipos de documentos de DevTrail, permitiendo a los equipos construir documentación lista para cumplimiento como parte de su flujo de desarrollo.
+> Este documento proporciona una plantilla de gobernanza para organizaciones que usan StrayMark. Mapea las cláusulas de ISO 42001 a los tipos de documentos de StrayMark, permitiendo a los equipos construir documentación lista para cumplimiento como parte de su flujo de desarrollo.
 >
 > **Esto es una plantilla** — adapta cada sección al contexto de tu organización.
 
@@ -31,7 +31,7 @@
 
 ### 1.3 Requisitos Legales y Regulatorios
 
-| Regulación | Aplicable | Estado | Evidencia DevTrail |
+| Regulación | Aplicable | Estado | Evidencia StrayMark |
 |-----------|-----------|--------|-------------------|
 | EU AI Act | [Sí/No] | [Cumple/En progreso/Brecha] | ETH, MCARD |
 | GDPR | [Sí/No] | [Estado] | ETH (Privacidad de Datos), DPIA |
@@ -39,7 +39,7 @@
 | ISO/IEC 42001 | [Sí/No] | [Estado] | Este documento |
 | [Otro] | [Sí/No] | [Estado] | [Documentos] |
 
-> **Mapeo DevTrail**: Los documentos REQ capturan requisitos regulatorios. Los documentos ETH evalúan brechas de cumplimiento.
+> **Mapeo StrayMark**: Los documentos REQ capturan requisitos regulatorios. Los documentos ETH evalúan brechas de cumplimiento.
 
 ---
 
@@ -59,7 +59,7 @@
 
 ### 2.2 Roles y Responsabilidades
 
-| Rol | Responsabilidades | Mapeo DevTrail |
+| Rol | Responsabilidades | Mapeo StrayMark |
 |-----|-------------------|----------------|
 | Líder de Gobernanza de IA | Gestión general del AIMS, mantenimiento de políticas | Este documento, MANAGEMENT-REVIEW-TEMPLATE |
 | Equipo de Desarrollo | Documentación, implementación, pruebas | AILOG, AIDEC, TES |
@@ -75,7 +75,7 @@
 - [ ] Recursos asignados para gobernanza de IA
 - [ ] Revisiones periódicas de la dirección programadas
 
-> **Mapeo DevTrail**: Los documentos ADR registran decisiones de gobernanza. AGENT-RULES.md define los límites de autonomía de los agentes.
+> **Mapeo StrayMark**: Los documentos ADR registran decisiones de gobernanza. AGENT-RULES.md define los límites de autonomía de los agentes.
 
 ---
 
@@ -85,7 +85,7 @@
 
 ### 3.1 Identificación de Riesgos
 
-| Categoría de Riesgo | Descripción | Probabilidad | Impacto | Controles Actuales | Evidencia DevTrail |
+| Categoría de Riesgo | Descripción | Probabilidad | Impacto | Controles Actuales | Evidencia StrayMark |
 |---------------------|-------------|-------------|---------|-------------------|-------------------|
 | Sesgo / Equidad | [Descripción] | [A/M/B] | [A/M/B] | [Controles] | ETH (Sección de Sesgo) |
 | Privacidad | [Descripción] | [A/M/B] | [A/M/B] | [Controles] | ETH (Privacidad), DPIA |
@@ -96,15 +96,15 @@
 
 > **Referencia**: Ver AI-RISK-CATALOG.md para el catálogo completo de riesgos mapeado a las categorías de NIST AI 600-1.
 >
-> **Mapeo DevTrail**: Los documentos ETH evalúan riesgos individuales. AI-RISK-CATALOG.md consolida el registro de riesgos organizacional según ISO 42001 Anexo A.5.
+> **Mapeo StrayMark**: Los documentos ETH evalúan riesgos individuales. AI-RISK-CATALOG.md consolida el registro de riesgos organizacional según ISO 42001 Anexo A.5.
 
 ### 3.2 Objetivos de IA
 
 | Objetivo | Meta | Medición | Plazo | Responsable |
 |----------|------|----------|-------|-------------|
-| Cobertura de documentación | [ej., 100% de cambios significativos documentados] | `devtrail metrics` | [Fecha] | [Responsable] |
-| Cumplimiento de revisiones | [ej., Todos los docs de alto riesgo revisados en 5 días] | `devtrail metrics` | [Fecha] | [Responsable] |
-| Cobertura de evaluación de riesgos | [ej., ETH para todos los cambios de alto riesgo] | `devtrail compliance` | [Fecha] | [Responsable] |
+| Cobertura de documentación | [ej., 100% de cambios significativos documentados] | `straymark metrics` | [Fecha] | [Responsable] |
+| Cumplimiento de revisiones | [ej., Todos los docs de alto riesgo revisados en 5 días] | `straymark metrics` | [Fecha] | [Responsable] |
+| Cobertura de evaluación de riesgos | [ej., ETH para todos los cambios de alto riesgo] | `straymark compliance` | [Fecha] | [Responsable] |
 
 ### 3.3 Planificación de Cambios
 
@@ -125,8 +125,8 @@ Cuando cambios significativos afectan al sistema de gestión de IA:
 
 | Recurso | Descripción | Estado |
 |---------|-------------|--------|
-| DevTrail Framework | Sistema de gobernanza de documentación | [Instalado/Versión] |
-| DevTrail CLI | Herramientas de automatización y validación | [Versión] |
+| StrayMark Framework | Sistema de gobernanza de documentación | [Instalado/Versión] |
+| StrayMark CLI | Herramientas de automatización y validación | [Versión] |
 | Plataformas de Agentes IA | [Claude, Gemini, Copilot, Cursor] | [Configurado] |
 | Formación | Formación en gobernanza de IA para el equipo | [Estado] |
 
@@ -134,7 +134,7 @@ Cuando cambios significativos afectan al sistema de gestión de IA:
 
 | Rol | Competencias Requeridas | Plan de Formación |
 |-----|------------------------|-------------------|
-| Desarrolladores | Uso de DevTrail, fundamentos de ética de IA, conciencia regulatoria | [Plan] |
+| Desarrolladores | Uso de StrayMark, fundamentos de ética de IA, conciencia regulatoria | [Plan] |
 | Agentes de IA | Cumplimiento de AGENT-RULES.md, uso de plantillas | [Configuración de directivas] |
 | Revisores | Evaluación de riesgos, requisitos de EU AI Act, fundamentos de ISO 42001 | [Plan] |
 
@@ -148,18 +148,18 @@ Todos los miembros del equipo deben conocer:
 
 ### 4.4 Comunicación
 
-| Qué | A Quién | Cuándo | Método | Registro DevTrail |
+| Qué | A Quién | Cuándo | Método | Registro StrayMark |
 |-----|---------|--------|--------|-------------------|
 | Actualizaciones de política | Todo el equipo | Al cambiar | [Método] | ADR |
-| Evaluaciones de riesgo | Revisores | Por creación de ETH | Notificación DevTrail | ETH |
+| Evaluaciones de riesgo | Revisores | Por creación de ETH | Notificación StrayMark | ETH |
 | Informes de incidentes | Dirección | En 24h | [Método] | INC |
-| Métricas de gobernanza | Dirección | [Mensual/Trimestral] | `devtrail metrics` | Informe de métricas |
+| Métricas de gobernanza | Dirección | [Mensual/Trimestral] | `straymark metrics` | Informe de métricas |
 
 ### 4.5 Información Documentada
 
-DevTrail sirve como sistema de información documentada para el AIMS. Documentos clave:
+StrayMark sirve como sistema de información documentada para el AIMS. Documentos clave:
 
-| Requisito ISO 42001 | Documento DevTrail |
+| Requisito ISO 42001 | Documento StrayMark |
 |---------------------|-------------------|
 | Política de IA | Este documento (§2) |
 | Evaluación de Riesgos | ETH, AI-RISK-CATALOG.md |
@@ -175,7 +175,7 @@ DevTrail sirve como sistema de información documentada para el AIMS. Documentos
 
 ### 5.1 Fases del Ciclo de Vida
 
-| Fase | Actividades | Documentos DevTrail | Control ISO 42001 |
+| Fase | Actividades | Documentos StrayMark | Control ISO 42001 |
 |------|------------|--------------------|--------------------|
 | Diseño | Requisitos, decisiones de arquitectura | REQ, ADR, AIDEC | A.6.2.2 |
 | Desarrollo | Implementación, cambios de código | AILOG, AIDEC | A.6.2.2, A.6.2.9 |
@@ -193,7 +193,7 @@ Según AGENT-RULES.md, la documentación es requerida cuando:
 - Cambios que afectan auth/autorización/PII → AILOG + borrador ETH
 - Cambios en API pública o esquema de BD → AILOG
 - Cambios en modelos ML o prompts de IA → AILOG + revisión humana
-- Código sobre umbral de complejidad cognitiva (ejecutar `devtrail analyze`; alternativa: >20 líneas) → AILOG
+- Código sobre umbral de complejidad cognitiva (ejecutar `straymark analyze`; alternativa: >20 líneas) → AILOG
 - Decisión entre 2+ alternativas → AIDEC
 - Cambios en dependencias críticas de seguridad → AILOG + revisión humana
 
@@ -203,7 +203,7 @@ Según AGENT-RULES.md, la documentación es requerida cuando:
 |-----------|----------|----------|-----------------|----------------|
 | [Componente] | [Proveedor] | [Propósito] | [A/M/B] | [Fecha] |
 
-> **Mapeo DevTrail**: SBOM documenta la cadena de suministro de IA. ETH evalúa riesgos de terceros.
+> **Mapeo StrayMark**: SBOM documenta la cadena de suministro de IA. ETH evalúa riesgos de terceros.
 
 ---
 
@@ -215,9 +215,9 @@ Según AGENT-RULES.md, la documentación es requerida cuando:
 
 | KPI | Meta | Método de Medición | Frecuencia |
 |-----|------|-------------------|-----------|
-| Cobertura de documentación | [Meta %] | `devtrail metrics` | [Frecuencia] |
-| Tasa de finalización de revisiones | [Meta %] | `devtrail metrics` | [Frecuencia] |
-| Tiempo medio de documentación | [Meta días] | `devtrail metrics` | [Frecuencia] |
+| Cobertura de documentación | [Meta %] | `straymark metrics` | [Frecuencia] |
+| Tasa de finalización de revisiones | [Meta %] | `straymark metrics` | [Frecuencia] |
+| Tiempo medio de documentación | [Meta días] | `straymark metrics` | [Frecuencia] |
 | Tiempo de revisión de docs de alto riesgo | [Meta días] | Seguimiento manual | [Frecuencia] |
 | Documentación de incidentes | [Meta %] | Conteo de INC vs incidentes | [Frecuencia] |
 
@@ -227,7 +227,7 @@ Según AGENT-RULES.md, la documentación es requerida cuando:
 
 - **Frecuencia**: [ej., Trimestral]
 - **Alcance**: Cumplimiento con esta política, AGENT-RULES.md y requisitos regulatorios
-- **Método**: `devtrail compliance --all` + revisión manual
+- **Método**: `straymark compliance --all` + revisión manual
 - **Auditor**: [Rol/Nombre]
 
 ### 6.3 Revisión de la Dirección
@@ -256,10 +256,10 @@ Cuando se identifica una no conformidad:
 
 ### 7.2 Fuentes de Mejora
 
-| Fuente | Entrada DevTrail | Acción |
+| Fuente | Entrada StrayMark | Acción |
 |--------|-----------------|--------|
-| Fallos de validación | Errores de `devtrail validate` | Corregir y documentar |
-| Brechas de cumplimiento | Informe de `devtrail compliance` | Planificar remediación |
+| Fallos de validación | Errores de `straymark validate` | Corregir y documentar |
+| Brechas de cumplimiento | Informe de `straymark compliance` | Planificar remediación |
 | Post-mortems de incidentes | Documentos INC | Implementar acciones correctivas |
 | Revisiones de la dirección | Salidas de reuniones de revisión | Actualizar política/objetivos |
 | Retroalimentación de agentes | AILOG con sugerencias | Evaluar y priorizar |
@@ -267,11 +267,11 @@ Cuando se identifica una no conformidad:
 
 ---
 
-## Anexo: Controles del Anexo A de ISO 42001 → Mapeo DevTrail
+## Anexo: Controles del Anexo A de ISO 42001 → Mapeo StrayMark
 
-> Este mapeo permite a los equipos demostrar la cobertura de controles del Anexo A a través de la documentación de DevTrail.
+> Este mapeo permite a los equipos demostrar la cobertura de controles del Anexo A a través de la documentación de StrayMark.
 
-| Área Temática | Control | ID | Documento(s) DevTrail |
+| Área Temática | Control | ID | Documento(s) StrayMark |
 |--------------|---------|-----|----------------------|
 | **A.2 Políticas para IA** | Política de IA | A.2.2 | Este documento §2 |
 | | Temas de IA Responsable | A.2.3 | Este documento §2, PRINCIPLES.md |
@@ -315,7 +315,7 @@ Cuando se identifica una no conformidad:
 
 ---
 
-*Plantilla de Política de Gobernanza de IA — DevTrail Framework*
+*Plantilla de Política de Gobernanza de IA — StrayMark Framework*
 *Alineado con ISO/IEC 42001:2023*
 
-<!-- Template: DevTrail | https://strangedays.tech -->
+<!-- Template: StrayMark | https://strangedays.tech -->

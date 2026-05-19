@@ -16,7 +16,7 @@ Los KPIs cumplen tres funciones dentro del sistema de gestión de IA:
 - **Rendición de cuentas**: Proporcionar evidencia objetiva de cumplimiento para auditorías y revisiones
 - **Mejora**: Identificar tendencias y áreas que requieren acciones correctivas
 
-> **Mapeo DevTrail**: Utilice `devtrail metrics` para la recopilación automatizada de KPIs. Los resultados alimentan MANAGEMENT-REVIEW-TEMPLATE.md para las revisiones periódicas.
+> **Mapeo StrayMark**: Utilice `straymark metrics` para la recopilación automatizada de KPIs. Los resultados alimentan MANAGEMENT-REVIEW-TEMPLATE.md para las revisiones periódicas.
 
 ---
 
@@ -27,15 +27,15 @@ Los KPIs cumplen tres funciones dentro del sistema de gestión de IA:
 | Campo | Valor |
 |-------|-------|
 | **Nombre del KPI** | Cobertura de Documentación |
-| **Descripción** | Porcentaje de cambios relacionados con IA que tienen documentación DevTrail asociada (AILOG, AIDEC, ETH, etc.). |
+| **Descripción** | Porcentaje de cambios relacionados con IA que tienen documentación StrayMark asociada (AILOG, AIDEC, ETH, etc.). |
 | **Objetivo** | > 80% |
 | **Valor Actual** | [Valor medido] |
-| **Método de Medición** | `devtrail metrics` — ratio de cambios documentados respecto al total de commits relacionados con IA |
+| **Método de Medición** | `straymark metrics` — ratio de cambios documentados respecto al total de commits relacionados con IA |
 | **Frecuencia** | Mensual |
 | **Responsable** | [Líder del Equipo de Desarrollo] |
 | **Referencia ISO 42001** | Cláusula 9.1 (Seguimiento, medición, análisis y evaluación) |
 
-> **Guía**: Comience con una línea base realista. Los equipos nuevos en DevTrail pueden establecer un objetivo inicial del 50% e incrementar un 10% por trimestre. Los cambios que requieren documentación se definen en AGENT-RULES.md.
+> **Guía**: Comience con una línea base realista. Los equipos nuevos en StrayMark pueden establecer un objetivo inicial del 50% e incrementar un 10% por trimestre. Los cambios que requieren documentación se definen en AGENT-RULES.md.
 
 ---
 
@@ -47,7 +47,7 @@ Los KPIs cumplen tres funciones dentro del sistema de gestión de IA:
 | **Descripción** | Porcentaje de documentos que requieren revisión humana que fueron revisados dentro del plazo definido. |
 | **Objetivo** | 100% |
 | **Valor Actual** | [Valor medido] |
-| **Método de Medición** | `devtrail metrics` — ratio de documentos revisados respecto a documentos marcados para revisión |
+| **Método de Medición** | `straymark metrics` — ratio de documentos revisados respecto a documentos marcados para revisión |
 | **Frecuencia** | Mensual |
 | **Responsable** | [Revisor de Ética de IA] |
 | **Referencia ISO 42001** | Cláusula 9.1 (Seguimiento, medición, análisis y evaluación) |
@@ -81,7 +81,7 @@ Los KPIs cumplen tres funciones dentro del sistema de gestión de IA:
 | **Descripción** | Ratio de entradas de riesgo alto y crítico respecto al total de entradas en el AI-RISK-CATALOG. |
 | **Objetivo** | < 20% alto/crítico |
 | **Valor Actual** | [Valor medido] |
-| **Método de Medición** | `devtrail metrics` — conteo de riesgos con puntuación >= 10 dividido por el total de riesgos |
+| **Método de Medición** | `straymark metrics` — conteo de riesgos con puntuación >= 10 dividido por el total de riesgos |
 | **Frecuencia** | Trimestral |
 | **Responsable** | [Gestor de Riesgos] |
 | **Referencia ISO 42001** | Cláusula 6 (Planificación — Acciones para abordar riesgos y oportunidades) |
@@ -95,7 +95,7 @@ Los KPIs cumplen tres funciones dentro del sistema de gestión de IA:
 | Campo | Valor |
 |-------|-------|
 | **Nombre del KPI** | Tiempo de Respuesta a Incidentes |
-| **Descripción** | Tiempo transcurrido desde la detección del incidente hasta la creación de un documento INC correspondiente en DevTrail. |
+| **Descripción** | Tiempo transcurrido desde la detección del incidente hasta la creación de un documento INC correspondiente en StrayMark. |
 | **Objetivo** | < 24 horas |
 | **Valor Actual** | [Valor medido] |
 | **Método de Medición** | Comparar marca de tiempo de detección del incidente (desde monitoreo/alertas) con fecha de creación del documento INC |
@@ -112,10 +112,10 @@ Los KPIs cumplen tres funciones dentro del sistema de gestión de IA:
 | Campo | Valor |
 |-------|-------|
 | **Nombre del KPI** | Puntuación de Cumplimiento |
-| **Descripción** | Porcentaje general de cumplimiento regulatorio medido por el motor de validación de cumplimiento de DevTrail. |
+| **Descripción** | Porcentaje general de cumplimiento regulatorio medido por el motor de validación de cumplimiento de StrayMark. |
 | **Objetivo** | > 75% |
 | **Valor Actual** | [Valor medido] |
-| **Método de Medición** | `devtrail compliance --all` — porcentaje de reglas aprobadas en todas las regulaciones aplicables |
+| **Método de Medición** | `straymark compliance --all` — porcentaje de reglas aprobadas en todas las regulaciones aplicables |
 | **Frecuencia** | Trimestral |
 | **Responsable** | [Líder de Gobernanza de IA] |
 | **Referencia ISO 42001** | Cláusula 9.2 (Auditoría interna) |
@@ -141,8 +141,8 @@ Los KPIs cumplen tres funciones dentro del sistema de gestión de IA:
 
 | Actividad | Frecuencia | Responsable | Resultado |
 |----------|-----------|-------------|--------|
-| Ejecutar `devtrail metrics` | Mensual | [Líder del Equipo de Desarrollo] | Valores de KPIs actualizados |
-| Ejecutar `devtrail compliance --all` | Trimestral | [Líder de Gobernanza de IA] | Puntuación de cumplimiento |
+| Ejecutar `straymark metrics` | Mensual | [Líder del Equipo de Desarrollo] | Valores de KPIs actualizados |
+| Ejecutar `straymark compliance --all` | Trimestral | [Líder de Gobernanza de IA] | Puntuación de cumplimiento |
 | Actualizar Panel Resumen de KPIs | Mensual | [Líder de Gobernanza de IA] | Este documento (Sección 3) |
 | Revisar KPIs en revisión por la dirección | Trimestral | [Dirección] | MANAGEMENT-REVIEW-TEMPLATE |
 | Reevaluar objetivos | Anual | [Líder de Gobernanza de IA] | Objetivos actualizados en este documento |
@@ -180,7 +180,7 @@ Las organizaciones pueden definir KPIs adicionales. Utilice la siguiente plantil
 
 ---
 
-*Plantilla de KPIs de Gobernanza de IA — DevTrail Framework*
+*Plantilla de KPIs de Gobernanza de IA — StrayMark Framework*
 *Alineado con ISO/IEC 42001:2023 Cláusula 9*
 
-<!-- Template: DevTrail | https://strangedays.tech -->
+<!-- Template: StrayMark | https://strangedays.tech -->

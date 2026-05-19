@@ -16,7 +16,7 @@ KPIs serve three functions within the AI management system:
 - **Accountability**: Provide objective evidence of compliance for audits and reviews
 - **Improvement**: Identify trends and areas requiring corrective action
 
-> **DevTrail mapping**: Use `devtrail metrics` for automated KPI collection. Results feed into MANAGEMENT-REVIEW-TEMPLATE.md for periodic reviews.
+> **StrayMark mapping**: Use `straymark metrics` for automated KPI collection. Results feed into MANAGEMENT-REVIEW-TEMPLATE.md for periodic reviews.
 
 ---
 
@@ -27,15 +27,15 @@ KPIs serve three functions within the AI management system:
 | Field | Value |
 |-------|-------|
 | **KPI Name** | Documentation Coverage |
-| **Description** | Percentage of AI-related changes that have associated DevTrail documentation (AILOG, AIDEC, ETH, etc.). |
+| **Description** | Percentage of AI-related changes that have associated StrayMark documentation (AILOG, AIDEC, ETH, etc.). |
 | **Target** | > 80% |
 | **Current Value** | [Measured value] |
-| **Measurement Method** | `devtrail metrics` — ratio of documented changes to total AI-related commits |
+| **Measurement Method** | `straymark metrics` — ratio of documented changes to total AI-related commits |
 | **Frequency** | Monthly |
 | **Owner** | [Development Team Lead] |
 | **ISO 42001 Reference** | Clause 9.1 (Monitoring, measurement, analysis, and evaluation) |
 
-> **Guidance**: Start with a realistic baseline. Teams new to DevTrail may target 50% initially and increase by 10% per quarter. Changes requiring documentation are defined in AGENT-RULES.md.
+> **Guidance**: Start with a realistic baseline. Teams new to StrayMark may target 50% initially and increase by 10% per quarter. Changes requiring documentation are defined in AGENT-RULES.md.
 
 ---
 
@@ -47,7 +47,7 @@ KPIs serve three functions within the AI management system:
 | **Description** | Percentage of documents requiring human review that were reviewed within the defined timeframe. |
 | **Target** | 100% |
 | **Current Value** | [Measured value] |
-| **Measurement Method** | `devtrail metrics` — ratio of reviewed documents to documents flagged for review |
+| **Measurement Method** | `straymark metrics` — ratio of reviewed documents to documents flagged for review |
 | **Frequency** | Monthly |
 | **Owner** | [AI Ethics Reviewer] |
 | **ISO 42001 Reference** | Clause 9.1 (Monitoring, measurement, analysis, and evaluation) |
@@ -81,7 +81,7 @@ KPIs serve three functions within the AI management system:
 | **Description** | Ratio of high and critical risk entries to total entries in the AI-RISK-CATALOG. |
 | **Target** | < 20% high/critical |
 | **Current Value** | [Measured value] |
-| **Measurement Method** | `devtrail metrics` — count of risks with score >= 10 divided by total risks |
+| **Measurement Method** | `straymark metrics` — count of risks with score >= 10 divided by total risks |
 | **Frequency** | Quarterly |
 | **Owner** | [Risk Manager] |
 | **ISO 42001 Reference** | Clause 6 (Planning — Actions to address risks and opportunities) |
@@ -95,7 +95,7 @@ KPIs serve three functions within the AI management system:
 | Field | Value |
 |-------|-------|
 | **KPI Name** | Incident Response Time |
-| **Description** | Time elapsed from incident detection to creation of a corresponding INC document in DevTrail. |
+| **Description** | Time elapsed from incident detection to creation of a corresponding INC document in StrayMark. |
 | **Target** | < 24 hours |
 | **Current Value** | [Measured value] |
 | **Measurement Method** | Compare incident detection timestamp (from monitoring/alerting) with INC document creation date |
@@ -112,10 +112,10 @@ KPIs serve three functions within the AI management system:
 | Field | Value |
 |-------|-------|
 | **KPI Name** | Compliance Score |
-| **Description** | Overall regulatory compliance percentage as measured by DevTrail's compliance validation engine. |
+| **Description** | Overall regulatory compliance percentage as measured by StrayMark's compliance validation engine. |
 | **Target** | > 75% |
 | **Current Value** | [Measured value] |
-| **Measurement Method** | `devtrail compliance --all` — percentage of passing rules across all applicable regulations |
+| **Measurement Method** | `straymark compliance --all` — percentage of passing rules across all applicable regulations |
 | **Frequency** | Quarterly |
 | **Owner** | [AI Governance Lead] |
 | **ISO 42001 Reference** | Clause 9.2 (Internal audit) |
@@ -141,8 +141,8 @@ KPIs serve three functions within the AI management system:
 
 | Activity | Frequency | Responsible | Output |
 |----------|-----------|-------------|--------|
-| Run `devtrail metrics` | Monthly | [Development Team Lead] | Updated KPI values |
-| Run `devtrail compliance --all` | Quarterly | [AI Governance Lead] | Compliance score |
+| Run `straymark metrics` | Monthly | [Development Team Lead] | Updated KPI values |
+| Run `straymark compliance --all` | Quarterly | [AI Governance Lead] | Compliance score |
 | Update KPI Summary Dashboard | Monthly | [AI Governance Lead] | This document (Section 3) |
 | Review KPIs in management review | Quarterly | [Management] | MANAGEMENT-REVIEW-TEMPLATE |
 | Reassess targets | Annually | [AI Governance Lead] | Updated targets in this document |
@@ -180,7 +180,7 @@ Organizations may define additional KPIs. Use the following template:
 
 ---
 
-*AI Governance KPIs template — DevTrail Framework*
+*AI Governance KPIs template — StrayMark Framework*
 *Aligned with ISO/IEC 42001:2023 Clause 9*
 
-<!-- Template: DevTrail | https://strangedays.tech -->
+<!-- Template: StrayMark | https://strangedays.tech -->

@@ -1,7 +1,7 @@
-# Guía de Observabilidad — Integración de OpenTelemetry para Proyectos DevTrail
+# Guía de Observabilidad — Integración de OpenTelemetry para Proyectos StrayMark
 
 > **Esta guía es opcional.** Adóptala cuando tu proyecto instrumente sistemas con OpenTelemetry.
-> Complementa los documentos de gobernanza existentes de DevTrail y no reemplaza ninguno de ellos.
+> Complementa los documentos de gobernanza existentes de StrayMark y no reemplaza ninguno de ellos.
 
 ---
 
@@ -14,7 +14,7 @@ La guía cubre:
 - **Señales**: qué señales de telemetría recolectar y cómo se relacionan entre sí
 - **Configuración**: atributos de recurso, propagación de contexto y pipelines del Collector
 - **Políticas de datos**: qué se puede y no se puede capturar, retención y seguridad
-- **Integración con DevTrail**: cómo el trabajo de observabilidad se mapea a tipos de documentos existentes
+- **Integración con StrayMark**: cómo el trabajo de observabilidad se mapea a tipos de documentos existentes
 
 > **Cuándo activar esta guía**: Inclúyela en la gobernanza de tu proyecto cuando al menos un servicio emita trazas, métricas o logs estructurados vía OpenTelemetry. Documenta la decisión en un AIDEC o ADR.
 
@@ -59,7 +59,7 @@ Los atributos de recurso identifican la fuente de datos de telemetría. Configú
 
 ## 4. Propagación de Contexto
 
-La propagación de contexto asegura que una solicitud individual pueda ser rastreada a través de fronteras de servicio. Los proyectos DevTrail deben usar el estándar **W3C Trace Context**.
+La propagación de contexto asegura que una solicitud individual pueda ser rastreada a través de fronteras de servicio. Los proyectos StrayMark deben usar el estándar **W3C Trace Context**.
 
 ### Headers
 
@@ -174,11 +174,11 @@ En lugar de intentar bloquear cada campo sensible, define un allowlist explícit
 
 ---
 
-## 8. Integración con DevTrail
+## 8. Integración con StrayMark
 
-El trabajo de observabilidad genera artefactos que deben documentarse dentro del framework DevTrail. Usa el siguiente mapeo para determinar qué tipo de documento crear o actualizar.
+El trabajo de observabilidad genera artefactos que deben documentarse dentro del framework StrayMark. Usa el siguiente mapeo para determinar qué tipo de documento crear o actualizar.
 
-| Cambio | Documento DevTrail | Notas |
+| Cambio | Documento StrayMark | Notas |
 |--------|-------------------|-------|
 | Cambios de instrumentación (nuevos spans, atributos) | **AILOG** | Tag: `observabilidad` |
 | Decisión de selección de backend | **AIDEC** o **ADR** | Dependiendo del alcance; AIDEC para decisiones asistidas por IA, ADR para decisiones arquitectónicas |
@@ -195,7 +195,7 @@ El trabajo de observabilidad genera artefactos que deben documentarse dentro del
 
 ## 9. Hoja de Ruta de Adopción
 
-Adopta OpenTelemetry incrementalmente. Cada fase se construye sobre la anterior y produce documentos DevTrail específicos.
+Adopta OpenTelemetry incrementalmente. Cada fase se construye sobre la anterior y produce documentos StrayMark específicos.
 
 ### Fase 0 — Decisión
 
@@ -232,7 +232,7 @@ Adopta OpenTelemetry incrementalmente. Cada fase se construye sobre la anterior 
 
 ## 10. Checklist
 
-Usa esta lista de verificación para confirmar que la integración de OpenTelemetry de tu proyecto está completa y alineada con la gobernanza DevTrail.
+Usa esta lista de verificación para confirmar que la integración de OpenTelemetry de tu proyecto está completa y alineada con la gobernanza StrayMark.
 
 - [ ] **AIDEC/ADR** documentando la decisión de adopción de OTel y selección de backend
 - [ ] **REQ** con requisitos de observabilidad y SLOs
@@ -248,7 +248,7 @@ Usa esta lista de verificación para confirmar que la integración de OpenTeleme
 
 ## Alineación Regulatoria
 
-La instrumentación con OpenTelemetry apoya el cumplimiento de varios frameworks regulatorios y de estándares relevantes para proyectos DevTrail.
+La instrumentación con OpenTelemetry apoya el cumplimiento de varios frameworks regulatorios y de estándares relevantes para proyectos StrayMark.
 
 | Estándar | Referencia | Relevancia |
 |----------|-----------|------------|
@@ -259,8 +259,8 @@ La instrumentación con OpenTelemetry apoya el cumplimiento de varios frameworks
 | **ISO/IEC 42001** | A.6.2.6 (Operación y Monitoreo) | Evidencia operativa continua de OTel apoya los requisitos de monitoreo del sistema de gestión de IA |
 | **ISO/IEC 42001** | A.5.2 (Evaluación de Riesgos) | Los datos operativos recolectados a través de OTel informan la evaluación continua de riesgos y mitigación |
 
-> **Guía**: Al preparar auditorías o revisiones de compliance, usa exportaciones de datos OTel junto con documentos DevTrail (REQ, INC, ETH) para demostrar monitoreo continuo y gobernanza de datos.
+> **Guía**: Al preparar auditorías o revisiones de compliance, usa exportaciones de datos OTel junto con documentos StrayMark (REQ, INC, ETH) para demostrar monitoreo continuo y gobernanza de datos.
 
 ---
 
-<!-- Template: DevTrail | https://strangedays.tech -->
+<!-- Template: StrayMark | https://strangedays.tech -->

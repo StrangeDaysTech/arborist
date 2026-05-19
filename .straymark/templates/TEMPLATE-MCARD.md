@@ -6,6 +6,11 @@ created: YYYY-MM-DD
 agent: [agent-name]
 confidence: medium
 review_required: true
+
+# --- Approval workflow (optional, fill at review time) ---
+# reviewed_by: <reviewer-id>           # email | github-handle | DID
+# reviewed_at: YYYY-MM-DD
+# review_outcome: approved             # approved | revisions_requested | rejected
 risk_level: medium
 eu_ai_act_risk: not_applicable  # unacceptable | high | limited | minimal | not_applicable
 nist_genai_risks: []            # privacy | bias | confabulation | cbrn | dangerous_content | environmental | human_ai_config | information_integrity | information_security | intellectual_property | obscene_content | value_chain
@@ -146,6 +151,33 @@ related: []
 
 ---
 
+## China Regulatory Profile
+
+> Complete this section only if `regional_scope` in `.straymark/config.yml` includes `china`. Leave the frontmatter fields below absent or null otherwise. See [CHINA-REGULATORY-FRAMEWORK.md](../00-governance/CHINA-REGULATORY-FRAMEWORK.md) for context.
+
+| Aspect | Field | Linked Document |
+|--------|-------|-----------------|
+| TC260 v2.0 risk level | `tc260_risk_level` | TC260RA-... |
+| PIPL applicability | `pipl_applicable` | PIPIA-... (if true) |
+| GB 45438 content labeling | `gb45438_applicable`, `gb45438_content_types` | AILABEL-... (if applicable) |
+| CAC algorithm filing | `cac_filing_required`, `cac_filing_number`, `cac_filing_status` | CACFILE-... |
+| GB/T 45652 training-data security | `gb45652_training_data_compliance` | SBOM-... |
+
+Add these fields to the frontmatter when applicable:
+
+```yaml
+tc260_risk_level: not_applicable      # low | medium | high | very_high | extremely_severe
+pipl_applicable: false
+gb45438_applicable: false
+gb45438_content_types: []             # text | image | audio | video | virtual_scene
+cac_filing_required: false
+cac_filing_number: null               # populated after CAC issues the filing
+cac_filing_status: not_required       # pending | provincial_submitted | provincial_approved | national_submitted | national_approved | rejected | not_required
+gb45652_training_data_compliance: false
+```
+
+---
+
 ## Approval
 
 | Field | Value |
@@ -155,4 +187,4 @@ related: []
 | Decision | [APPROVED / REJECTED / CONDITIONAL] |
 | Conditions | [If applicable] |
 
-<!-- Template: DevTrail | https://strangedays.tech -->
+<!-- Template: StrayMark | https://strangedays.tech -->

@@ -6,6 +6,11 @@ created: YYYY-MM-DD
 agent: [agent-name-v1.0]
 confidence: medium
 review_required: true
+
+# --- Approval workflow (optional, fill at review time) ---
+# reviewed_by: <reviewer-id>           # email | github-handle | DID
+# reviewed_at: YYYY-MM-DD
+# review_outcome: approved             # approved | revisions_requested | rejected
 risk_level: high | critical
 severity: SEV1 | SEV2 | SEV3 | SEV4
 eu_ai_act_applicable: false
@@ -131,6 +136,36 @@ resolved_date: null
 | Authority Notified | [Yes/No/NA] |
 | Report Reference | [Reference number if submitted] |
 
+## CSL 2026 Incident Reporting (China)
+
+> Complete this section only if `regional_scope` includes `china`.
+>
+> Per the **Administrative Measures for National Cybersecurity Incident Reporting** (in force 2025-11-01) and the **Cybersecurity Law amendments** (in force 2026-01-01), incidents are graded into four severity levels with the following reporting windows:
+>
+> | Severity | Initial report | Follow-up | Examples |
+> |----------|---------------|-----------|----------|
+> | `particularly_serious` | **1 hour** | 72-hour assessment + 30-day post-mortem | Government portal / critical infrastructure outage > 24h (or 6h for full-system); essential service disruption affecting > 50% of a province or > 10M people |
+> | `relatively_major` | **4 hours** | 72-hour assessment + 30-day post-mortem | Data breach affecting > 1M individuals or economic loss > RMB 5M |
+> | `major` | per provincial guidance | 30-day post-mortem | Significant disruption below the thresholds above |
+> | `general` | per provincial guidance | — | Minor incidents |
+
+Set the corresponding frontmatter fields:
+
+```yaml
+csl_severity_level: not_applicable    # particularly_serious | relatively_major | major | general | not_applicable
+csl_report_deadline_hours: null       # 1 | 4 | 24 — coherent with severity
+```
+
+| Field | Value |
+|-------|-------|
+| CSL Severity Level | [particularly_serious / relatively_major / major / general / not_applicable] |
+| Initial Report Deadline | [HH:MM UTC+8 — within 1h or 4h depending on severity] |
+| Initial Report Submitted | [YYYY-MM-DD HH:MM] / [Not yet] |
+| 72h Assessment Submitted | [YYYY-MM-DD] / [Pending] |
+| 30-day Post-mortem Submitted | [YYYY-MM-DD] / [Pending] |
+| Authority Notified | [CAC / provincial CAC / industry regulator / None] |
+| Report Reference | [Filing receipt number] |
+
 ## Open Questions
 
 1. [Question that requires additional investigation]
@@ -146,4 +181,4 @@ resolved_date: null
 | Review date | [YYYY-MM-DD] |
 | Status | [Draft/Reviewed/Closed] |
 
-<!-- Template: DevTrail | https://strangedays.tech -->
+<!-- Template: StrayMark | https://strangedays.tech -->

@@ -77,7 +77,7 @@
 | Incident Response Time | < 24h | [Value] | [Value] | [Up/Down/Stable] | [On target / At risk / Below target] |
 | Compliance Score | > 75% | [Value] | [Value] | [Up/Down/Stable] | [On target / At risk / Below target] |
 
-> **Source**: Run `devtrail metrics` to collect current values before the review.
+> **Source**: Run `straymark metrics` to collect current values before the review.
 
 #### 3.2 AI System Status (from AI-LIFECYCLE-TRACKER.md)
 
@@ -105,7 +105,7 @@
 |-----------|-------------|----------|-------------------|--------|
 | [ID] | [Finding description] | [Severity] | [Action taken or planned] | [Open / Closed] |
 
-> **Source**: Run `devtrail compliance --all` to generate compliance report before the review.
+> **Source**: Run `straymark compliance --all` to generate compliance report before the review.
 
 **Discussion notes**: [Record discussion about audit findings and remediation progress]
 
@@ -133,7 +133,7 @@
 |-------|-------------|-----------|-------------------|--------|
 | NC-[NNN] | [Description of the nonconformity] | [Root cause analysis] | [Corrective action taken or planned] | [Open / In progress / Closed / Verified] |
 
-> **Source**: INC documents in DevTrail and `devtrail compliance` failures.
+> **Source**: INC documents in StrayMark and `straymark compliance` failures.
 
 **Discussion notes**: [Record discussion about recurring issues and systemic problems]
 
@@ -177,7 +177,7 @@
 
 ---
 
-*Management Review template — DevTrail Framework*
+*Management Review template — StrayMark Framework*
 *Aligned with ISO/IEC 42001:2023 Clause 9.3*
 
-<!-- Template: DevTrail | https://strangedays.tech -->
+<!-- Template: StrayMark | https://strangedays.tech -->

@@ -7,6 +7,11 @@ updated: YYYY-MM-DD
 agent: [agent-name-v1.0]
 confidence: high | medium | low
 review_required: true
+
+# --- Approval workflow (optional, fill at review time) ---
+# reviewed_by: <reviewer-id>           # email | github-handle | DID
+# reviewed_at: YYYY-MM-DD
+# review_outcome: approved             # approved | revisions_requested | rejected
 risk_level: medium | high | critical
 eu_ai_act_risk: not_applicable  # unacceptable | high | limited | minimal | not_applicable
 iso_42001_clause: []            # 4 | 5 | 6 | 7 | 8 | 9 | 10
@@ -140,4 +145,4 @@ C4Context
 |------|--------|--------|
 | YYYY-MM-DD | [agent/human] | Initial creation |
 
-<!-- Template: DevTrail | https://strangedays.tech -->
+<!-- Template: StrayMark | https://strangedays.tech -->

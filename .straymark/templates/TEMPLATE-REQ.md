@@ -238,4 +238,4 @@ Identify who originates this requirement (per ISO/IEC/IEEE 29148:2018 §6.2):
 | Status | [Validated/Rejected/Modified] |
 | Comments | [Validator notes] |
 
-<!-- Template: DevTrail | https://strangedays.tech -->
+<!-- Template: StrayMark | https://strangedays.tech -->

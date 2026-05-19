@@ -20,7 +20,7 @@ related: []
 > **Standard alignment**: ISO/IEC/IEEE 29119-3:2021 (Software Testing — Test Documentation)
 >
 > This template corresponds to the **Test Plan** level in the ISO 29119-3 hierarchy:
-> - **Organizational Test Policy** — Organization-wide testing principles (out of DevTrail scope)
+> - **Organizational Test Policy** — Organization-wide testing principles (out of StrayMark scope)
 > - **Test Strategy** — Project-level testing strategy (may be referenced in project governance)
 > - **Test Plan** — This document: specific test planning for a feature, component, or change
 
@@ -198,4 +198,4 @@ related: []
 | Date | [YYYY-MM-DD] |
 | Comments | [Notes] |
 
-<!-- Template: DevTrail | https://strangedays.tech -->
+<!-- Template: StrayMark | https://strangedays.tech -->

@@ -1,7 +1,7 @@
 ---
 id: TDE-YYYY-MM-DD-NNN
 title: [Technical debt title]
-status: identified
+status: identified                # `identified` → `resolved` when the debt is paid (TDE-only terminal)
 created: YYYY-MM-DD
 agent: [agent-name-v1.0]
 confidence: high | medium | low
@@ -15,11 +15,14 @@ tags: []
 related: []
 priority: null
 assigned_to: null
+promoted_from_followup: null    # FU-NNN if promoted from .straymark/follow-ups-backlog.md
 ---
 
 # TDE: [Technical Debt Title]
 
 > **IDENTIFIED BY AGENT**: Prioritization and assignment require human decision.
+>
+> **Activation triggers** (any one suffices — file as `R<N> (new, not in Charter)` in an AILOG instead if none apply): heritage from a prior Charter, applies to multiple modules/Charters, requires a dedicated Charter outside the current scope envelope, or requires human prioritization/assignment the agent cannot decide alone. See `.straymark/00-governance/AGENT-RULES.md` §3 for the full disambiguation.
 
 ## Summary
 
@@ -121,4 +124,23 @@ Impact   │             │             │
 | Assigned to | [Team/Person] |
 | Comments | [Notes] |
 
-<!-- Template: DevTrail | https://strangedays.tech -->
+---
+
+## Resolution
+
+> Fill this section AND flip `status: identified → resolved` in the frontmatter when
+> the debt described here has been addressed. Keep the document on disk — `resolved`
+> is the canonical TDE terminal state; the file becomes audit history rather than
+> being deleted. See DOCUMENTATION-POLICY.md §3 for the lifecycle semantics.
+>
+> Omit this section entirely while the debt is still `identified` / `accepted` /
+> superseded — it is meaningful only at the terminal transition.
+
+| Field | Value |
+|-------|-------|
+| Resolved by | [Charter ID / PR / commit that paid the debt] |
+| Date | [YYYY-MM-DD] |
+| Verification | [How was the resolution verified — tests, drift check, audit, etc.] |
+| Notes | [Anything future readers should know, e.g. partial-resolution scope] |
+
+<!-- Template: StrayMark | https://strangedays.tech -->

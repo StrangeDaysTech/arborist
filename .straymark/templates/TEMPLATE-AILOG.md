@@ -10,6 +10,9 @@ risk_level: low | medium | high | critical
 eu_ai_act_risk: not_applicable  # unacceptable | high | limited | minimal | not_applicable
 nist_genai_risks: []            # privacy | bias | confabulation | cbrn | dangerous_content | environmental | human_ai_config | information_integrity | information_security | intellectual_property | obscene_content | value_chain
 iso_42001_clause: []            # 4 | 5 | 6 | 7 | 8 | 9 | 10
+# Optional China-specific fields — populate only if regional_scope includes "china":
+# tc260_risk_level: not_applicable  # low | medium | high | very_high | extremely_severe | not_applicable
+# gb45652_training_data_compliance: false
 lines_changed: 0                # Auto-calculable
 files_modified: []              # Auto-calculable
 observability_scope: none        # none | basic | full — set when OTel instrumentation is relevant
@@ -32,6 +35,24 @@ related: []
 1. [Action 1]
 2. [Action 2]
 3. [Action 3]
+
+## Batch Ledger
+
+> Use this section for Charters that span 3+ batches or >1 day of execution.
+> Update each batch entry **immediately after** its commit lands, using
+> `straymark charter batch-complete <CHARTER-ID> <N>`. Entries left as
+> `(pending)` at Charter close cause `straymark charter drift` to fail.
+>
+> Omit this section entirely for single-batch or single-session AILOGs —
+> `## Actions Performed` above is sufficient there.
+
+### Batch 1 — [name from Charter §Tasks]
+
+(pending)
+
+### Batch 2 — [name from Charter §Tasks]
+
+(pending)
 
 ## Modified Files
 
@@ -96,4 +117,4 @@ related: []
 
 ---
 
-<!-- Template: DevTrail | https://strangedays.tech -->
+<!-- Template: StrayMark | https://strangedays.tech -->

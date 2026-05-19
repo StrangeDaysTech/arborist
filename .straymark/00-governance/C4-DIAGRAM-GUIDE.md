@@ -1,8 +1,8 @@
 # C4 Model Diagram Guide
 
-> This guide explains how to use the C4 Model with Mermaid syntax in DevTrail documents, particularly in ADR (Architecture Decision Record) documents.
+> This guide explains how to use the C4 Model with Mermaid syntax in StrayMark documents, particularly in ADR (Architecture Decision Record) documents.
 
-**Languages**: English | [Español](i18n/es/C4-DIAGRAM-GUIDE.md)
+**Languages**: English | [Español](i18n/es/C4-DIAGRAM-GUIDE.md) | [简体中文](i18n/zh-CN/C4-DIAGRAM-GUIDE.md)
 
 ---
 
@@ -12,12 +12,12 @@ The C4 Model (Context, Containers, Components, Code) is a set of abstractions fo
 
 Each level zooms into the previous one:
 
-| Level | Shows | When to Use in DevTrail |
+| Level | Shows | When to Use in StrayMark |
 |-------|-------|------------------------|
 | **1. Context** | System + users + external systems | ADR for system-level decisions, REQ for high-level requirements |
 | **2. Container** | Applications, databases, services | ADR for service architecture, deployment decisions |
 | **3. Component** | Internal modules within a container | ADR for module-level decisions, AILOG for significant refactors |
-| **4. Code** | Classes, interfaces, functions | Rarely needed in DevTrail — use only for critical design patterns |
+| **4. Code** | Classes, interfaces, functions | Rarely needed in StrayMark — use only for critical design patterns |
 
 ---
 
@@ -131,7 +131,7 @@ C4Component
 
 ## Level 4: Code
 
-Shows classes, interfaces, and their relationships. **Rarely needed** in DevTrail — use only for critical design patterns that require documentation.
+Shows classes, interfaces, and their relationships. **Rarely needed** in StrayMark — use only for critical design patterns that require documentation.
 
 For code-level diagrams, use standard Mermaid class diagrams instead of C4:
 
@@ -199,7 +199,7 @@ Rel(api, db, "Reads/Writes", "SQL")
 
 ---
 
-## Integration with DevTrail Documents
+## Integration with StrayMark Documents
 
 ### In ADR Documents
 
@@ -234,4 +234,4 @@ Use a Level 1 (Context) diagram to illustrate:
 
 ---
 
-*DevTrail v4.1.1 | [Strange Days Tech](https://strangedays.tech)*
+*StrayMark fw-4.17.0 | [Strange Days Tech](https://strangedays.tech)*

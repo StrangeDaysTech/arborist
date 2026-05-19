@@ -6,6 +6,11 @@ created: YYYY-MM-DD
 agent: [agent-name-v1.0]
 confidence: medium
 review_required: true
+
+# --- Workflow de aprobación (opcional, llenar al momento de la revisión) ---
+# reviewed_by: <id-revisor>            # email | usuario-github | DID
+# reviewed_at: YYYY-MM-DD
+# review_outcome: approved             # approved | revisions_requested | rejected
 risk_level: high | critical
 severity: SEV1 | SEV2 | SEV3 | SEV4
 eu_ai_act_applicable: false
@@ -146,4 +151,4 @@ resolved_date: null
 | Fecha de revisión | [YYYY-MM-DD] |
 | Estado | [Borrador/Revisado/Cerrado] |
 
-<!-- Template: DevTrail | https://strangedays.tech -->
+<!-- Template: StrayMark | https://strangedays.tech -->

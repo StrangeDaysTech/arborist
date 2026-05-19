@@ -1,13 +1,13 @@
-# DevTrail - GitHub Copilot Configuration
+# StrayMark - GitHub Copilot Configuration
 
-<!-- devtrail:begin -->
-> **Read and follow the rules in [../DEVTRAIL.md](../DEVTRAIL.md).**
-> That file contains all DevTrail documentation governance rules for this project.
-<!-- devtrail:end -->
+<!-- straymark:begin -->
+> **Read and follow the rules in [../STRAYMARK.md](../STRAYMARK.md).**
+> That file contains all StrayMark documentation governance rules for this project.
+<!-- straymark:end -->
 
 ---
 
-## DevTrail Rules for Copilot
+## StrayMark Rules for Copilot
 
 When assisting with code changes in this project, follow these documentation rules:
 
@@ -33,4 +33,4 @@ When assisting with code changes in this project, follow these documentation rul
 
 ---
 
-*DevTrail | [Strange Days Tech](https://strangedays.tech) — Because every change tells a story.*
+*StrayMark | [Strange Days Tech](https://strangedays.tech) — Because every change tells a story.*

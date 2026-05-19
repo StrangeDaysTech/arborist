@@ -1,17 +1,20 @@
-# Política de Documentación - DevTrail
+# Política de Documentación - StrayMark
 
-**Idiomas**: [English](../../DOCUMENTATION-POLICY.md) | Español
+**Idiomas**: [English](../../DOCUMENTATION-POLICY.md) | Español | [简体中文](../zh-CN/DOCUMENTATION-POLICY.md)
 
-## Marco de Gobernanza
+## Por qué existe esta política
 
-Esta política alinea la documentación de DevTrail con **ISO/IEC 42001:2023** (estándar vertebral para Sistemas de Gestión de IA) y operacionaliza:
+StrayMark externaliza la disciplina cognitiva del trabajo de ingeniería de software senior — alcance explícito, decisiones declaradas, riesgos nombrados, alternativas registradas, rastros auditables — en archivos versionados que viven junto al código. Esta política define los tipos de documento, metadatos y reglas de gobernanza que hacen que esa disciplina sea auditable.
 
+Como efecto secundario de producir esos artefactos, el proyecto acumula evidencia que mapea limpiamente a los principales marcos de gobernanza de IA:
+
+- **ISO/IEC 42001:2023** — estándar vertebral para Sistemas de Gestión de IA
 - **EU AI Act** (efectivo agosto 2026) — clasificación de riesgo, transparencia, reporte de incidentes
 - **NIST AI RMF 1.0 + AI 600-1** — funciones de gestión de riesgos de IA y perfiles de IA generativa
 - **ISO/IEC 23894:2023** — marco de gestión de riesgos de IA
 - **GDPR** — evaluaciones de impacto en protección de datos y privacidad
 
-Todos los tipos de documentos, campos de metadatos y reglas de gobernanza contribuyen a evidencia que satisface estos marcos regulatorios. Ver Sección 8 para la referencia completa de estándares.
+La política está escrita primero para el trabajo de ingeniería; el cumplimiento es lo que cae como subproducto cuando el trabajo se documenta con disciplina. Ver Sección 8 para la referencia completa de estándares y `Propuesta/straymark-design-principles.md` (en el repositorio upstream) para el racional a nivel de producto.
 
 ---
 
@@ -95,6 +98,9 @@ related:
 | `observability_scope` | Nivel de instrumentación OTel: `none \| basic \| full` | Cuando el cambio involucra instrumentación de observabilidad |
 | `api_spec_path` | Ruta al archivo de especificación OpenAPI/AsyncAPI | En documentos REQ cuando el requisito involucra interfaces de API |
 | `api_changes` | Lista de endpoints de API afectados | En documentos ADR cuando la decisión modifica APIs públicas |
+| `reviewed_by` | Identidad del revisor humano (email, usuario de GitHub o DID) | Lo establece el revisor al aprobar formalmente un documento `review_required: true` |
+| `reviewed_at` | Fecha de la aprobación formal (`YYYY-MM-DD`, debe ser ≥ `created`) | Se establece junto con `reviewed_by` |
+| `review_outcome` | Señal de cierre: `approved \| revisions_requested \| rejected` | Se establece junto con `reviewed_by`. Su presencia es la señal canónica de "un humano ya revisó" — ver §3.5 abajo |
 
 ### Convención de Tags
 
@@ -113,12 +119,12 @@ tags: [sqlite, persistencia, hexagonal-architecture, repository-pattern]
 
 ### Convención de Related
 
-Las referencias relacionadas vinculan documentos con otros **documentos DevTrail** dentro del mismo proyecto. Permiten navegación cruzada en herramientas como `devtrail explore`.
+Las referencias relacionadas vinculan documentos con otros **documentos StrayMark** dentro del mismo proyecto. Permiten navegación cruzada en herramientas como `straymark explore`.
 
 **Reglas de formato:**
 - Usar el **nombre del archivo** del documento (con extensión `.md`): `AILOG-2026-02-03-001-implementar-sincronizacion.md`
 - Para documentos de gobernanza u otros sin tipo, usar el nombre tal cual: `AGENT-RULES.md`, `DOCUMENTATION-POLICY.md`
-- Las rutas se resuelven relativas a `.devtrail/` — si el documento está en un subdirectorio, incluir la ruta desde `.devtrail/`: `07-ai-audit/agent-logs/daemon/AILOG-2026-02-03-001-implementar-sincronizacion.md`
+- Las rutas se resuelven relativas a `.straymark/` — si el documento está en un subdirectorio, incluir la ruta desde `.straymark/`: `07-ai-audit/agent-logs/daemon/AILOG-2026-02-03-001-implementar-sincronizacion.md`
 - Cuando el archivo está en el mismo directorio que el documento que lo referencia, el nombre de archivo es suficiente
 - **No usar** IDs de tareas externas (`T001`, `US3`), números de issues ni URLs — esos pertenecen al cuerpo del documento, no al frontmatter
 - **No usar** IDs parciales sin descripción (preferir `AILOG-2026-02-03-001-implementar-sincronizacion.md` sobre `AILOG-2026-02-03-001`)
@@ -130,31 +136,87 @@ related:
   - AIDEC-2026-02-02-001-sqlite-bundled-vs-system.md
   - AGENT-RULES.md
 
-# Documentos en subdirectorios específicos — incluir ruta desde .devtrail/
+# Documentos en subdirectorios específicos — incluir ruta desde .straymark/
 related:
   - 07-ai-audit/agent-logs/daemon/AILOG-2026-02-03-001-implementar-sincronizacion.md
   - 02-design/decisions/ADR-2026-01-15-001-usar-arquitectura-hexagonal.md
 ```
 
-**Resolución:** El CLI resuelve referencias buscando: (1) coincidencia exacta de ID, (2) coincidencia de nombre de archivo en cualquier parte de `.devtrail/`, (3) coincidencia de sufijo de ruta. Usar el nombre de archivo completo proporciona la resolución más confiable.
+**Resolución:** El CLI resuelve referencias buscando: (1) coincidencia exacta de ID, (2) coincidencia de nombre de archivo en cualquier parte de `.straymark/`, (3) coincidencia de sufijo de ruta. Usar el nombre de archivo completo proporciona la resolución más confiable.
 
 ---
 
 ## 3. Estados de Documentos
 
 ```
-draft ──────► accepted ──────► deprecated
-                │                   │
-                │                   ▼
-                └──────► superseded
+identified ──┐
+             ├──► draft ──────► accepted ──────► deprecated
+             │                       │                   │
+             │                       │                   ▼
+             │                       └──────► superseded
+             │
+             └──► (estado de entrada TDE-only, ver §6)
+                                      │
+                                      ▼
+                                  resolved
+                                  (terminal sólo-TDE — deuda pagada; ver §6)
 ```
 
 | Estado | Descripción |
 |--------|-------------|
+| `identified` | Estado de entrada para los tipos de descubrimiento dirigidos por agente (TDE hoy). Funcionalmente equivalente a `draft` para el lifecycle gating — se espera que un revisor humano lo priorice y lo promueva. Semánticamente distinto para que las analíticas del adopter puedan distinguir "el agente encontró esta deuda" de "un humano está redactando un documento deliberado". |
 | `draft` | En borrador, pendiente de revisión |
 | `accepted` | Aprobado y vigente |
+| `resolved` | **Estado terminal sólo-TDE**: la deuda técnica descrita en este documento fue atendida; el archivo se mantiene en disco como historia de auditoría. Distinto de `accepted` ("aceptamos que esta deuda persista"), `superseded` ("otro TDE reemplazó a este") y `deprecated` ("el concepto de TDE mismo ya no es relevante"). La referencia canónica de cierre (el Charter, PR o commit que pagó la deuda) va en la sección body `## Resolución`. |
 | `deprecated` | Obsoleto, pero se mantiene como referencia |
 | `superseded` | Reemplazado por otro documento |
+
+El mapeo de status por defecto por tipo vive en §6 — la mayoría de tipos entran en `draft` o `accepted`, pero TDE entra en `identified` por la frontera de autonomía del agente (el agente identifica, el humano prioriza). TDE es el único tipo hoy con un terminal personalizado (`resolved`); el validador acepta `resolved` globalmente como medida transitoria. Una futura tabla de vocabulario de lifecycle por-tipo (issue #149 Opción B) acotará `resolved` estrictamente a TDE; hasta entonces, usarlo en documentos no-TDE pasa la validación pero es semánticamente incorrecto.
+
+---
+
+## 3.5 Registro de Aprobación
+
+`status` registra el estado del ciclo de vida del documento, y `review_required: true` registra que *se necesita revisión humana*. Ningún campo registra que la revisión humana *efectivamente ocurrió*. Esta sección define la señal canónica de cierre para documentos que requieren aprobación formal (AIDEC, ETH, MCARD, ADR, DPIA, INC, SEC y las variantes del scope China — ver AGENT-RULES.md §4 para los disparadores).
+
+### Señal de cierre
+
+Tres campos de frontmatter opcionales, establecidos por el revisor al momento de la aprobación:
+
+```yaml
+reviewed_by: pepe@ejemplo.com           # email | usuario-github | DID
+reviewed_at: 2026-05-02
+review_outcome: approved                # approved | revisions_requested | rejected
+```
+
+Semántica:
+
+- **La presencia de `review_outcome` es la señal de cierre.** Un documento con `review_required: true` y sin `review_outcome` está *pendiente de revisión*.
+- `review_required: true` **no** se cambia a `false` después de la aprobación — permanece como registro histórico de por qué hizo falta revisión en primer lugar.
+- `reviewed_at` debe ser `>= created`. Si `reviewed_by` está presente, `reviewed_at` y `review_outcome` también deben estarlo (validado por `straymark validate`).
+- `review_outcome: revisions_requested` permite ciclos iterativos de revisión: el documento se actualiza y el revisor eventualmente vuelve a aprobar. La convención es sobreescribir los tres campos con la aprobación más reciente (el frontmatter contiene solo el último estado); la sección body de abajo preserva la historia.
+
+### Sección body (forma canónica en prosa)
+
+Agregar en la posición terminal del cuerpo del documento (p. ej., antes de `## References` en AIDEC/ADR; después de `## Review Schedule` en DPIA; después de `## Post-Mortem Review` en INC). Para los templates que ya incluyen una tabla `## Approval` (ETH, MCARD, SEC, PIPIA, CACFILE, TC260RA, AILABEL), cualquiera de las dos formas es canónica; los campos del frontmatter son la fuente de verdad legible-por-máquina.
+
+```markdown
+## Approval
+
+**Approved**: 2026-05-02 by `pepe@ejemplo.com`.
+
+<Notas opcionales del revisor — observaciones, condiciones, alcance de la
+aprobación. Omitir la sección entera si no hay nada que añadir más allá del
+frontmatter.>
+```
+
+### Flujos multi-revisor (forward-looking)
+
+Para documentos que requieren múltiples revisores (p. ej., ETH con sign-off de legal y de ingeniería), el canon de v1 es agregar bloques adicionales `## Approval` cronológicamente en el body, con el frontmatter reflejando la *última* aprobación. Una forma estructurada con array `review:` (una entrada por revisor) es forward-looking y no es parte de v1 — se añadirá cuando al menos un proyecto adoptante ejercite el flujo multi-revisor con datos reales.
+
+### Tooling del CLI
+
+`straymark approve <doc-id> --outcome approved --reviewer <id> [--notes "..."] [--at YYYY-MM-DD]` escribe los campos del frontmatter y la sección del body en una sola operación. `straymark validate --check-pending-reviews [--max-pending-days N]` lista documentos con `review_required: true` más antiguos que `N` días sin `review_outcome` (warn-only, no error). Ver CLI-REFERENCE.md.
 
 ---
 
@@ -182,7 +244,7 @@ draft ──────► accepted ──────► deprecated
 ## 6. Estructura de Carpetas
 
 ```
-.devtrail/
+.straymark/
 ├── 00-governance/          # Políticas y reglas
 ├── 01-requirements/        # Requisitos del sistema
 ├── 02-design/              # Diseño y arquitectura
@@ -213,7 +275,7 @@ draft ──────► accepted ──────► deprecated
 | `REQ` | Requisito | `01-requirements/` | `draft` | Sí |
 | `TES` | Plan de Pruebas | `04-testing/` | `draft` | Sí |
 | `INC` | Post-mortem de Incidente | `05-operations/incidents/` | `draft` | Sí |
-| `TDE` | Deuda Técnica | `06-evolution/technical-debt/` | `identified` | No |
+| `TDE` | Deuda Técnica | `06-evolution/technical-debt/` | `identified` (entra aquí; terminal `resolved` cuando la deuda se paga — sólo-TDE) | No |
 | `SEC` | Evaluación de Seguridad | `08-security/` | `draft` | Sí (siempre) |
 | `MCARD` | Tarjeta de Modelo/Sistema | `09-ai-models/` | `draft` | Sí (siempre) |
 | `SBOM` | Lista de Materiales de Software | `07-ai-audit/` | `accepted` | No |
@@ -234,7 +296,7 @@ Ver también [ADR-2025-01-20-001] para contexto arquitectónico.
 
 ## 8. Estándares Referenciados
 
-| Estándar | Versión | Alcance en DevTrail |
+| Estándar | Versión | Alcance en StrayMark |
 |----------|---------|---------------------|
 | ISO/IEC/IEEE 29148:2018 | 2018 | Ingeniería de requisitos — TEMPLATE-REQ.md |
 | ISO/IEC 25010:2023 | 2023 | Modelo de calidad de software — TEMPLATE-REQ.md, TEMPLATE-ADR.md |
@@ -249,4 +311,4 @@ Ver también [ADR-2025-01-20-001] para contexto arquitectónico.
 
 ---
 
-*DevTrail v4.1.1 | [Strange Days Tech](https://strangedays.tech)*
+*StrayMark fw-4.17.0 | [Strange Days Tech](https://strangedays.tech)*

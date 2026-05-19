@@ -6,6 +6,11 @@ created: YYYY-MM-DD
 agent: [agent-name]
 confidence: low  # DPIA requires extensive human judgment
 review_required: true  # Always mandatory
+
+# --- Approval workflow (optional, fill at review time) ---
+# reviewed_by: <reviewer-id>           # email | github-handle | DID
+# reviewed_at: YYYY-MM-DD
+# review_outcome: approved             # approved | revisions_requested | rejected
 risk_level: high
 eu_ai_act_risk: not_applicable  # unacceptable | high | limited | minimal | not_applicable
 gdpr_article_35: true  # Art. 35 GDPR triggers DPIA
@@ -84,6 +89,15 @@ related: []
 - **Human Oversight Measures**: [Describe human-in-the-loop or human-on-the-loop mechanisms]
 - **Transparency to Data Subjects**: [How data subjects are informed about AI involvement in processing their data]
 
+## Cross-reference: PIPIA (China)
+
+> Complete this section only if `regional_scope` includes `china` and any of the PIPL Art. 55 triggers apply (sensitive personal info, automated decision-making, third-party disclosure, cross-border transfer, public disclosure). See [PIPL-PIPIA-GUIDE.md](../00-governance/PIPL-PIPIA-GUIDE.md).
+>
+> When applicable, set `pipl_applicable: true` in this DPIA's frontmatter and create a companion **PIPIA-...** document. Link both documents bidirectionally via `related:`.
+
+- **PIPIA Reference**: [PIPIA-YYYY-MM-DD-NNN or "Not applicable — PIPL not in regional_scope"]
+- **Differences vs. this DPIA**: [Brief — PIPIA-specific elements not covered above (Art. 55 trigger, retention ≥ 3 years, cross-border mechanism)]
+
 ## Review Schedule
 
 - **Next Review Date**: [YYYY-MM-DD]
@@ -94,4 +108,4 @@ related: []
   - [Security incidents]
 - **Review Responsible**: [Role/Person responsible for conducting the review]
 
-<!-- Template: DevTrail | https://strangedays.tech -->
+<!-- Template: StrayMark | https://strangedays.tech -->

@@ -1,7 +1,7 @@
 ---
 id: TDE-YYYY-MM-DD-NNN
 title: [Título de la deuda técnica]
-status: identified
+status: identified                # `identified` → `resolved` cuando la deuda se paga (terminal sólo-TDE)
 created: YYYY-MM-DD
 agent: [agent-name-v1.0]
 confidence: high | medium | low
@@ -15,11 +15,14 @@ tags: []
 related: []
 priority: null
 assigned_to: null
+promoted_from_followup: null    # FU-NNN si fue promovido desde .straymark/follow-ups-backlog.md
 ---
 
 # TDE: [Título de la Deuda Técnica]
 
 > **IDENTIFICADO POR AGENTE**: La priorización y asignación requieren decisión humana.
+>
+> **Triggers de activación** (basta con cualquiera — si ninguno aplica, registra como `R<N> (new, not in Charter)` en un AILOG en su lugar): herencia de un Charter previo, aplica a múltiples módulos/Charters, requiere un Charter dedicado fuera del envelope de scope actual, o requiere priorización/asignación humana que el agente no puede decidir solo. Ver `.straymark/00-governance/AGENT-RULES.md` §3 para la desambiguación completa.
 
 ## Resumen
 
@@ -121,4 +124,23 @@ Impacto  │               │               │
 | Asignado a | [Equipo/Persona] |
 | Comentarios | [Notas] |
 
-<!-- Template: DevTrail | https://strangedays.tech -->
+---
+
+## Resolución
+
+> Llena esta sección Y cambia `status: identified → resolved` en el frontmatter cuando
+> la deuda descrita aquí haya sido atendida. Mantén el documento en disco — `resolved`
+> es el estado terminal canónico de TDE; el archivo se convierte en historia de auditoría
+> en lugar de eliminarse. Ver DOCUMENTATION-POLICY.md §3 para la semántica del ciclo.
+>
+> Omite esta sección completamente mientras la deuda sigue `identified` / `accepted` /
+> superseded — solo tiene sentido en la transición terminal.
+
+| Campo | Valor |
+|-------|-------|
+| Resuelto por | [ID del Charter / PR / commit que pagó la deuda] |
+| Fecha | [YYYY-MM-DD] |
+| Verificación | [Cómo se verificó la resolución — tests, drift check, audit, etc.] |
+| Notas | [Cualquier cosa que los lectores futuros deban saber, p.ej. scope de resolución parcial] |
+
+<!-- Template: StrayMark | https://strangedays.tech -->

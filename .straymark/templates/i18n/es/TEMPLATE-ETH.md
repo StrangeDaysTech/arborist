@@ -6,6 +6,11 @@ created: YYYY-MM-DD
 agent: [agent-name-v1.0]
 confidence: medium | low
 review_required: true
+
+# --- Workflow de aprobación (opcional, llenar al momento de la revisión) ---
+# reviewed_by: <id-revisor>            # email | usuario-github | DID
+# reviewed_at: YYYY-MM-DD
+# review_outcome: approved             # approved | revisions_requested | rejected
 risk_level: high | critical
 eu_ai_act_risk: not_applicable  # unacceptable | high | limited | minimal | not_applicable
 nist_genai_risks: []            # privacy | bias | confabulation | cbrn | dangerous_content | environmental | human_ai_config | information_integrity | information_security | intellectual_property | obscene_content | value_chain
@@ -196,4 +201,4 @@ approved_date: null
 | Decisión | [APROBADO/RECHAZADO/CONDICIONAL] |
 | Condiciones | [Si aplica] |
 
-<!-- Template: DevTrail | https://strangedays.tech -->
+<!-- Template: StrayMark | https://strangedays.tech -->

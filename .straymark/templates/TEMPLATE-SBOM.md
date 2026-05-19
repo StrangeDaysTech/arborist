@@ -74,4 +74,19 @@ related: []
   - [Monitoring activity 2: Frequency and responsible party]
   - [Monitoring activity 3: Frequency and responsible party]
 
-<!-- Template: DevTrail | https://strangedays.tech -->
+## GB/T 45652 Training Data Compliance (China)
+
+> Complete this section only if `regional_scope` includes `china`. Aligns with **GB/T 45652-2025** *Cybersecurity Technology — Security Specification for Pre-training and Fine-tuning Data of Generative AI Services* (in force 2025-11-01).
+>
+> Set `gb45652_training_data_compliance: true` in the frontmatter when every training-data row below is documented.
+
+| Dataset | Lawfulness of Source | Sensitive Personal Info Removed | Annotation Workflow Documented | Cross-border Origin? | Mitigation |
+|---------|---------------------|--------------------------------|--------------------------------|----------------------|-----------|
+| [Dataset 1] | [Licensed / public-domain / consent / contract] | [Yes/No — methodology] | [Yes — link / No] | [Yes / No / Mixed] | [Cross-link to PIPIA-... if cross-border] |
+| [Dataset 2] | [...] | [...] | [...] | [...] | [...] |
+
+- **Annotation Security**: [Methods to protect annotators' personal data and prevent leakage of sensitive content during labeling]
+- **Provenance Audit Cadence**: [Quarterly / annual / event-driven]
+- **Linked CACFILE**: [CACFILE-... if filing required]
+
+<!-- Template: StrayMark | https://strangedays.tech -->

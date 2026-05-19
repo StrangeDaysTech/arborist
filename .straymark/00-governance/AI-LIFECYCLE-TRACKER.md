@@ -15,7 +15,7 @@
 | Acme Sentiment Classifier | Classifier (NLP) | Monitoring | 2.1.0 | [ML Team Lead] | [YYYY-MM-DD] | Medium |
 | [System name] | [LLM / Classifier / Recommender / Agent / Other] | [Phase] | [Version] | [Owner] | [Date] | [Low / Medium / High / Critical] |
 
-> **DevTrail mapping**: Each system should have corresponding ETH, MCARD, and AILOG documents. Use `devtrail status` to verify documentation coverage.
+> **StrayMark mapping**: Each system should have corresponding ETH, MCARD, and AILOG documents. Use `straymark status` to verify documentation coverage.
 
 ---
 
@@ -35,7 +35,7 @@
 - [ ] Stakeholders and affected parties identified
 - [ ] Regulatory requirements mapped (REQ)
 
-| DevTrail Evidence | Document Type |
+| StrayMark Evidence | Document Type |
 |-------------------|---------------|
 | Requirements specification | REQ |
 | Architecture decision | ADR, AIDEC |
@@ -55,7 +55,7 @@
 - [ ] Initial performance benchmarks recorded
 - [ ] Data privacy assessment completed (DPIA if applicable)
 
-| DevTrail Evidence | Document Type |
+| StrayMark Evidence | Document Type |
 |-------------------|---------------|
 | Data quality assessment | MCARD |
 | Bias evaluation | ETH |
@@ -76,7 +76,7 @@
 - [ ] Explainability assessment passed
 - [ ] Sign-off from designated reviewer
 
-| DevTrail Evidence | Document Type |
+| StrayMark Evidence | Document Type |
 |-------------------|---------------|
 | Test results | TES |
 | Security assessment | ETH (Security section) |
@@ -96,7 +96,7 @@
 - [ ] Incident response procedures defined
 - [ ] Deployment recorded (AILOG)
 
-| DevTrail Evidence | Document Type |
+| StrayMark Evidence | Document Type |
 |-------------------|---------------|
 | Deployment record | AILOG |
 | Monitoring setup | AILOG |
@@ -116,12 +116,12 @@
 - [ ] User feedback collection mechanism in place
 - [ ] Periodic risk reassessment scheduled
 
-| DevTrail Evidence | Document Type |
+| StrayMark Evidence | Document Type |
 |-------------------|---------------|
 | Performance logs | AILOG |
 | Incidents | INC |
 | Risk reassessment | ETH |
-| Compliance checks | `devtrail compliance` |
+| Compliance checks | `straymark compliance` |
 
 ---
 
@@ -137,7 +137,7 @@
 - [ ] Replacement system documented (if applicable)
 - [ ] Final status recorded in this tracker
 
-| DevTrail Evidence | Document Type |
+| StrayMark Evidence | Document Type |
 |-------------------|---------------|
 | Retirement decision | ADR |
 | Final status update | AILOG |
@@ -201,7 +201,7 @@
 
 ## 5. ISO 42001 Annex A.6 Control Summary
 
-| Control | Description | Lifecycle Phase(s) | DevTrail Evidence |
+| Control | Description | Lifecycle Phase(s) | StrayMark Evidence |
 |---------|-------------|--------------------|--------------------|
 | A.6.2.2 | AI system design and development | Design, Development | ADR, AIDEC, REQ |
 | A.6.2.3 | Training and testing of AI models | Training/Testing | MCARD, TES |
@@ -216,7 +216,7 @@
 
 ---
 
-*AI System Lifecycle Tracker template — DevTrail Framework*
+*AI System Lifecycle Tracker template — StrayMark Framework*
 *Aligned with ISO/IEC 42001:2023 Annex A.6*
 
-<!-- Template: DevTrail | https://strangedays.tech -->
+<!-- Template: StrayMark | https://strangedays.tech -->

@@ -90,5 +90,5 @@ git push -u origin fix/commits-accidentales
 
 ---
 
-*DevTrail v1.0.0 | Última actualización: 2025-01-30*
+*StrayMark v1.0.0 | Última actualización: 2025-01-30*
 *[Strange Days Tech](https://strangedays.tech) — Porque cada cambio cuenta una historia.*
