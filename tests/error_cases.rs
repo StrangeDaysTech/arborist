@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT OR Apache-2.0
 // Copyright (c) 2026 Strange Days Tech S.A.S. de C.V. <https://strangedays.tech>
 
-use arborist::{analyze_file, ArboristError};
+use arborist::{ArboristError, analyze_file};
 
 #[test]
 fn file_not_found_error() {
@@ -24,7 +24,10 @@ fn unknown_extension_error() {
 
     // .toml is not a recognized source language extension
     let result = analyze_file(&path);
-    assert!(result.is_err(), "should return an error for unknown extension");
+    assert!(
+        result.is_err(),
+        "should return an error for unknown extension"
+    );
     let err = result.unwrap_err();
     let msg = format!("{err}");
     assert!(
@@ -39,7 +42,11 @@ fn empty_file_no_error() {
     let manifest_dir = env!("CARGO_MANIFEST_DIR");
     let path = format!("{manifest_dir}/tests/fixtures/rust/empty.rs");
     let report = analyze_file(&path).unwrap();
-    assert_eq!(report.functions.len(), 0, "empty file should produce no functions");
+    assert_eq!(
+        report.functions.len(),
+        0,
+        "empty file should produce no functions"
+    );
     assert_eq!(report.file_sloc, 0, "empty file should have 0 sloc");
 }
 
@@ -49,7 +56,11 @@ fn empty_file_no_error() {
 #[test]
 fn comments_only_file_zero_functions_zero_sloc() {
     let report = analyze_file("tests/fixtures/rust/comments_only.rs").unwrap();
-    assert_eq!(report.functions.len(), 0, "comments-only file should have no functions");
+    assert_eq!(
+        report.functions.len(),
+        0,
+        "comments-only file should have no functions"
+    );
     assert_eq!(report.file_sloc, 0, "comments-only file should have 0 SLOC");
     assert_eq!(report.file_cognitive, 0);
     assert_eq!(report.file_cyclomatic, 0);

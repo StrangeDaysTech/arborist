@@ -3,7 +3,7 @@
 
 #![cfg(feature = "rust")]
 
-use arborist::{analyze_file_with_config, analyze_source_with_config, AnalysisConfig, Language};
+use arborist::{AnalysisConfig, Language, analyze_file_with_config, analyze_source_with_config};
 
 /// Helper to get the project root directory for fixture paths.
 fn fixture_path(name: &str) -> String {
@@ -23,7 +23,12 @@ fn threshold_flags_complex_function_above() {
 
     let f = &report.functions[0];
     assert_eq!(f.name, "classify");
-    assert_eq!(f.exceeds_threshold, Some(true), "cognitive {} should exceed threshold 8", f.cognitive);
+    assert_eq!(
+        f.exceeds_threshold,
+        Some(true),
+        "cognitive {} should exceed threshold 8",
+        f.cognitive
+    );
 }
 
 #[test]
@@ -38,7 +43,12 @@ fn threshold_flags_simple_function_below() {
 
     let f = &report.functions[0];
     assert_eq!(f.name, "add");
-    assert_eq!(f.exceeds_threshold, Some(false), "cognitive {} should not exceed threshold 8", f.cognitive);
+    assert_eq!(
+        f.exceeds_threshold,
+        Some(false),
+        "cognitive {} should not exceed threshold 8",
+        f.cognitive
+    );
 }
 
 #[test]
@@ -120,11 +130,27 @@ fn complex(x: i32) -> i32 {
     let report = analyze_source_with_config(source, Language::Rust, &config).unwrap();
     assert_eq!(report.functions.len(), 2);
 
-    let simple = report.functions.iter().find(|f| f.name == "simple").unwrap();
-    assert_eq!(simple.exceeds_threshold, Some(false), "simple should not exceed threshold 3");
+    let simple = report
+        .functions
+        .iter()
+        .find(|f| f.name == "simple")
+        .unwrap();
+    assert_eq!(
+        simple.exceeds_threshold,
+        Some(false),
+        "simple should not exceed threshold 3"
+    );
 
-    let complex = report.functions.iter().find(|f| f.name == "complex").unwrap();
-    assert_eq!(complex.exceeds_threshold, Some(true), "complex should exceed threshold 3");
+    let complex = report
+        .functions
+        .iter()
+        .find(|f| f.name == "complex")
+        .unwrap();
+    assert_eq!(
+        complex.exceeds_threshold,
+        Some(true),
+        "complex should exceed threshold 3"
+    );
 }
 
 #[test]

@@ -52,14 +52,26 @@ fn boolean_operators_metrics() {
 
     let check_same = &report.functions[0];
     assert_eq!(check_same.name, "check_same");
-    assert_eq!(check_same.cognitive, 2, "cognitive complexity for check_same");
-    assert_eq!(check_same.cyclomatic, 4, "cyclomatic complexity for check_same");
+    assert_eq!(
+        check_same.cognitive, 2,
+        "cognitive complexity for check_same"
+    );
+    assert_eq!(
+        check_same.cyclomatic, 4,
+        "cyclomatic complexity for check_same"
+    );
     assert_eq!(check_same.sloc, 6, "sloc for check_same");
 
     let check_mixed = &report.functions[1];
     assert_eq!(check_mixed.name, "check_mixed");
-    assert_eq!(check_mixed.cognitive, 3, "cognitive complexity for check_mixed");
-    assert_eq!(check_mixed.cyclomatic, 4, "cyclomatic complexity for check_mixed");
+    assert_eq!(
+        check_mixed.cognitive, 3,
+        "cognitive complexity for check_mixed"
+    );
+    assert_eq!(
+        check_mixed.cyclomatic, 4,
+        "cyclomatic complexity for check_mixed"
+    );
     assert_eq!(check_mixed.sloc, 6, "sloc for check_mixed");
 
     // File-level aggregates (sum of both functions)
@@ -107,7 +119,11 @@ fn recursion_metrics() {
 #[test]
 fn empty_file_metrics() {
     let report = analyze_file(fixture_path("empty.rs")).unwrap();
-    assert_eq!(report.functions.len(), 0, "empty file should have no functions");
+    assert_eq!(
+        report.functions.len(),
+        0,
+        "empty file should have no functions"
+    );
     assert_eq!(report.file_cognitive, 0);
     assert_eq!(report.file_cyclomatic, 0);
     assert_eq!(report.file_sloc, 0);

@@ -54,15 +54,24 @@ fn boolean_operators_metrics() {
     // a && b && c — one homogeneous sequence = +1 cognitive
     assert_eq!(check_all.cognitive, 1, "cognitive complexity for checkAll");
     // base(1) + 2 && operators = 3
-    assert_eq!(check_all.cyclomatic, 3, "cyclomatic complexity for checkAll");
+    assert_eq!(
+        check_all.cyclomatic, 3,
+        "cyclomatic complexity for checkAll"
+    );
     assert_eq!(check_all.sloc, 3, "sloc for checkAll");
 
     let check_mixed = &report.functions[1];
     assert_eq!(check_mixed.name, "checkMixed");
     // a && b || c — one sequence + one operator switch = +2 cognitive
-    assert_eq!(check_mixed.cognitive, 2, "cognitive complexity for checkMixed");
+    assert_eq!(
+        check_mixed.cognitive, 2,
+        "cognitive complexity for checkMixed"
+    );
     // base(1) + && + || = 3
-    assert_eq!(check_mixed.cyclomatic, 3, "cyclomatic complexity for checkMixed");
+    assert_eq!(
+        check_mixed.cyclomatic, 3,
+        "cyclomatic complexity for checkMixed"
+    );
     assert_eq!(check_mixed.sloc, 3, "sloc for checkMixed");
 
     assert_eq!(report.file_cognitive, 3);

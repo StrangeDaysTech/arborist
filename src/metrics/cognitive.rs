@@ -49,7 +49,9 @@ fn walk_cognitive(
     // Work at expression level (binary_expression / boolean_operator) not token level (&&/||)
     if let Some(op) = get_boolean_op(node, source, profile) {
         // Check if parent is also a boolean expression → this node is a continuation, skip
-        let parent_op = node.parent().and_then(|p| get_boolean_op(&p, source, profile));
+        let parent_op = node
+            .parent()
+            .and_then(|p| get_boolean_op(&p, source, profile));
         if parent_op.is_none() {
             // Root of boolean chain: +1 for the sequence
             *complexity += 1;
@@ -96,7 +98,14 @@ fn walk_cognitive(
 
     let mut cursor = node.walk();
     for child in node.children(&mut cursor) {
-        walk_cognitive(&child, source, profile, child_nesting, function_name, complexity);
+        walk_cognitive(
+            &child,
+            source,
+            profile,
+            child_nesting,
+            function_name,
+            complexity,
+        );
     }
 }
 

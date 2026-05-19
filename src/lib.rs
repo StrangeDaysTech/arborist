@@ -81,12 +81,11 @@ pub fn analyze_file_with_config(
         });
     }
 
-    let ext = path
-        .extension()
-        .and_then(|e| e.to_str())
-        .ok_or_else(|| ArboristError::UnrecognizedExtension {
+    let ext = path.extension().and_then(|e| e.to_str()).ok_or_else(|| {
+        ArboristError::UnrecognizedExtension {
             extension: String::new(),
-        })?;
+        }
+    })?;
 
     let (language, profile) = languages::profile_for_extension(ext)?;
     let source = std::fs::read_to_string(path)?;

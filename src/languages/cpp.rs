@@ -71,11 +71,7 @@ impl LanguageProfile for CppProfile {
         &["comment"]
     }
 
-    fn extract_function_name(
-        &self,
-        node: &tree_sitter::Node,
-        source: &[u8],
-    ) -> Option<String> {
+    fn extract_function_name(&self, node: &tree_sitter::Node, source: &[u8]) -> Option<String> {
         find_function_declarator_name(node, source)
     }
 
