@@ -57,7 +57,7 @@ DevTrail: Created AILOG-2025-01-27-001-implement-auth.md
 
 **If documentation was not needed:**
 ```
-DevTrail: No documentation required (minor change / <20 lines)
+DevTrail: No documentation required (minor change / below complexity threshold)
 ```
 
 **If you should have documented but didn't:**
@@ -126,7 +126,7 @@ gh pr create --title "fix: description" --body "..."
 
 | Situation | Action |
 |-----------|--------|
-| >20 lines of business logic | Create AILOG |
+| Code complexity above threshold | Create AILOG — run `devtrail analyze <files> --output json`; fallback: >20 lines |
 | Decision between technical alternatives | Create AIDEC |
 | Changes in auth/authorization/PII | Create AILOG (`risk_level: high`) + ETH draft |
 | Changes in public API or DB schema | Create AILOG + consider ADR |
@@ -335,6 +335,33 @@ DevTrail is aligned with the following standards and regulations:
 | **C4 Model** | Architecture visualization in ADR documents | ADR (Mermaid diagrams) |
 
 > **Reference**: See `AI-GOVERNANCE-POLICY.md` for the full ISO 42001 Annex A mapping to DevTrail documents.
+
+---
+
+## Directive Injection Markers
+
+DevTrail uses HTML comment markers to manage injected content in agent configuration files (CLAUDE.md, GEMINI.md, .cursorrules, etc.):
+
+```html
+<!-- devtrail:begin -->
+... managed content ...
+<!-- devtrail:end -->
+```
+
+- Content between these markers is managed by `devtrail init`, `update`, and `repair`
+- Do not remove or modify these markers manually — they are required for safe updates
+- If markers are missing from a target file, DevTrail appends the content block at the end
+
+---
+
+*DevTrail | [GitHub](https://github.com/StrangeDaysTech/devtrail)*
+*[Strange Days Tech](https://strangedays.tech) — Because every change tells a story.*
+<!-- devtrail:end -->
+```
+
+- Content between these markers is managed by `devtrail init`, `update`, and `repair`
+- Do not remove or modify these markers manually — they are required for safe updates
+- If markers are missing from a target file, DevTrail appends the content block at the end
 
 ---
 

@@ -5,3 +5,8 @@
 # Supported values: en, es
 # Default: en (English)
 language: en
+
+# Complexity analysis settings (used by: devtrail analyze)
+# Uncomment to override the default cognitive complexity threshold
+# complexity:
+#   threshold: 8

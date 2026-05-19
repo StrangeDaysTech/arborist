@@ -241,10 +241,10 @@ See also [ADR-2025-01-20-001] for architectural context.
 | EU AI Act | 2024 (effective Aug 2026) | AI regulation — ETH, INC, AILOG regulatory fields |
 | NIST AI RMF 1.0 | 2023 | AI risk management — ETH, AILOG risk categories |
 | NIST AI 600-1 | 2024 | Generative AI profile — 12 risk categories in ETH/AILOG |
-| ISO/IEC 23894:2023 | 2023 | AI risk management — AI-RISK-CATALOG (Fase 3) |
-| GDPR | 2016/679 | Data protection — ETH (Data Privacy), DPIA (Fase 2) |
-| OpenTelemetry | Current | Observability — OBSERVABILITY-GUIDE (Fase 3), optional |
+| ISO/IEC 23894:2023 | 2023 | AI risk management — AI-RISK-CATALOG |
+| GDPR | 2016/679 | Data protection — ETH (Data Privacy), DPIA |
+| OpenTelemetry | Current | Observability — OBSERVABILITY-GUIDE, optional |
 
 ---
 
-*DevTrail v4.0.0 | [Strange Days Tech](https://strangedays.tech)*
+*DevTrail v4.1.1 | [Strange Days Tech](https://strangedays.tech)*

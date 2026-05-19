@@ -1,4 +1,4 @@
-version: 4.0.0
+version: 4.1.1
 description: DevTrail distribution manifest
 files:
 - .devtrail/
@@ -6,10 +6,6 @@ files:
 - .claude/skills/
 - .gemini/skills/
 - .agent/workflows/
-- scripts/devtrail-new.sh
-- scripts/devtrail-status.sh
-- scripts/pre-commit-docs.sh
-- scripts/validate-docs.ps1
 - .github/workflows/docs-validation.yml
 injections:
 - target: CLAUDE.md

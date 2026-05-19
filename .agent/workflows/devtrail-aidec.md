@@ -58,7 +58,7 @@ Fill template with:
 - `id`: AIDEC-YYYY-MM-DD-NNN
 - `title`: Decision title from user
 - `created`: Current date
-- `agent`: gemini-cli-v1.0
+- `agent`: your agent identifier (e.g., `cursor-v1.0`, `copilot-v1.0`, `windsurf-v1.0`)
 - `confidence`: based on decision clarity
 - `risk_level`: based on decision impact
 

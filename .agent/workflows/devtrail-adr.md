@@ -71,7 +71,7 @@ Fill template with:
 - `status`: **draft** (always for AI-created ADRs)
 - `created`: Current date
 - `updated`: Current date
-- `agent`: gemini-cli-v1.0
+- `agent`: your agent identifier (e.g., `cursor-v1.0`, `copilot-v1.0`, `windsurf-v1.0`)
 - `confidence`: based on research done
 - `review_required`: **true** (always for ADRs)
 - `risk_level`: minimum `medium` for architectural decisions

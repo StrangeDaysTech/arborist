@@ -33,9 +33,9 @@
 
 | Regulación | Aplicable | Estado | Evidencia DevTrail |
 |-----------|-----------|--------|-------------------|
-| EU AI Act | [Sí/No] | [Cumple/En progreso/Brecha] | ETH, MCARD (Fase 2) |
-| GDPR | [Sí/No] | [Estado] | ETH (Privacidad de Datos), DPIA (Fase 2) |
-| NIST AI RMF | [Sí/No] | [Estado] | AI-RISK-CATALOG (Fase 3) |
+| EU AI Act | [Sí/No] | [Cumple/En progreso/Brecha] | ETH, MCARD |
+| GDPR | [Sí/No] | [Estado] | ETH (Privacidad de Datos), DPIA |
+| NIST AI RMF | [Sí/No] | [Estado] | AI-RISK-CATALOG |
 | ISO/IEC 42001 | [Sí/No] | [Estado] | Este documento |
 | [Otro] | [Sí/No] | [Estado] | [Documentos] |
 
@@ -61,11 +61,11 @@
 
 | Rol | Responsabilidades | Mapeo DevTrail |
 |-----|-------------------|----------------|
-| Líder de Gobernanza de IA | Gestión general del AIMS, mantenimiento de políticas | Este documento, MANAGEMENT-REVIEW-TEMPLATE (Fase 3) |
+| Líder de Gobernanza de IA | Gestión general del AIMS, mantenimiento de políticas | Este documento, MANAGEMENT-REVIEW-TEMPLATE |
 | Equipo de Desarrollo | Documentación, implementación, pruebas | AILOG, AIDEC, TES |
 | Revisor de Ética de IA | Revisión y aprobación ética | Aprobación ETH |
-| Gestor de Riesgos | Identificación y evaluación de riesgos | AI-RISK-CATALOG (Fase 3), ETH |
-| Delegado de Protección de Datos | Cumplimiento de privacidad, supervisión de DPIA | DPIA (Fase 2), ETH (Privacidad de Datos) |
+| Gestor de Riesgos | Identificación y evaluación de riesgos | AI-RISK-CATALOG, ETH |
+| Delegado de Protección de Datos | Cumplimiento de privacidad, supervisión de DPIA | DPIA, ETH (Privacidad de Datos) |
 | Agentes de IA | Documentación autónoma dentro de límites definidos | Según tabla de autonomía de AGENT-RULES.md |
 
 ### 2.3 Compromiso de la Dirección
@@ -88,23 +88,23 @@
 | Categoría de Riesgo | Descripción | Probabilidad | Impacto | Controles Actuales | Evidencia DevTrail |
 |---------------------|-------------|-------------|---------|-------------------|-------------------|
 | Sesgo / Equidad | [Descripción] | [A/M/B] | [A/M/B] | [Controles] | ETH (Sección de Sesgo) |
-| Privacidad | [Descripción] | [A/M/B] | [A/M/B] | [Controles] | ETH (Privacidad), DPIA (Fase 2) |
-| Seguridad | [Descripción] | [A/M/B] | [A/M/B] | [Controles] | SEC (Fase 2) |
+| Privacidad | [Descripción] | [A/M/B] | [A/M/B] | [Controles] | ETH (Privacidad), DPIA |
+| Seguridad | [Descripción] | [A/M/B] | [A/M/B] | [Controles] | SEC |
 | Seguridad Funcional | [Descripción] | [A/M/B] | [A/M/B] | [Controles] | ETH, REQ (Seguridad Funcional) |
 | Transparencia | [Descripción] | [A/M/B] | [A/M/B] | [Controles] | ETH (Transparencia) |
 | Ambiental | [Descripción] | [A/M/B] | [A/M/B] | [Controles] | ETH (Impacto Ambiental) |
 
-> **Referencia**: Ver AI-RISK-CATALOG.md (Fase 3) para el catálogo completo de riesgos mapeado a las categorías de NIST AI 600-1.
+> **Referencia**: Ver AI-RISK-CATALOG.md para el catálogo completo de riesgos mapeado a las categorías de NIST AI 600-1.
 >
-> **Mapeo DevTrail**: Los documentos ETH evalúan riesgos individuales. AI-RISK-CATALOG.md (Fase 3) consolida el registro de riesgos organizacional según ISO 42001 Anexo A.5.
+> **Mapeo DevTrail**: Los documentos ETH evalúan riesgos individuales. AI-RISK-CATALOG.md consolida el registro de riesgos organizacional según ISO 42001 Anexo A.5.
 
 ### 3.2 Objetivos de IA
 
 | Objetivo | Meta | Medición | Plazo | Responsable |
 |----------|------|----------|-------|-------------|
-| Cobertura de documentación | [ej., 100% de cambios significativos documentados] | `devtrail metrics` (Fase 3) | [Fecha] | [Responsable] |
-| Cumplimiento de revisiones | [ej., Todos los docs de alto riesgo revisados en 5 días] | `devtrail metrics` (Fase 3) | [Fecha] | [Responsable] |
-| Cobertura de evaluación de riesgos | [ej., ETH para todos los cambios de alto riesgo] | `devtrail compliance` (Fase 3) | [Fecha] | [Responsable] |
+| Cobertura de documentación | [ej., 100% de cambios significativos documentados] | `devtrail metrics` | [Fecha] | [Responsable] |
+| Cumplimiento de revisiones | [ej., Todos los docs de alto riesgo revisados en 5 días] | `devtrail metrics` | [Fecha] | [Responsable] |
+| Cobertura de evaluación de riesgos | [ej., ETH para todos los cambios de alto riesgo] | `devtrail compliance` | [Fecha] | [Responsable] |
 
 ### 3.3 Planificación de Cambios
 
@@ -153,7 +153,7 @@ Todos los miembros del equipo deben conocer:
 | Actualizaciones de política | Todo el equipo | Al cambiar | [Método] | ADR |
 | Evaluaciones de riesgo | Revisores | Por creación de ETH | Notificación DevTrail | ETH |
 | Informes de incidentes | Dirección | En 24h | [Método] | INC |
-| Métricas de gobernanza | Dirección | [Mensual/Trimestral] | `devtrail metrics` (Fase 3) | Informe de métricas |
+| Métricas de gobernanza | Dirección | [Mensual/Trimestral] | `devtrail metrics` | Informe de métricas |
 
 ### 4.5 Información Documentada
 
@@ -162,7 +162,7 @@ DevTrail sirve como sistema de información documentada para el AIMS. Documentos
 | Requisito ISO 42001 | Documento DevTrail |
 |---------------------|-------------------|
 | Política de IA | Este documento (§2) |
-| Evaluación de Riesgos | ETH, AI-RISK-CATALOG.md (Fase 3) |
+| Evaluación de Riesgos | ETH, AI-RISK-CATALOG.md |
 | Procedimientos operativos | AGENT-RULES.md, DOCUMENTATION-POLICY.md |
 | Registros de cambios | AILOG (todos los cambios) |
 | Registros de decisiones | AIDEC, ADR |
@@ -184,7 +184,7 @@ DevTrail sirve como sistema de información documentada para el AIMS. Documentos
 | Monitorización | Operaciones, observabilidad | AILOG, INC | A.6.2.6 |
 | Retirada | Desmantelamiento | ADR, AILOG | A.6.2.7 |
 
-> **Referencia**: Ver AI-LIFECYCLE-TRACKER.md (Fase 3) para el seguimiento del estado del ciclo de vida del sistema.
+> **Referencia**: Ver AI-LIFECYCLE-TRACKER.md para el seguimiento del estado del ciclo de vida del sistema.
 
 ### 5.2 Requisitos de Documentación
 
@@ -193,7 +193,7 @@ Según AGENT-RULES.md, la documentación es requerida cuando:
 - Cambios que afectan auth/autorización/PII → AILOG + borrador ETH
 - Cambios en API pública o esquema de BD → AILOG
 - Cambios en modelos ML o prompts de IA → AILOG + revisión humana
-- Cambios en lógica de negocio > 20 líneas → AILOG
+- Código sobre umbral de complejidad cognitiva (ejecutar `devtrail analyze`; alternativa: >20 líneas) → AILOG
 - Decisión entre 2+ alternativas → AIDEC
 - Cambios en dependencias críticas de seguridad → AILOG + revisión humana
 
@@ -203,7 +203,7 @@ Según AGENT-RULES.md, la documentación es requerida cuando:
 |-----------|----------|----------|-----------------|----------------|
 | [Componente] | [Proveedor] | [Propósito] | [A/M/B] | [Fecha] |
 
-> **Mapeo DevTrail**: SBOM (Fase 2) documenta la cadena de suministro de IA. ETH evalúa riesgos de terceros.
+> **Mapeo DevTrail**: SBOM documenta la cadena de suministro de IA. ETH evalúa riesgos de terceros.
 
 ---
 
@@ -215,19 +215,19 @@ Según AGENT-RULES.md, la documentación es requerida cuando:
 
 | KPI | Meta | Método de Medición | Frecuencia |
 |-----|------|-------------------|-----------|
-| Cobertura de documentación | [Meta %] | `devtrail metrics` (Fase 3) | [Frecuencia] |
-| Tasa de finalización de revisiones | [Meta %] | `devtrail metrics` (Fase 3) | [Frecuencia] |
-| Tiempo medio de documentación | [Meta días] | `devtrail metrics` (Fase 3) | [Frecuencia] |
+| Cobertura de documentación | [Meta %] | `devtrail metrics` | [Frecuencia] |
+| Tasa de finalización de revisiones | [Meta %] | `devtrail metrics` | [Frecuencia] |
+| Tiempo medio de documentación | [Meta días] | `devtrail metrics` | [Frecuencia] |
 | Tiempo de revisión de docs de alto riesgo | [Meta días] | Seguimiento manual | [Frecuencia] |
 | Documentación de incidentes | [Meta %] | Conteo de INC vs incidentes | [Frecuencia] |
 
-> **Referencia**: Ver AI-KPIS.md (Fase 3) para definiciones detalladas de KPIs.
+> **Referencia**: Ver AI-KPIS.md para definiciones detalladas de KPIs.
 
 ### 6.2 Auditoría Interna
 
 - **Frecuencia**: [ej., Trimestral]
 - **Alcance**: Cumplimiento con esta política, AGENT-RULES.md y requisitos regulatorios
-- **Método**: `devtrail compliance --all` (Fase 3) + revisión manual
+- **Método**: `devtrail compliance --all` + revisión manual
 - **Auditor**: [Rol/Nombre]
 
 ### 6.3 Revisión de la Dirección
@@ -236,7 +236,7 @@ Según AGENT-RULES.md, la documentación es requerida cuando:
 - **Entradas**: Métricas de gobernanza, resultados de auditoría, informes de incidentes, evaluaciones de riesgos
 - **Salidas**: Actualizaciones de política, decisiones de recursos, acciones de mejora
 
-> **Referencia**: Ver MANAGEMENT-REVIEW-TEMPLATE.md (Fase 3) para la plantilla de agenda de revisión.
+> **Referencia**: Ver MANAGEMENT-REVIEW-TEMPLATE.md para la plantilla de agenda de revisión.
 
 ---
 
@@ -259,7 +259,7 @@ Cuando se identifica una no conformidad:
 | Fuente | Entrada DevTrail | Acción |
 |--------|-----------------|--------|
 | Fallos de validación | Errores de `devtrail validate` | Corregir y documentar |
-| Brechas de cumplimiento | Informe de `devtrail compliance` (Fase 3) | Planificar remediación |
+| Brechas de cumplimiento | Informe de `devtrail compliance` | Planificar remediación |
 | Post-mortems de incidentes | Documentos INC | Implementar acciones correctivas |
 | Revisiones de la dirección | Salidas de reuniones de revisión | Actualizar política/objetivos |
 | Retroalimentación de agentes | AILOG con sugerencias | Evaluar y priorizar |
@@ -281,37 +281,37 @@ Cuando se identifica una no conformidad:
 | **A.4 Recursos** | Recursos | A.4.2 | Este documento §4 |
 | | Competencias | A.4.3 | Este documento §4 |
 | | Concienciación sobre Uso Responsable | A.4.4 | PRINCIPLES.md, directivas de agentes |
-| | Consulta | A.4.5 | MANAGEMENT-REVIEW-TEMPLATE (Fase 3) |
+| | Consulta | A.4.5 | MANAGEMENT-REVIEW-TEMPLATE |
 | | Comunicación sobre Sistema de IA | A.4.6 | ADR, REQ |
-| **A.5 Evaluación de Impactos** | Evaluación de Riesgos | A.5.2 | ETH, AI-RISK-CATALOG (Fase 3) |
-| | Evaluación de Impacto | A.5.3 | ETH, DPIA (Fase 2) |
-| | Documentación de Impacto | A.5.4 | ETH, DPIA (Fase 2) |
+| **A.5 Evaluación de Impactos** | Evaluación de Riesgos | A.5.2 | ETH, AI-RISK-CATALOG |
+| | Evaluación de Impacto | A.5.3 | ETH, DPIA |
+| | Documentación de Impacto | A.5.4 | ETH, DPIA |
 | **A.6 Ciclo de Vida del Sistema de IA** | Diseño y Desarrollo | A.6.2.2 | ADR, AIDEC |
-| | Entrenamiento y Pruebas del Modelo de IA | A.6.2.3 | MCARD (Fase 2), TES |
+| | Entrenamiento y Pruebas del Modelo de IA | A.6.2.3 | MCARD, TES |
 | | Verificación y Validación | A.6.2.4 | TES |
-| | Despliegue | A.6.2.5 | AILOG, AI-LIFECYCLE-TRACKER (Fase 3) |
-| | Operación y Monitorización | A.6.2.6 | AILOG, AI-LIFECYCLE-TRACKER (Fase 3), OBSERVABILITY-GUIDE (Fase 3) |
-| | Retirada | A.6.2.7 | AI-LIFECYCLE-TRACKER (Fase 3), ADR |
+| | Despliegue | A.6.2.5 | AILOG, AI-LIFECYCLE-TRACKER |
+| | Operación y Monitorización | A.6.2.6 | AILOG, AI-LIFECYCLE-TRACKER, OBSERVABILITY-GUIDE |
+| | Retirada | A.6.2.7 | AI-LIFECYCLE-TRACKER, ADR |
 | | Integración Responsable | A.6.2.8 | ADR, AIDEC |
 | | Documentación | A.6.2.9 | AILOG (todos los cambios documentados) |
-| | Uso Definido y Mal Uso | A.6.2.10 | MCARD (Fase 2) |
-| | Componentes de Terceros | A.6.2.11 | SBOM (Fase 2) |
-| **A.7 Datos para IA** | Datos para Desarrollo | A.7.2 | MCARD (Fase 2) |
-| | Calidad de Datos para ML | A.7.3 | MCARD (Fase 2) |
-| | Preparación de Datos | A.7.4 | MCARD (Fase 2) |
-| | Adquisición de Datos | A.7.5 | SBOM (Fase 2), DPIA (Fase 2) |
-| | Procedencia de Datos | A.7.6 | SBOM (Fase 2) |
+| | Uso Definido y Mal Uso | A.6.2.10 | MCARD |
+| | Componentes de Terceros | A.6.2.11 | SBOM |
+| **A.7 Datos para IA** | Datos para Desarrollo | A.7.2 | MCARD |
+| | Calidad de Datos para ML | A.7.3 | MCARD |
+| | Preparación de Datos | A.7.4 | MCARD |
+| | Adquisición de Datos | A.7.5 | SBOM, DPIA |
+| | Procedencia de Datos | A.7.6 | SBOM |
 | **A.8 Información para las Partes** | Transparencia en Interacción con IA | A.8.2 | ETH (Transparencia) |
 | | Información sobre Resultados de IA | A.8.3 | ETH (Explicabilidad) |
 | | Acceso a Información | A.8.4 | REQ, ADR |
 | | Habilitación de Acciones Humanas | A.8.5 | AGENT-RULES.md (disparadores de revisión humana) |
 | **A.9 Uso de Sistemas de IA** | Objetivos para Uso Responsable | A.9.2 | Este documento §5, PRINCIPLES.md |
-| | Uso Previsto | A.9.3 | MCARD (Fase 2), REQ |
+| | Uso Previsto | A.9.3 | MCARD, REQ |
 | | Procesos para Uso Responsable | A.9.4 | DOCUMENTATION-POLICY.md, AGENT-RULES.md |
 | | Supervisión Humana | A.9.5 | AGENT-RULES.md (tabla de autonomía) |
-| **A.10 Terceros** | Proveedores de Componentes de IA | A.10.2 | SBOM (Fase 2) |
-| | Modelos ML Compartidos | A.10.3 | SBOM (Fase 2) |
-| | Provisión a Terceros | A.10.4 | ETH, MCARD (Fase 2) |
+| **A.10 Terceros** | Proveedores de Componentes de IA | A.10.2 | SBOM |
+| | Modelos ML Compartidos | A.10.3 | SBOM |
+| | Provisión a Terceros | A.10.4 | ETH, MCARD |
 
 ---
 

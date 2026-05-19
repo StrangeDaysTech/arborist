@@ -30,7 +30,7 @@ confidence: high | medium | low
 
 | Situación | Tipo | Notas |
 |-----------|------|-------|
-| >20 líneas de lógica de negocio | AILOG | Usar juicio cualitativo para casos límite |
+| Complejidad de código sobre el umbral | AILOG | Ejecutar `devtrail analyze <archivos-modificados> --output json`. Si `summary.above_threshold > 0`, crear AILOG (umbral por defecto: 8). **Alternativa**: si el CLI no está disponible, usar heurística de >20 líneas de lógica de negocio |
 | Decisión entre 2+ alternativas técnicas | AIDEC | Documentar alternativas |
 | Cambios en auth/autorización/PII | AILOG + ETH | `risk_level: high`, ETH requiere aprobación |
 | Cambios en API pública o esquema de BD | AILOG | `risk_level: medium+`, considerar ADR |
@@ -39,8 +39,6 @@ confidence: high | medium | low
 | Adición/eliminación/actualización de dependencias críticas de seguridad | AILOG | Revisión humana requerida |
 | Cambios que afectan el ciclo de vida del sistema de IA (despliegue, retirada) | AILOG + ADR | Revisión humana requerida |
 | Cambios en instrumentación OTel (spans, atributos, pipeline) | AILOG | Tag `observabilidad`, ver §9 |
-
-> **Umbral basado en complejidad (cuando está disponible):** Si el CLI de DevTrail y `lizard` están instalados, los agentes pueden invocar `devtrail analyze-complexity` para medir el delta de complejidad ciclomática. Documentar si delta CCN > 5. Recurrir a la regla de >20 líneas cuando las herramientas no están disponibles.
 
 ### PROHIBIDO - No documentar
 
@@ -272,4 +270,4 @@ Cuando un cambio modifica endpoints de API:
 
 ---
 
-*DevTrail v4.0.0 | [Strange Days Tech](https://strangedays.tech)*
+*DevTrail v4.1.1 | [Strange Days Tech](https://strangedays.tech)*

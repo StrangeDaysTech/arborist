@@ -28,7 +28,7 @@ confidence: high | medium | low
 
 | Situation | Type | Notes |
 |-----------|------|-------|
-| >20 lines of business logic | AILOG | Use qualitative judgment for borderline cases |
+| Code complexity above threshold | AILOG | Run `devtrail analyze <changed-files> --output json`. If `summary.above_threshold > 0`, create AILOG (default threshold: 8). **Fallback**: if CLI unavailable, apply >20 lines of business logic heuristic |
 | Decision between 2+ technical alternatives | AIDEC | Document alternatives |
 | Changes in auth/authorization/PII | AILOG + ETH | `risk_level: high`, ETH requires approval |
 | Changes in public API or DB schema | AILOG | `risk_level: medium+`, consider ADR |
@@ -37,8 +37,6 @@ confidence: high | medium | low
 | Addition/removal/upgrade of security-critical dependencies | AILOG | Human review required |
 | Changes affecting AI system lifecycle (deployment, retirement) | AILOG + ADR | Human review required |
 | Changes to OTel instrumentation (spans, attributes, pipeline) | AILOG | Tag `observabilidad`, see §9 |
-
-> **Complexity-based threshold (when available):** If the DevTrail CLI and `lizard` are installed, agents may invoke `devtrail analyze-complexity` to measure cyclomatic complexity delta. Document if delta CCN > 5. Fallback to the >20 lines rule when tools are unavailable.
 
 ### PROHIBITED - Do not document
 
@@ -270,4 +268,4 @@ When a change modifies API endpoints:
 
 ---
 
-*DevTrail v4.0.0 | [Strange Days Tech](https://strangedays.tech)*
+*DevTrail v4.1.1 | [Strange Days Tech](https://strangedays.tech)*

@@ -1,7 +1,7 @@
 ---
 name: devtrail-status
 description: Show DevTrail documentation status. Use to verify if AI agents properly documented their changes.
-allowed-tools: Read, Glob, Bash(git diff *, git log *, git status *, date *)
+allowed-tools: Read, Glob, Bash(git diff *, git log *, git status *, date *, devtrail analyze *)
 ---
 
 # DevTrail Status Skill
@@ -52,10 +52,18 @@ Filter to show only files that might need documentation:
 - Exclude: `*.md`, `*.json`, `*.yml`, `*.yaml`, `*.lock`, `package-lock.json`
 - Include: `*.ts`, `*.js`, `*.tsx`, `*.jsx`, `*.py`, `*.go`, `*.rs`, `*.java`, `*.cs`, `*.rb`, `*.php`
 
+Run complexity analysis on modified source files:
+
+```bash
+# Analyze complexity of changed files (primary method for AILOG trigger)
+devtrail analyze --output json 2>/dev/null
+# If CLI unavailable, fall back to line count heuristic in step 3
+```
+
 ### 3. Analyze Documentation Gaps
 
 For each modified source file, check if there's a corresponding DevTrail document:
-- Files with >10 lines of changes in business logic folders should have an AILOG
+- Complex code (`devtrail analyze` reports `summary.above_threshold > 0`; **fallback** if CLI unavailable: >20 lines of business logic) should have an AILOG
 - Security-related files (auth, crypto, secrets) should have a SEC assessment
 - Architecture/structural changes should have an ADR
 - AI/ML model changes should have a MCARD
@@ -77,8 +85,8 @@ Recent Documents (last hour):
   [checkmark] AIDEC-2025-01-27-001-auth-strategy.md
 
 Modified Files Without Documentation:
-  [warning] src/auth/login.ts (47 lines changed)
-  [warning] src/api/users.ts (23 lines changed)
+  [warning] src/auth/login.ts (cognitive: 12, threshold: 8)
+  [warning] src/api/users.ts (cognitive: 9, threshold: 8)
 
 Summary:
   Documents created: 2

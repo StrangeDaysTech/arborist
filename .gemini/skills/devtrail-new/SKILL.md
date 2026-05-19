@@ -33,6 +33,10 @@ git diff --stat HEAD~1 2>/dev/null || git diff --stat
 
 # Count lines changed
 git diff --numstat HEAD~1 2>/dev/null || git diff --numstat
+
+# Check code complexity (primary method for AILOG trigger)
+devtrail analyze --output json 2>/dev/null
+# If CLI unavailable, fall back to line count heuristic in step 3
 ```
 
 ### 3. Classify and Suggest Type
@@ -41,7 +45,7 @@ Based on the analysis, suggest a document type:
 
 | Pattern | Suggested Type |
 |---------|---------------|
-| New code in `src/`, `lib/`, `app/` (>20 lines) | AILOG |
+| Complex code (`devtrail analyze` `above_threshold > 0`; fallback: >20 lines) | AILOG |
 | Multiple implementation alternatives discussed | AIDEC |
 | Structural/architectural changes, new modules | ADR |
 | Files with `auth`, `user`, `privacy`, `gdpr` | ETH (draft) |
@@ -124,6 +128,16 @@ ID format: `[TYPE]-YYYY-MM-DD-NNN`
 | MCARD | `.devtrail/09-ai-models/` |
 | SBOM | `.devtrail/07-ai-audit/` |
 | DPIA | `.devtrail/07-ai-audit/ethical-reviews/` |
+
+### 7.5. Apply Automatic Review Rules
+
+Before saving, apply these validation rules to the frontmatter:
+
+- If `risk_level` is `high` or `critical`: set `review_required: true`
+- If `eu_ai_act_risk` is `high`: set `review_required: true`
+- If document type is SEC, MCARD, or DPIA: set `review_required: true`
+
+These rules align with the CLI validation rules CROSS-001, CROSS-002, and CROSS-003.
 
 ### 8. Report Result
 

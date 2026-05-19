@@ -63,7 +63,7 @@ language: en  # Opciones: en, es (por defecto: en)
 
 | Situación | Acción |
 |-----------|--------|
-| >20 líneas lógica de negocio | AILOG |
+| Código complejo (`devtrail analyze`; alternativa: >20 líneas) | AILOG |
 | Decisión entre alternativas | AIDEC |
 | Cambios en auth/autorización/PII | AILOG + `risk_level: high` + ETH |
 | Cambios en API pública o esquema de BD | AILOG + considerar ADR |
@@ -188,4 +188,4 @@ Marcar `review_required: true` cuando:
 
 ---
 
-*DevTrail v4.0.0 | [Strange Days Tech](https://strangedays.tech)*
+*DevTrail v4.1.1 | [Strange Days Tech](https://strangedays.tech)*

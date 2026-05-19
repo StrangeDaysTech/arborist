@@ -64,7 +64,7 @@ Fill template with:
 - `id`: AILOG-YYYY-MM-DD-NNN
 - `title`: User-provided description
 - `created`: Current date
-- `agent`: gemini-cli-v1.0
+- `agent`: your agent identifier (e.g., `cursor-v1.0`, `copilot-v1.0`, `windsurf-v1.0`)
 - `confidence`: based on change complexity
 - `risk_level`: based on files modified
 
