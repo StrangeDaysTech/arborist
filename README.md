@@ -200,6 +200,22 @@ Physical source lines of code, excluding blank lines and comment-only lines.
 4. Create 6 test fixtures in `tests/fixtures/<lang>/`
 5. Write integration tests
 
+## Built with AI · Powered by StrayMark
+
+Arborist is an experiment in **disciplined AI-assisted development**.
+The implementation — tree-sitter integration, the 177-test suite, all 12
+language profiles — was authored largely by AI agents under human direction.
+
+To make that velocity sustainable, we use **[StrayMark](https://straymark.dev)**:
+a CLI for *cognitive discipline in AI-assisted engineering*. It turned every
+architectural choice into an AIDEC record, every implementation block into
+an AILOG, and the test plan into a TES — all under `.straymark/`, append-only
+and audit-ready. The governance artifacts emerged **alongside** the code,
+not as homework after.
+
+> StrayMark is built by Strange Days Tech — the same team behind Arborist.
+> It is the tool we made to solve our own problem.
+
 ## License
 
 Licensed under either of:
