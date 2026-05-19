@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.3] - 2026-05-19
+
+### Added
+
+- New **Built with AI · Powered by StrayMark** section in README acknowledging
+  the project's AI-assisted development process and its use of
+  [StrayMark](https://straymark.dev) — a CLI for cognitive discipline in
+  AI-assisted engineering — for decision tracking and governance.
+- New **Copyright** section in README identifying Strange Days Tech S.A.S. de
+  C.V. ([strangedays.tech](https://strangedays.tech/)) as the original author
+  and intellectual-property holder.
+- `SPDX-License-Identifier: MIT OR Apache-2.0` header with copyright
+  attribution on every Rust source file in the library, in line with Rust
+  ecosystem conventions.
+
 ## [0.1.2] - 2026-04-02
 
 ### Fixed
@@ -51,7 +66,8 @@ Initial release on [crates.io](https://crates.io/crates/arborist-metrics).
 - Composite feature flags: `default` (6 languages) and `all` (12 languages).
 - 177 tests covering all languages, metrics, thresholds, serialization, and edge cases.
 
-[unreleased]: https://github.com/StrangeDaysTech/arborist/compare/v0.1.2...HEAD
+[unreleased]: https://github.com/StrangeDaysTech/arborist/compare/v0.1.3...HEAD
+[0.1.3]: https://github.com/StrangeDaysTech/arborist/compare/v0.1.2...v0.1.3
 [0.1.2]: https://github.com/StrangeDaysTech/arborist/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/StrangeDaysTech/arborist/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/StrangeDaysTech/arborist/releases/tag/v0.1.0
