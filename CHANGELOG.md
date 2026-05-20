@@ -66,8 +66,8 @@ Initial release on [crates.io](https://crates.io/crates/arborist-metrics).
 - Composite feature flags: `default` (6 languages) and `all` (12 languages).
 - 177 tests covering all languages, metrics, thresholds, serialization, and edge cases.
 
-[unreleased]: https://github.com/StrangeDaysTech/arborist/compare/v0.1.3...HEAD
-[0.1.3]: https://github.com/StrangeDaysTech/arborist/compare/v0.1.2...v0.1.3
-[0.1.2]: https://github.com/StrangeDaysTech/arborist/compare/v0.1.1...v0.1.2
-[0.1.1]: https://github.com/StrangeDaysTech/arborist/compare/v0.1.0...v0.1.1
-[0.1.0]: https://github.com/StrangeDaysTech/arborist/releases/tag/v0.1.0
+[unreleased]: https://github.com/StrangeDaysTech/arborist-metrics/compare/v0.1.3...HEAD
+[0.1.3]: https://github.com/StrangeDaysTech/arborist-metrics/compare/v0.1.2...v0.1.3
+[0.1.2]: https://github.com/StrangeDaysTech/arborist-metrics/compare/v0.1.1...v0.1.2
+[0.1.1]: https://github.com/StrangeDaysTech/arborist-metrics/compare/v0.1.0...v0.1.1
+[0.1.0]: https://github.com/StrangeDaysTech/arborist-metrics/releases/tag/v0.1.0
