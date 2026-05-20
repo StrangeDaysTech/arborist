@@ -204,7 +204,7 @@ Physical source lines of code, excluding blank lines and comment-only lines.
 
 Arborist is an experiment in **disciplined AI-assisted development**.
 The implementation — tree-sitter integration, the 177-test suite, all 12
-language profiles — was authored largely by AI agents under human direction.
+language profiles — was built largely by AI agents under human direction.
 
 To make that velocity sustainable, we use **[StrayMark](https://straymark.dev)**:
 a CLI for *cognitive discipline in AI-assisted engineering*. It turned every
